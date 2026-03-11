@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+/* Cormorant Garamond — weights 300/400/500/600, normal + italic */
+@import "@fontsource/cormorant-garamond/300.css";
+@import "@fontsource/cormorant-garamond/300-italic.css";
+@import "@fontsource/cormorant-garamond/400.css";
+@import "@fontsource/cormorant-garamond/400-italic.css";
+@import "@fontsource/cormorant-garamond/500.css";
+@import "@fontsource/cormorant-garamond/500-italic.css";
+@import "@fontsource/cormorant-garamond/600.css";
+@import "@fontsource/cormorant-garamond/600-italic.css";
+
+/* DM Sans — weights 300/400/500 */
+@import "@fontsource/dm-sans/300.css";
+@import "@fontsource/dm-sans/400.css";
+@import "@fontsource/dm-sans/500.css";
+
+/* JetBrains Mono — weights 400/500 */
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
+
+@theme {
+  --color-bg: #0d1a10;
+  --color-surface: #152018;
+  --color-border: #2a4030;
+  --color-moss: #4a7c59;
+  --color-leaf: #7ab896;
+  --color-amber: #c8943a;
+  --color-text: #e8f0ea;
+  --color-muted: #8aab92;
+
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+  }
+}

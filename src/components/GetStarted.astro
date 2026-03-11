@@ -1,0 +1,103 @@
+---
+import { installCmd } from '../data/config.js';
+
+const hardware = [
+  'Raspberry Pi B, B+, Zero W (2012+) — armv6l',
+  'Raspberry Pi Zero 2 W, 2, 3, 4, 5',
+  'Any Debian 13 (trixie) armhf or arm64 board',
+  'Ubuntu and compatible derivatives',
+  'x86-64 (desktop, NAS)',
+];
+---
+
+<section
+  class="py-24 px-6 border-t"
+  style="background-color: var(--color-surface); border-color: var(--color-border);"
+  id="get-started"
+>
+  <div class="max-w-4xl mx-auto">
+    <h2
+      class="text-4xl md:text-5xl font-light mb-4 tracking-tight"
+      style="font-family: var(--font-display); color: var(--color-text);"
+    >
+      Get started
+    </h2>
+    <p class="text-lg mb-12" style="color: var(--color-muted);">
+      Two paths. Same destination.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-14">
+      <!-- Flash an image -->
+      <div
+        class="rounded-xl p-8 border flex flex-col gap-4"
+        style="background-color: var(--color-bg); border-color: var(--color-border);"
+      >
+        <div class="flex items-center gap-3">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-moss);" aria-hidden="true">
+            <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1zM4 22v-7" />
+          </svg>
+          <h3 class="text-xl font-medium" style="color: var(--color-text);">Flash an image</h3>
+        </div>
+        <p class="text-sm leading-relaxed" style="color: var(--color-muted);">
+          A ready-to-flash SD card image with odio pre-installed.
+        </p>
+        <div
+          class="mt-auto rounded-lg px-4 py-3 text-center text-sm border"
+          style="background-color: var(--color-surface); border-color: var(--color-border); color: var(--color-muted); font-family: var(--font-mono);"
+        >
+          Coming soon
+        </div>
+      </div>
+
+      <!-- Install on Debian -->
+      <div
+        class="rounded-xl p-8 border flex flex-col gap-4"
+        style="background-color: var(--color-bg); border-color: var(--color-moss);"
+      >
+        <div class="flex items-center gap-3">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-leaf);" aria-hidden="true">
+            <polyline points="4 17 10 11 4 5" />
+            <line x1="12" y1="19" x2="20" y2="19" />
+          </svg>
+          <h3 class="text-xl font-medium" style="color: var(--color-text);">Install on Debian / Pi OS</h3>
+        </div>
+        <p class="text-sm leading-relaxed" style="color: var(--color-muted);">
+          Debian 13 (trixie) and Ubuntu compatible. The installer handles all dependencies and services.
+        </p>
+        <div
+          class="mt-auto rounded-lg px-4 py-2.5 border flex items-center gap-2"
+          style="background-color: var(--color-surface); border-color: var(--color-border);"
+        >
+          <span
+            class="text-xs flex-1 overflow-x-auto whitespace-nowrap"
+            style="font-family: var(--font-mono); color: var(--color-leaf);"
+            id="gs-install-cmd"
+          >{installCmd}</span>
+          <button
+            onclick="navigator.clipboard.writeText(document.getElementById('gs-install-cmd').textContent).then(()=>{this.textContent='✓';setTimeout(()=>this.textContent='Copy',2000)})"
+            class="shrink-0 text-xs px-2.5 py-1 rounded border cursor-pointer"
+            style="font-family: var(--font-mono); color: var(--color-muted); border-color: var(--color-border);"
+          >Copy</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Compatible hardware -->
+    <div>
+      <h3
+        class="text-lg font-medium mb-5"
+        style="color: var(--color-text);"
+      >Compatible hardware</h3>
+      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        {hardware.map((hw) => (
+          <li class="flex items-center gap-2.5 text-sm" style="color: var(--color-muted);">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-moss); shrink: 0;" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            {hw}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>

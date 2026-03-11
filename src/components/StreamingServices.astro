@@ -1,0 +1,36 @@
+---
+import { services } from '../data/streaming.js';
+---
+
+<section
+  id="streaming"
+  class="py-24 px-6 border-t"
+  style="background-color: var(--color-bg); border-color: var(--color-border);"
+>
+  <div class="max-w-5xl mx-auto">
+    <h2
+      class="text-4xl md:text-5xl font-light mb-4 tracking-tight"
+      style="font-family: var(--font-display); color: var(--color-text);"
+    >
+      Streaming services
+    </h2>
+    <p class="text-lg mb-12" style="color: var(--color-muted);">
+      Your existing subscriptions, on your Pi. No extra cost.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+      {services.map((s) => (
+        <div
+          class="rounded-xl p-6 border"
+          style="background-color: var(--color-surface); border-color: var(--color-border);"
+        >
+          <h3
+            class="text-lg font-medium mb-2"
+            style="color: var(--color-text); font-family: var(--font-mono);"
+          >{s.name}</h3>
+          <p class="text-sm leading-relaxed" style="color: var(--color-muted);">{s.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

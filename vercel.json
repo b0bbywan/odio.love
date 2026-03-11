@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/install",
+      "destination": "https://github.com/b0bbywan/odios/releases/latest/download/install.sh",
+      "permanent": false
+    }
+  ]
+}
