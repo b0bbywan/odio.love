@@ -8,7 +8,7 @@ const isBeta = process.env.PUBLIC_BETA === 'true';
 
 export default defineConfig({
   site: isBeta ? 'https://beta.odio.love' : 'https://odio.love',
-integrations: [svelte(), mdx(), ...(isBeta ? [] : [sitemap()])],
+integrations: [svelte(), mdx(), sitemap()],
   output: 'static',
   vite: {
     plugins: [tailwindcss()],

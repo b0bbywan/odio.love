@@ -8,12 +8,13 @@ interface Props {
 }
 
 const {
-  title = 'odio·love — Your Pi. Your music. No permission needed.',
-  description = 'odio is a free, open-source audio streamer for Raspberry Pi. No account, no cloud, no subscription. Bluetooth, AirPlay, UPnP, multi-room — entirely yours.',
-  ogImage = 'https://odio.love/og.png',
+  title = 'odio — Open-source Raspberry Pi audio streamer. Self-hosted, Home Assistant native.',
+  description = 'odio turns any Raspberry Pi into a free self-hosted audio streamer. AirPlay, Bluetooth, Spotify, Tidal, multi-room, Home Assistant. One curl command on your existing Pi OS. No flashing, no account, no telemetry. The Volumio alternative that stays free.',
+  ogImage = 'https://odio.love/logo.png',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const isBeta = import.meta.env.PUBLIC_BETA === 'true';
 ---
 
 <!doctype html>
@@ -41,6 +42,28 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="twitter:image" content={ogImage} />
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    {!isBeta && (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "name": "odio",
+            "url": "https://odio.love",
+            "description": description
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "odio",
+            "applicationCategory": "MultimediaApplication",
+            "operatingSystem": "Linux",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+            "url": "https://odio.love"
+          }
+        ]
+      })} />
+    )}
   </head>
   <body>
     <slot />

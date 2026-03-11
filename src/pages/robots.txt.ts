@@ -1,9 +1,7 @@
-const isBeta = import.meta.env.PUBLIC_BETA === 'true';
+const site = import.meta.env.PUBLIC_BETA === 'true' ? 'https://beta.odio.love' : 'https://odio.love';
 
 export async function GET() {
-  const content = isBeta
-    ? `User-agent: *\nDisallow: /\n`
-    : `User-agent: *\nAllow: /\nSitemap: https://odio.love/sitemap-index.xml\n`;
+  const content = `User-agent: *\nAllow: /\nSitemap: ${site}/sitemap-index.xml\n`;
 
   return new Response(content, {
     headers: { 'Content-Type': 'text/plain' },
