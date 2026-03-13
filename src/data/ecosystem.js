@@ -19,14 +19,26 @@ export const ecosystemProjects = [
   },
   {
     name: 'odio-ha',
-    desc: 'Home Assistant integration. odio nodes appear as native HA media players.',
+    desc: 'Home Assistant integration. Complete odio support with native HA entities.',
     url: 'https://github.com/b0bbywan/odio-ha',
     live: null,
   },
   {
     name: 'go-mpd-discplayer',
-    desc: 'CD and USB auto-play daemon with full metadata via GnuDB and MusicBrainz.',
+    desc: 'CD and USB auto-play daemon with metadata.',
     url: 'https://github.com/b0bbywan/go-mpd-discplayer',
+    live: null,
+  },
+  {
+    name: 'go-disc-cuer',
+    desc: 'Go library for CUE sheet. The metadata backbone behind go-mpd-discplayer, via GnuDB and MusicBrainz.',
+    url: 'https://github.com/b0bbywan/go-disc-cuer',
+    live: null,
+  },
+  {
+    name: 'odio-apt-repo',
+    desc: 'The apt repository. Fully CI-maintained. Packages are built and published automatically on every release.',
+    url: 'https://github.com/b0bbywan/odio-apt-repo',
     live: null,
   },
   {

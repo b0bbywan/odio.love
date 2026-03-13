@@ -24,6 +24,20 @@ import { repos } from '../data/repos.js';
       and opinionated configuration choices are all welcome.
     </p>
 
+    <div class="flex justify-center mb-10">
+      <a
+        href="/how-it-works"
+        class="px-6 py-3 rounded-lg text-sm font-medium transition-colors"
+        style="border: 1px solid var(--color-moss); color: var(--color-leaf);"
+        onmouseover="this.style.backgroundColor='var(--color-moss)';this.style.color='var(--color-text)'"
+        onmouseout="this.style.backgroundColor='transparent';this.style.color='var(--color-leaf)'"
+        onfocus="this.style.backgroundColor='var(--color-moss)';this.style.color='var(--color-text)'"
+        onblur="this.style.backgroundColor='transparent';this.style.color='var(--color-leaf)'"
+      >
+        How it works →
+      </a>
+    </div>
+
     <div class="flex flex-wrap justify-center gap-4">
       {repos.map((repo) => (
         <a

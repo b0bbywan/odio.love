@@ -1,0 +1,38 @@
+---
+import { ecosystemProjects } from '../data/ecosystem.js';
+import { GitHub } from '../icons';
+---
+
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 4rem;">
+  {ecosystemProjects.map((project) => (
+    <div style="background-color: var(--color-bg); border: 1px solid var(--color-border); border-radius: 0.75rem; padding: 1.75rem; display: flex; flex-direction: column; gap: 1rem;">
+      <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem;">
+        <h3 style="font-family: var(--font-mono); font-size: 1.1rem; font-weight: 500; color: var(--color-text); margin: 0;">{project.name}</h3>
+        <div style="display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0;">
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            style="font-size: 0.75rem; padding: 0.375rem 0.75rem; border-radius: 0.25rem; border: 1px solid var(--color-border); color: var(--color-muted); text-decoration: none;"
+            aria-label={`View ${project.name} on GitHub`}
+          >
+            <GitHub width="12" height="12" style="display: inline; margin-right: 4px;" aria-hidden="true" />
+            GitHub
+          </a>
+          {project.live && (
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              style="font-size: 0.75rem; padding: 0.375rem 0.75rem; border-radius: 0.25rem; border: 1px solid var(--color-moss); color: var(--color-leaf); text-decoration: none;"
+              aria-label={`Visit ${project.name} live site`}
+            >
+              Live ↗
+            </a>
+          )}
+        </div>
+      </div>
+      <p style="font-size: 0.875rem; line-height: 1.6; color: var(--color-muted); margin: 0;">{project.desc}</p>
+    </div>
+  ))}
+</div>
