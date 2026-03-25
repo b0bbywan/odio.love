@@ -1,54 +1,5 @@
 ---
 import { features } from '../data/features.js';
-
-// Each icon is an array of SVG path/polyline/circle elements rendered verbatim
-const icons: Record<string, { tag: string; attrs: Record<string, string> }[]> = {
-  // Bluetooth: the classic B-shaped symbol (Lucide)
-  bluetooth: [
-    { tag: 'polyline', attrs: { points: '6.5 6.5 17.5 17.5 12 23 12 1 17.5 6.5 6.5 17.5' } },
-  ],
-  // AirPlay: screen with triangle + wifi arc (Lucide)
-  airplay: [
-    { tag: 'path', attrs: { d: 'M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-2' } },
-    { tag: 'polygon', attrs: { points: '12 15 17 21 7 21 12 15' } },
-  ],
-  // Multi-room: two speakers side by side
-  multiroom: [
-    { tag: 'rect', attrs: { x: '4', y: '2', width: '8', height: '20', rx: '2' } },
-    { tag: 'circle', attrs: { cx: '8', cy: '14', r: '2' } },
-    { tag: 'path', attrs: { d: 'M16 4h2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-2' } },
-  ],
-  // UPnP/DLNA: share nodes (Lucide share-2)
-  upnp: [
-    { tag: 'circle', attrs: { cx: '18', cy: '5', r: '3' } },
-    { tag: 'circle', attrs: { cx: '6', cy: '12', r: '3' } },
-    { tag: 'circle', attrs: { cx: '18', cy: '19', r: '3' } },
-    { tag: 'line', attrs: { x1: '8.59', y1: '13.51', x2: '15.42', y2: '17.49' } },
-    { tag: 'line', attrs: { x1: '15.41', y1: '6.51', x2: '8.59', y2: '10.49' } },
-  ],
-  // CD: disc with center hole (Lucide disc)
-  cd: [
-    { tag: 'circle', attrs: { cx: '12', cy: '12', r: '10' } },
-    { tag: 'circle', attrs: { cx: '12', cy: '12', r: '3' } },
-  ],
-  // Network audio: wifi signal (Lucide wifi)
-  network: [
-    { tag: 'path', attrs: { d: 'M5 12.55a11 11 0 0 1 14.08 0' } },
-    { tag: 'path', attrs: { d: 'M1.42 9a16 16 0 0 1 21.16 0' } },
-    { tag: 'path', attrs: { d: 'M8.53 16.11a6 6 0 0 1 6.95 0' } },
-    { tag: 'circle', attrs: { cx: '12', cy: '20', r: '1' } },
-  ],
-  // Home Assistant: home with pulse/dot (Lucide home)
-  ha: [
-    { tag: 'path', attrs: { d: 'M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z' } },
-    { tag: 'polyline', attrs: { points: '9 22 9 12 15 12 15 22' } },
-  ],
-  // PWA: smartphone with signal bars (Lucide smartphone)
-  pwa: [
-    { tag: 'rect', attrs: { x: '5', y: '2', width: '14', height: '20', rx: '2', ry: '2' } },
-    { tag: 'line', attrs: { x1: '12', y1: '18', x2: '12.01', y2: '18' } },
-  ],
-};
 ---
 
 <section
@@ -68,37 +19,22 @@ const icons: Record<string, { tag: string; attrs: Record<string, string> }[]> = 
     </p>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      {features.map((feature) => (
+      {features.map(({ icon: Icon, name, desc }) => (
         <div
           class="feature-card rounded-xl p-6 border flex flex-col gap-4 transition-colors"
           style="background-color: var(--color-surface); border-color: var(--color-border);"
         >
-          <svg
-            width="28"
-            height="28"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="feature-icon shrink-0"
-            style="color: var(--color-moss);"
-            aria-hidden="true"
-          >
-            {(icons[feature.icon] ?? icons.network).map((el) => {
-              const Tag = el.tag;
-              return <Tag {...el.attrs} />;
-            })}
-          </svg>
-          <div>
-            <h3 class="font-medium mb-1" style="color: var(--color-text);">
-              {feature.name}
-            </h3>
-            <p class="text-sm leading-relaxed" style="color: var(--color-muted);">
-              {feature.desc}
-            </p>
+          <div class="flex items-center justify-center gap-3">
+            <Icon
+              width="22"
+              height="22"
+              class="feature-icon shrink-0"
+              style="color: var(--color-moss);"
+              aria-hidden="true"
+            />
+            <h3 class="font-medium" style="color: var(--color-text);">{name}</h3>
           </div>
+          <p class="text-sm leading-relaxed text-center" style="color: var(--color-muted);">{desc}</p>
         </div>
       ))}
     </div>

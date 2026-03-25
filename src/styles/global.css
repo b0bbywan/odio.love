@@ -20,14 +20,15 @@
 @import "@fontsource/jetbrains-mono/500.css";
 
 @theme {
-  --color-bg: #0d1a10;
-  --color-surface: #152018;
-  --color-border: #2a4030;
-  --color-moss: #4a7c59;
-  --color-leaf: #7ab896;
+  --color-bg: #0a100a;
+  --color-surface: #111a0e;
+  --color-border: #1e3a18;
+  --color-moss: #3a7020;
+  --color-leaf: #5ab81e;
   --color-amber: #c8943a;
-  --color-text: #e8f0ea;
-  --color-muted: #8aab92;
+  --color-text: #e8e4dc;
+  --color-subtle: #486040;
+  --color-muted: #72797a;
 
   --font-display: 'Cormorant Garamond', serif;
   --font-body: 'DM Sans', sans-serif;

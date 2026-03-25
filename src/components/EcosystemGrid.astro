@@ -1,6 +1,7 @@
 ---
 import { ecosystemProjects } from '../data/ecosystem.js';
 import { GitHub } from '../icons';
+import TechIcon from './icons/TechIcon.astro';
 ---
 
 <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 4rem;">
@@ -9,6 +10,9 @@ import { GitHub } from '../icons';
       <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem;">
         <h3 style="font-family: var(--font-mono); font-size: 1.1rem; font-weight: 500; color: var(--color-text); margin: 0;">{project.name}</h3>
         <div style="display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0;">
+          {project.tech && (
+            <TechIcon name={project.tech.label} color={project.tech.color} size={18} />
+          )}
           <a
             href={project.url}
             target="_blank"

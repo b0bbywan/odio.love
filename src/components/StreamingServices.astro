@@ -1,5 +1,6 @@
 ---
 import { services } from '../data/streaming.js';
+import * as simpleIcons from 'simple-icons';
 ---
 
 <section
@@ -24,11 +25,21 @@ import { services } from '../data/streaming.js';
           class="rounded-xl p-6 border"
           style="background-color: var(--color-surface); border-color: var(--color-border);"
         >
-          <h3
-            class="text-lg font-medium mb-2"
-            style="color: var(--color-text); font-family: var(--font-mono);"
-          >{s.name}</h3>
-          <p class="text-sm leading-relaxed" style="color: var(--color-muted);">{s.desc}</p>
+          <div class="flex items-center justify-center gap-3 mb-2">
+            {s.icon && simpleIcons[s.icon] && (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill={s.iconColor} aria-hidden="true" style="flex-shrink:0;">
+                <path d={simpleIcons[s.icon].path} />
+              </svg>
+            )}
+            {s.iconImg && (
+              <img src={s.iconImg} alt="" width="24" height="24" aria-hidden="true" style="flex-shrink:0;" />
+            )}
+            <h3
+              class="text-lg font-medium"
+              style="color: var(--color-text); font-family: var(--font-mono);"
+            >{s.name}</h3>
+          </div>
+          <p class="text-sm leading-relaxed text-center" style="color: var(--color-muted);">{s.desc}</p>
         </div>
       ))}
     </div>

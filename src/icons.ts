@@ -1,0 +1,15 @@
+export { default as GitHub } from './components/icons/GitHub.astro';
+export { default as Airplay } from '@lucide/astro/icons/airplay';
+export { default as ArrowDown } from '@lucide/astro/icons/arrow-down';
+export { default as Bluetooth } from '@lucide/astro/icons/bluetooth';
+export { default as Check } from '@lucide/astro/icons/check';
+export { default as Copy } from '@lucide/astro/icons/copy';
+export { default as Disc } from '@lucide/astro/icons/disc';
+export { default as Flag } from '@lucide/astro/icons/flag';
+export { default as Heart } from '@lucide/astro/icons/heart';
+export { default as House } from '@lucide/astro/icons/house';
+export { default as Share2 } from '@lucide/astro/icons/share-2';
+export { default as Smartphone } from '@lucide/astro/icons/smartphone';
+export { default as Speaker } from '@lucide/astro/icons/speaker';
+export { default as Terminal } from '@lucide/astro/icons/terminal';
+export { default as Wifi } from '@lucide/astro/icons/wifi';

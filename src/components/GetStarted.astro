@@ -1,13 +1,6 @@
 ---
-import { installCmd } from '../data/config.js';
-
-const hardware = [
-  'Raspberry Pi B, B+, Zero W (2012+) — armv6l',
-  'Raspberry Pi Zero 2 W, 2, 3, 4, 5',
-  'Any Debian 13 (trixie) armhf or arm64 board',
-  'Ubuntu and compatible derivatives',
-  'x86-64 (desktop, NAS)',
-];
+import { installCmd, compatibleHardware, verifiedPlatforms, verifiedOther } from '../data/config.js';
+import { Flag, Terminal, Copy, Check } from '../icons';
 ---
 
 <section
@@ -33,19 +26,19 @@ const hardware = [
         style="background-color: var(--color-bg); border-color: var(--color-border);"
       >
         <div class="flex items-center gap-3">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-moss);" aria-hidden="true">
-            <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1zM4 22v-7" />
-          </svg>
+          <Flag width="24" height="24" style="color: var(--color-moss);" aria-hidden="true" />
           <h3 class="text-xl font-medium" style="color: var(--color-text);">Flash an image</h3>
         </div>
         <p class="text-sm leading-relaxed" style="color: var(--color-muted);">
           A ready-to-flash SD card image with odio pre-installed.
         </p>
-        <div
-          class="mt-auto rounded-lg px-4 py-3 text-center text-sm border"
-          style="background-color: var(--color-surface); border-color: var(--color-border); color: var(--color-muted); font-family: var(--font-mono);"
-        >
-          Coming soon
+        <div class="flex-1 flex items-center justify-center">
+          <div
+            class="rounded-lg px-4 py-3 text-center text-sm border"
+            style="background-color: var(--color-surface); border-color: var(--color-border); color: var(--color-muted); font-family: var(--font-mono);"
+          >
+            Coming soon
+          </div>
         </div>
       </div>
 
@@ -55,30 +48,37 @@ const hardware = [
         style="background-color: var(--color-bg); border-color: var(--color-moss);"
       >
         <div class="flex items-center gap-3">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-leaf);" aria-hidden="true">
-            <polyline points="4 17 10 11 4 5" />
-            <line x1="12" y1="19" x2="20" y2="19" />
-          </svg>
+          <Terminal width="24" height="24" style="color: var(--color-leaf);" aria-hidden="true" />
           <h3 class="text-xl font-medium" style="color: var(--color-text);">Install on Debian / Pi OS</h3>
         </div>
         <p class="text-sm leading-relaxed" style="color: var(--color-muted);">
           Debian 13 (trixie) and Ubuntu compatible. The installer handles all dependencies and services.
         </p>
         <div
-          class="mt-auto rounded-lg px-4 py-2.5 border flex items-center gap-2"
+          class="mt-auto rounded-lg border flex items-center"
           style="background-color: var(--color-surface); border-color: var(--color-border);"
         >
           <span
-            class="text-xs flex-1 overflow-x-auto whitespace-nowrap"
+            class="text-xs flex-1 min-w-0 overflow-x-auto whitespace-nowrap px-4 py-3"
             style="font-family: var(--font-mono); color: var(--color-leaf);"
             id="gs-install-cmd"
           >{installCmd}</span>
           <button
-            onclick="navigator.clipboard.writeText(document.getElementById('gs-install-cmd').textContent).then(()=>{this.textContent='✓';setTimeout(()=>this.textContent='Copy',2000)})"
-            class="shrink-0 text-xs px-2.5 py-1 rounded border cursor-pointer"
-            style="font-family: var(--font-mono); color: var(--color-muted); border-color: var(--color-border);"
-          >Copy</button>
+            onclick="const s=this.querySelector('svg');const c=this.querySelector('.check');navigator.clipboard.writeText(document.getElementById('gs-install-cmd').textContent).then(()=>{s.style.display='none';c.style.display='block';setTimeout(()=>{s.style.display='block';c.style.display='none'},2000)})"
+            class="flex-shrink-0 p-1.5 mr-2 rounded cursor-pointer transition-colors"
+            style="color: var(--color-muted);"
+            onmouseover="this.style.color='var(--color-leaf)'"
+            onmouseout="this.style.color='var(--color-muted)'"
+            title="Copy"
+          >
+            <Copy width="14" height="14" />
+            <Check class="check" width="14" height="14" style="display:none" />
+          </button>
         </div>
+        <ul class="flex flex-col gap-1.5 text-xs" style="color: var(--color-subtle);">
+          <li>~800 MB - ~5 min on x86, <15 min on Pi 3B+, up to 1h20 on a Pi B+ at 800 MHz</li>
+          <li>Tip: set up overclocking and DAC beforehand to save a reboot</li>
+        </ul>
       </div>
     </div>
 
@@ -89,15 +89,66 @@ const hardware = [
         style="color: var(--color-text);"
       >Compatible hardware</h3>
       <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-        {hardware.map((hw) => (
+        {compatibleHardware.map((hw) => (
           <li class="flex items-center gap-2.5 text-sm" style="color: var(--color-muted);">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-moss); shrink: 0;" aria-hidden="true">
-              <polyline points="20 6 9 17 4 12" />
-            </svg>
+            <Check width="14" height="14" style="color: var(--color-moss); flex-shrink: 0;" aria-hidden="true" />
             {hw}
           </li>
         ))}
       </ul>
+    </div>
+
+    <!-- Beta disclaimer -->
+    <div
+      class="mt-10 rounded-xl px-6 py-5 border flex flex-col gap-3"
+      style="background-color: var(--color-bg); border-color: var(--color-border);"
+    >
+      <p class="text-base" style="color: var(--color-muted);">
+        odio is still in <strong style="color: var(--color-amber);">beta</strong> - stable for daily use, but expect rough edges on existing installs.
+        Try it on your hardware, <a
+          href="https://github.com/b0bbywan/odios/issues"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="underline underline-offset-2 transition-colors"
+          style="color: var(--color-leaf);"
+          onmouseover="this.style.color='var(--color-text)'"
+          onmouseout="this.style.color='var(--color-leaf)'"
+        >report bugs</a> and help grow the list.
+      </p>
+      <div>
+        <p class="text-xs uppercase tracking-widest mb-3" style="color: var(--color-subtle);">
+          Verified on -
+          <a
+            href="https://github.com/b0bbywan/odios/issues"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="underline underline-offset-2 transition-colors normal-case tracking-normal"
+            style="color: var(--color-subtle);"
+            onmouseover="this.style.color='var(--color-muted)'"
+            onmouseout="this.style.color='var(--color-subtle)'"
+          >add yours ↗</a>
+        </p>
+        <div class="flex flex-col gap-2">
+          {verifiedPlatforms.map((p) => (
+            <div class="flex items-baseline gap-3">
+              <span
+                class="text-xs font-mono shrink-0 w-14"
+                style={p.incoming ? 'color: var(--color-subtle);' : 'color: var(--color-amber);'}
+              >{p.arch}</span>
+              {p.incoming
+                ? <span class="text-xs italic" style="color: var(--color-subtle);">incoming…</span>
+                : <span class="text-sm" style="color: var(--color-muted);">{p.examples.join(', ')}</span>
+              }
+            </div>
+          ))}
+          <div class="flex items-baseline gap-3 mt-1 pt-2" style="border-top: 1px solid var(--color-border);">
+            <span class="text-xs font-mono shrink-0 w-14" style="color: var(--color-subtle);">other</span>
+            <span class="text-sm" style="color: var(--color-subtle);">
+              {verifiedOther.map((o) => `${o.label} (${o.note})`).join(', ')}
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
