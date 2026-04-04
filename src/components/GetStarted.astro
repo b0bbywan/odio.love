@@ -1,5 +1,5 @@
 ---
-import { installCmd, compatibleHardware, verifiedPlatforms, verifiedOther } from '../data/config.js';
+import { installCmd, compatibleHardware, verifiedPlatforms, verifiedOther, imagerManifestUrl } from '../data/config.js';
 import { Flag, Terminal, Copy, Check } from '../icons';
 ---
 
@@ -8,7 +8,7 @@ import { Flag, Terminal, Copy, Check } from '../icons';
   style="background-color: var(--color-surface); border-color: var(--color-border);"
   id="get-started"
 >
-  <div class="max-w-4xl mx-auto">
+  <div class="max-w-5xl mx-auto">
     <h2
       class="text-4xl md:text-5xl font-light mb-4 tracking-tight"
       style="font-family: var(--font-display); color: var(--color-text);"
@@ -19,33 +19,50 @@ import { Flag, Terminal, Copy, Check } from '../icons';
       Two paths. Same destination.
     </p>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-14">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-14" style="grid-template-rows: subgrid;" >
       <!-- Flash an image -->
       <div
-        class="rounded-xl p-8 border flex flex-col gap-4"
-        style="background-color: var(--color-bg); border-color: var(--color-border);"
+        class="rounded-xl p-8 border grid gap-4 row-span-4"
+        style="background-color: var(--color-bg); border-color: var(--color-moss); grid-template-rows: subgrid;"
       >
         <div class="flex items-center gap-3">
           <Flag width="24" height="24" style="color: var(--color-moss);" aria-hidden="true" />
           <h3 class="text-xl font-medium" style="color: var(--color-text);">Flash an image</h3>
         </div>
         <p class="text-sm leading-relaxed" style="color: var(--color-muted);">
-          A ready-to-flash SD card image with odio pre-installed.
+          Use <a href="https://www.raspberrypi.com/software/" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2" style="color: var(--color-leaf);">Raspberry Pi Imager</a> with a custom repository URL. Configure hostname, SSH & WiFi, then flash.
         </p>
-        <div class="flex-1 flex items-center justify-center">
-          <div
-            class="rounded-lg px-4 py-3 text-center text-sm border"
-            style="background-color: var(--color-surface); border-color: var(--color-border); color: var(--color-muted); font-family: var(--font-mono);"
+        <div
+          class="self-end rounded-lg border flex items-center"
+          style="background-color: var(--color-surface); border-color: var(--color-border);"
+        >
+          <span
+            class="text-xs flex-1 min-w-0 overflow-x-auto whitespace-nowrap px-4 py-3"
+            style="font-family: var(--font-mono); color: var(--color-leaf);"
+            id="gs-manifest-url"
+          >{imagerManifestUrl}</span>
+          <button
+            onclick="const s=this.querySelector('svg');const c=this.querySelector('.check');navigator.clipboard.writeText(document.getElementById('gs-manifest-url').textContent).then(()=>{s.style.display='none';c.style.display='block';setTimeout(()=>{s.style.display='block';c.style.display='none'},2000)})"
+            class="flex-shrink-0 p-1.5 mr-2 rounded cursor-pointer transition-colors"
+            style="color: var(--color-muted);"
+            onmouseover="this.style.color='var(--color-leaf)'"
+            onmouseout="this.style.color='var(--color-muted)'"
+            title="Copy"
           >
-            Coming soon
-          </div>
+            <Copy width="14" height="14" />
+            <Check class="check" width="14" height="14" style="display:none" />
+          </button>
         </div>
+        <ul class="flex flex-col gap-1.5 text-xs" style="color: var(--color-subtle);">
+          <li>Imager → Options App → Content Repository → Use custom URL</li>
+          <li>Available in armhf (32-bit) and arm64 (64-bit)</li>
+        </ul>
       </div>
 
       <!-- Install on Debian -->
       <div
-        class="rounded-xl p-8 border flex flex-col gap-4"
-        style="background-color: var(--color-bg); border-color: var(--color-moss);"
+        class="rounded-xl p-8 border grid gap-4 row-span-4"
+        style="background-color: var(--color-bg); border-color: var(--color-moss); grid-template-rows: subgrid;"
       >
         <div class="flex items-center gap-3">
           <Terminal width="24" height="24" style="color: var(--color-leaf);" aria-hidden="true" />
@@ -55,7 +72,7 @@ import { Flag, Terminal, Copy, Check } from '../icons';
           Debian 13 (trixie) and Ubuntu compatible. The installer handles all dependencies and services.
         </p>
         <div
-          class="mt-auto rounded-lg border flex items-center"
+          class="self-end rounded-lg border flex items-center"
           style="background-color: var(--color-surface); border-color: var(--color-border);"
         >
           <span

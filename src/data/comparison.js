@@ -109,7 +109,7 @@ export const comparisonRows = [
   },
   {
     feature: 'Installation',
-    odio: { value: 'One command (curl | bash)', positive: true },
+    odio: { value: 'Image flash or one command (curl | bash)', positive: true },
     volumio: { value: 'Image flash', positive: null },
     commercial: { value: 'Plug and play', positive: null },
   },

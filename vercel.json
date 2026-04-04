@@ -4,6 +4,11 @@
       "source": "/install",
       "destination": "https://github.com/b0bbywan/odios/releases/latest/download/install.sh",
       "permanent": false
+    },
+    {
+      "source": "/odio.rpi-imager-manifest",
+      "destination": "https://github.com/b0bbywan/odios/releases/latest/download/odio.rpi-imager-manifest",
+      "permanent": false
     }
   ]
 }

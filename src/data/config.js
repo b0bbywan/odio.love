@@ -37,3 +37,7 @@ export const verifiedPlatforms = [
 export const verifiedOther = [
   { label: 'Fedora 43 x86-64', note: 'API only/manual' },
 ];
+
+export const imagerManifestUrl = isBeta
+  ? 'https://beta.odio.love/odio.rpi-imager-manifest'
+  : 'https://odio.love/odio.rpi-imager-manifest';
