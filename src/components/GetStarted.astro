@@ -19,7 +19,7 @@ import { Flag, Terminal, Copy, Check } from '../icons';
       Two paths. Same destination.
     </p>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-14" style="grid-template-rows: subgrid;" >
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6" style="grid-template-rows: subgrid;" >
       <!-- Flash an image -->
       <div
         class="rounded-xl p-8 border grid gap-4 row-span-4"
@@ -94,10 +94,13 @@ import { Flag, Terminal, Copy, Check } from '../icons';
         </div>
         <ul class="flex flex-col gap-1.5 text-xs" style="color: var(--color-subtle);">
           <li>~800 MB - ~5 min on x86, <15 min on Pi 3B+, up to 1h20 on a Pi B+ at 800 MHz</li>
-          <li>Tip: set up overclocking and DAC beforehand to save a reboot</li>
         </ul>
       </div>
     </div>
+
+    <p class="text-sm mb-14" style="color: var(--color-amber);">
+      Tip: set up DAC and overclocking (armhf) in /boot/firmware/config.txt beforehand to save a reboot.
+    </p>
 
     <!-- Compatible hardware -->
     <div>

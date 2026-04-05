@@ -5,9 +5,9 @@ import EcosystemGrid from '../components/EcosystemGrid.astro';
 
 ## How odio works
 
-odio is not an appliance. Not a custom OS you flash onto a card and hand over to a boot sequence you didn't write. It's a Debian based platform: a coherent set of software components, each doing one thing well, assembled into a working whole.
+odio is not an appliance. You can flash an image or run the installer and get a working system in minutes, but what you get is still Raspberry Pi OS / Debian: a platform you fully own, not a black box hiding behind a heavily customized OS. It's a coherent set of software components, each doing one thing well, assembled into a working whole. The entire stack runs in your user session. System footprint is minimal: packages, /etc/bluetooth/main.conf, user units and config files, one modified udev rule, two polkit rules. That's it.
 
-[**odios**](https://github.com/b0bbywan/odios) is a complete vision: run the installer and an entire stack comes up, configured, wired, ready. But the model doesn't stop there. Every piece is a standalone project. Take what you need. Replace what you don't want. Build something nobody has thought of yet. The platform is the proposal. Your setup is the answer.
+[**odios**](https://github.com/b0bbywan/odios) is a complete vision: flash an image or run the installer and an entire stack comes up, configured, wired, ready. But the model doesn't stop there. Every piece is a standalone project. Take what you need. Replace what you don't want. Build something nobody has thought of yet. The platform is the proposal. Your setup is the answer.
 
 </div>
 </section>
@@ -136,13 +136,13 @@ In 2020, during the first confinement, the whole stack was documented in a [Medi
 
 That track record is not incidental. It comes from building on the right abstractions from the start: PulseAudio in the user session, MPD, BlueZ, systemd. Components the Linux community had already validated over years. The setup survived because the foundations were solid.
 
-[go-mpd-discplayer](https://github.com/b0bbywan/go-mpd-discplayer) came from a real gap in that original setup. CDs played, but tracks had no metadata in MPD clients. The [2020 article](https://mathieu-requillart.medium.com/my-ultimate-guide-to-the-raspberry-pi-audio-server-i-wanted-audio-cd-f985e8bd832c) acknowledged it: "What annoys me more is that I don't have tracks tags." go-disc-cuer closes that gap. [GnuDB](https://gnudb.org/), [MusicBrainz](https://musicbrainz.org/), CUE sheet output fed directly to MPD. The problem was unsolved and bothered me. Now it is not.
+[go-mpd-discplayer](https://github.com/b0bbywan/go-mpd-discplayer) came from a real gap in that original setup. CDs played, but tracks had no metadata in MPD clients. The [2020 article](https://mathieu-requillart.medium.com/my-ultimate-guide-to-the-raspberry-pi-audio-server-i-wanted-audio-cd-f985e8bd832c) acknowledged it: "What annoys me more is that I don't have tracks tags." go-disc-cuer closes that gap. [GnuDB](https://gnudb.org/), [MusicBrainz](https://musicbrainz.org/), CUE sheet output fed directly to MPD. The problem was unsolved and it bothered me. Now it's solved.
 
 go-odio-api came in January 2026, built to test [Claude Code](https://claude.ai/code). A REST API over a systemd user session in Go. The POC worked well enough to become a commitment. An API alone is useless. Home Assistant integration came right after, as it was the initial objective, then the [PWA](https://github.com/b0bbywan/odio-pwa) followed, because the UI was inconvenient to reach, then the installer as a way to conclude my experience started in 2020 and offer a first complete use case of the api. To establish new bases for the multimedia world.
 
 As the vision for go-odio-api was getting clearer, the CI got serious. Unit tests. Build pipelines for every target: binaries, Docker images, apt packages, rpm packages. Then the apt repository, fully CI-managed, no manual step anywhere. A tagged release triggers the build. The package lands in the repo. apt sees it.
 
-The installer is a vendored [Ansible](https://www.ansible.com/) archive, delivered as a curl bash. Ansible because idempotent. Vendored because runtime dependency resolution is a failure waiting to happen. Curl bash because it is one command and it works. The flash image will come from that same playbook, frozen at release time. Fresh install or upgrade, same source of truth, same result.
+The installer is a vendored [Ansible](https://www.ansible.com/) archive, delivered as a curl bash. Ansible because idempotent. Vendored because runtime dependency resolution is a failure waiting to happen. Curl bash because it is one command and it works. The flash image comes from that same playbook, frozen at release time. Fresh install or upgrade, same source of truth, same result.
 
 Bash scripts become binaries. Binaries become packages. Packages get a repo. A repo gets an installer. An installer gets an image. Solid foundations make fast iterations possible. This is the kind of software chain I believe in: one where a POC can become production without being rebuilt from scratch, and where new features add on top of that base without breaking "historical" features.
 
@@ -162,7 +162,7 @@ I'm an R&D Engineer, a lazy but demanding one. If there's a tool that makes my w
 
 But Claude Code really changed the game. It doesn't know how to make good software, I do, at least I hope. It's a really good Code Monkey, I'm definitely not. It has a lot of knowledge I don't have, and I had a product vision, or at least I built one in the process.
 
-Thanks to Claude Code I could focus on what really matters: requirements, architecture and maintainability. Adding good debug logs, regression tests, CI, packaging, documentation, basically everything that makes good software in the long run is ultra easy with Claude Code.
+Thanks to Claude Code I could focus on what really matters: user experience, requirements, architecture and maintainability. Adding good debug logs, regression tests, CI, packaging, documentation, basically everything that makes good software in the long run is ultra easy with Claude Code.
 
 I've always preferred to work in small iterations, coming from the DevOps world, I find it's my most effective process. Thanks to Claude Code those iterations got ultra fast. What I find amazing now is that it has completely adapted to my style of coding. The more the project grows with a strong "code identity", the fewer corrections I need.
 
