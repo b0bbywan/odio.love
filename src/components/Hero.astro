@@ -1,6 +1,6 @@
 ---
 import { installCmd } from '../data/config.js';
-import { GitHub, Smartphone, Copy, Check, ArrowDown } from '../icons';
+import { GitHub, Smartphone, BookOpen, Copy, Check, ArrowDown } from '../icons';
 ---
 
 <section
@@ -9,6 +9,19 @@ import { GitHub, Smartphone, Copy, Check, ArrowDown } from '../icons';
 >
   <!-- Header links -->
   <div class="absolute top-5 right-6 flex items-center gap-4 z-20">
+    <a
+      href="https://docs.odio.love"
+      target="_blank"
+      rel="noopener noreferrer"
+      title="Documentation"
+      class="flex items-center gap-1.5 text-xs transition-colors"
+      style="color: var(--color-muted);"
+      onmouseover="this.style.color='var(--color-leaf)'"
+      onmouseout="this.style.color='var(--color-muted)'"
+    >
+      <BookOpen width="15" height="15" aria-hidden="true" />
+      docs
+    </a>
     <a
       id="release-link"
       href="https://github.com/b0bbywan/odios/releases/latest"

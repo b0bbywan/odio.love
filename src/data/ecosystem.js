@@ -49,6 +49,13 @@ export const ecosystemProjects = [
     tech: { label: 'GitHub Actions', color: '#2088FF' },
   },
   {
+    name: 'odio-docs',
+    desc: 'The documentation site. Guides, API reference, and everything you need to get started or go deeper.',
+    url: 'https://github.com/b0bbywan/odio-docs',
+    live: 'https://docs.odio.love/',
+    tech: { label: 'Astro', color: '#FF5D01' },
+  },
+  {
     name: 'odio.love',
     desc: 'This site. Static Astro build, deployed to Vercel.',
     url: 'https://github.com/b0bbywan/odio.love',

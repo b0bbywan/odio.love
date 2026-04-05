@@ -29,4 +29,10 @@ export const repos = [
     url: 'https://github.com/b0bbywan/go-mpd-discplayer',
     tech: { label: 'Go', color: '#00ADD8' },
   },
+  {
+    name: 'odio-docs',
+    label: 'Documentation',
+    url: 'https://github.com/b0bbywan/odio-docs',
+    tech: { label: 'Astro', color: '#FF5D01' },
+  },
 ];

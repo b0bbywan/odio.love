@@ -1,6 +1,7 @@
 export { default as GitHub } from './components/icons/GitHub.astro';
 export { default as Airplay } from '@lucide/astro/icons/airplay';
 export { default as ArrowDown } from '@lucide/astro/icons/arrow-down';
+export { default as BookOpen } from '@lucide/astro/icons/book-open';
 export { default as Bluetooth } from '@lucide/astro/icons/bluetooth';
 export { default as Check } from '@lucide/astro/icons/check';
 export { default as Copy } from '@lucide/astro/icons/copy';
