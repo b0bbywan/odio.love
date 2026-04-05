@@ -1,5 +1,6 @@
 ---
 import { Content as WhatIsOdioContent } from '../content/what-is-odio.mdx';
+import Slider from './Slider.svelte';
 
 const stats = [
   { value: '< 50ms', label: 'p95 response time' },
@@ -17,6 +18,11 @@ const stats = [
   <div class="max-w-4xl mx-auto">
     <div class="what-is-odio-prose mb-16 max-w-2xl">
       <WhatIsOdioContent />
+    </div>
+
+    <!-- Screenshots slider -->
+    <div class="mb-16">
+      <Slider client:visible />
     </div>
 
     <!-- Stats -->
