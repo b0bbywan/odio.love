@@ -1,6 +1,6 @@
 ---
 import { installCmd } from '../data/config.js';
-import { GitHub, Smartphone, BookOpen, Copy, Check, ArrowDown } from '../icons';
+import { GitHub, Smartphone, BookOpen, MessageCircle, Copy, Check, ArrowDown } from '../icons';
 ---
 
 <section
@@ -23,18 +23,31 @@ import { GitHub, Smartphone, BookOpen, Copy, Check, ArrowDown } from '../icons';
       docs
     </a>
     <a
+      href="https://github.com/b0bbywan/odios/discussions"
+      target="_blank"
+      rel="noopener noreferrer"
+      title="Forum"
+      class="flex items-center gap-1.5 text-xs transition-colors"
+      style="color: var(--color-muted);"
+      onmouseover="this.style.color='var(--color-leaf)'"
+      onmouseout="this.style.color='var(--color-muted)'"
+    >
+      <MessageCircle width="15" height="15" aria-hidden="true" />
+      forum
+    </a>
+    <a
       id="release-link"
       href="https://github.com/b0bbywan/odios/releases/latest"
       target="_blank"
       rel="noopener noreferrer"
-      title="odios — installer"
+      title="odio — installer"
       class="flex items-center gap-1.5 text-xs transition-colors"
       style="color: var(--color-muted);"
       onmouseover="this.style.color='var(--color-leaf)'"
       onmouseout="this.style.color='var(--color-muted)'"
     >
       <GitHub width="15" height="15" aria-hidden="true" />
-      <span>odios<span id="release-tag"></span></span>
+      <span>odio<span id="release-tag"></span></span>
     </a>
     <a
       href="https://my.home-assistant.io/redirect/hacs_repository/?owner=b0bbywan&repository=odio-ha&category=integration"

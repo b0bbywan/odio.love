@@ -7,6 +7,7 @@ export { default as Check } from '@lucide/astro/icons/check';
 export { default as Copy } from '@lucide/astro/icons/copy';
 export { default as Disc } from '@lucide/astro/icons/disc';
 export { default as Flag } from '@lucide/astro/icons/flag';
+export { default as MessageCircle } from '@lucide/astro/icons/message-circle';
 export { default as Heart } from '@lucide/astro/icons/heart';
 export { default as House } from '@lucide/astro/icons/house';
 export { default as Share2 } from '@lucide/astro/icons/share-2';
