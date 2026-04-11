@@ -28,8 +28,8 @@ const hostedBy = [
   class="py-12 px-6 border-t"
   style="background-color: var(--color-surface); border-color: var(--color-border);"
 >
-  <div class="max-w-4xl mx-auto">
-    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+  <div class="max-w-5xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-center gap-8">
       <!-- Left: license + attribution -->
       <div class="space-y-3">
         <p class="text-sm" style="color: var(--color-muted);">
@@ -79,6 +79,17 @@ const hostedBy = [
         </p>
       </div>
 
+      <!-- Center: logo easter egg -->
+      <div class="group flex flex-col items-center justify-center">
+        <a href="https://reemploi.odio.love/" target="_blank" rel="noopener noreferrer" class="opacity-60 hover:opacity-100 transition-opacity">
+          <img src="/logo.png" alt="odio" width="96" height="96" />
+        </a>
+        <span
+          class="mt-2 text-xs italic opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-700"
+          style="color: var(--color-amber);"
+        >the most sustainable device is the one already manufactured</span>
+      </div>
+
       <!-- Right: links -->
       <div class="flex flex-col items-end gap-2">
         <a
@@ -109,7 +120,7 @@ const hostedBy = [
       </div>
     </div>
 
-    <div class="mt-8 pt-6 border-t" style="border-color: var(--color-border);">
+    <div class="mt-8 pt-6 border-t flex flex-col items-center" style="border-color: var(--color-border);">
       <p class="text-xs text-center" style="color: var(--color-subtle);">
         odio·love — Your Pi. Your music. No expiry date.
       </p>
