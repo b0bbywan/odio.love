@@ -1,6 +1,6 @@
 <script>
   const slides = [
-    { src: '/screenshots/embedded-ui.png', alt: 'Embedded web UI — full dashboard' },
+    { src: '/screenshots/embedded-ui.png', alt: 'Embedded web UI — full dashboard (RIP Dooz Kawa)' },
     { src: '/screenshots/audio-cd-playback.png', alt: 'Audio CD playback with metadata' },
     { src: '/screenshots/bt-playing.png', alt: 'Bluetooth streaming via PWA' },
     { src: '/screenshots/pwa-instances.png', alt: 'PWA — multi-node management' },
