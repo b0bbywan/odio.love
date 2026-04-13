@@ -4,6 +4,7 @@
     { src: '/screenshots/audio-cd-playback.png', alt: 'Audio CD playback with metadata' },
     { src: '/screenshots/bt-playing.png', alt: 'Bluetooth streaming via PWA' },
     { src: '/screenshots/pwa-instances.png', alt: 'PWA — multi-node management' },
+    { src: '/screenshots/odio-ha.png', alt: 'Home Assistant — odio-ha integration' },
     { src: '/screenshots/rpi-imager.png', alt: 'Raspberry Pi Imager — flash odio' },
   ];
 
