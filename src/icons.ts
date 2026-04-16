@@ -1,3 +1,4 @@
+export { default as Discord } from './components/icons/Discord.astro';
 export { default as GitHub } from './components/icons/GitHub.astro';
 export { default as Airplay } from '@lucide/astro/icons/airplay';
 export { default as ArrowDown } from '@lucide/astro/icons/arrow-down';

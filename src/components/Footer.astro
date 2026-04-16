@@ -1,6 +1,8 @@
 ---
 import { execSync } from 'child_process';
-import { GitHub, Heart } from '../icons';
+import { Discord, GitHub, Heart } from '../icons';
+
+const discordCode = import.meta.env.PUBLIC_DISCORD_INVITE ?? '';
 
 let version = 'unknown';
 try {
@@ -104,6 +106,20 @@ const hostedBy = [
         >
           <GitHub width="16" height="16" aria-hidden="true" />
           b0bbywan
+        </a>
+        <a
+          href="#"
+          role="link"
+          data-d={discordCode}
+          onclick="window.open('https://disc'+'ord.gg/'+this.dataset.d,'_blank','noopener');return false"
+          class="flex items-center gap-2 text-sm transition-colors cursor-pointer"
+          style="color: var(--color-subtle);"
+          onmouseover="this.style.color='var(--color-muted)'"
+          onmouseout="this.style.color='var(--color-subtle)'"
+          aria-label="odio Discord"
+        >
+          <Discord width="16" height="16" aria-hidden="true" />
+          Discord
         </a>
         <a
           href="https://github.com/sponsors/b0bbywan"
