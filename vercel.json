@@ -9,6 +9,11 @@
       "source": "/odio.rpi-imager-manifest",
       "destination": "https://github.com/b0bbywan/odios/releases/latest/download/odio.rpi-imager-manifest",
       "permanent": false
+    },
+    {
+      "source": "/manifest.json",
+      "destination": "https://github.com/b0bbywan/odios/releases/latest/download/manifest.json",
+      "permanent": false
     }
   ]
 }
