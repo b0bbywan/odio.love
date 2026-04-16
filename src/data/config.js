@@ -14,7 +14,7 @@ export const compatibleHardware = [
 export const verifiedPlatforms = [
   {
     arch: 'armv6l',
-    examples: ['Raspberry Pi B+ - Raspberry Pi OS Lite (Trixie)'],
+    examples: ['Raspberry Pi B', 'Raspberry Pi B+ - Raspberry Pi OS Lite (Trixie)'],
     incoming: false,
   },
   {

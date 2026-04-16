@@ -1,11 +1,13 @@
 ## What is odio?
 
-An open-source audio streamer for Raspberry Pi. Not a locked appliance: a platform to build on top of.
+An open-source audio streamer for Raspberry Pi. Plug it in and it works — AirPlay, Spotify Connect, DLNA, Bluetooth, MPD, PulseAudio over TCP. Every protocol, every source, every room. Free, self-hosted, no account, no cloud.
 
-Every protocol, every source, every room. Free, self-hosted, no account, no cloud.
+**Built for makers first.** The stack runs on a minimal Debian, in a user session, with near-zero system modifications. Out of the box you get a streamer node — minimal surface, nothing locked. Underneath it's still your Debian, and you have the keys — yours to extend, to strip down, to break and fix, to turn into something else entirely.
 
-Your Pi becomes an AirPlay receiver, a Spotify Connect device, a Bluetooth speaker you can turn on from a Home Assistant automation. The goal was to match the experience of a commercial speaker — and on a few things, it might even go a little further.
+**Open for developers.** Every node exposes a REST API. The full stack — playback, volume, sources, Bluetooth, services — is programmable over HTTP. No need to dig into the internals to build on top of it.
 
-**Built for makers first**. Every node exposes a REST API. Every service, every player, every audio client is an entity you can observe, control, and automate. Wire Piper and Whisper to MPD and your Pi becomes a voice-controlled player. Set up parental controls your kid will have to learn to bypass. Shut down the workstation you forgot running from your phone, halfway to the store. The surface is there. What you build on it is yours.
+**Any player, automatically.** The API and UI don't know about specific audio apps. They talk to them through a standard protocol — so anything on the Pi that speaks it shows up on its own. odio ships a curated stack out of the box, but add your own player or remove one you don't use: the API doesn't care, it sees whatever is running.
 
-Custom clients, custom automations, integrations no one has thought of yet. The API is the product. Your setup, your rules.
+**The UI replaces your stereo's remote.** Power, volume, play/pause, next, source. That's it. Browsing a Spotify catalog or a 20 000-track local collection stays the job of the Spotify app, BubbleUPnP, myMPD — pick your tool.
+
+Custom clients, custom automations, voice control wired to Piper and Whisper, parental controls your kid will learn to bypass. The API is the product. Your setup, your rules.
