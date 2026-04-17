@@ -1,15 +1,15 @@
 ## What is odio?
 
-Got an amp or a speaker with no smart features — either it never had any, or the manufacturer dropped support years ago? Plug a Raspberry Pi running odio into its input. Suddenly it speaks AirPlay, Spotify Connect, Bluetooth, DLNA, MPD — every modern source, on your network, out of the box. Even a Pi B from 2012 still has a job. Free, self-hosted, no account, no cloud.
+Got an amp or speaker with no smart features — either it never had any, or the manufacturer dropped support? Plug a Raspberry Pi running odio into its input. It now speaks AirPlay, Spotify Connect, Bluetooth, DLNA, MPD — every modern source, on your network. Even a Pi B from 2012. Free, self-hosted, no account, no cloud.
 
 You'll want a <abbr title="Digital-to-Analog Converter — turns the Pi's digital audio into a clean analog signal for your amp">DAC</abbr> for a proper listening experience.
 
-**Built for makers first.** The stack runs on a minimal Debian, in a user session, with near-zero system modifications. Out of the box you get a streamer node — minimal surface, nothing locked. Underneath it's still your Debian, and you have the keys — yours to extend, to strip down, to break and fix, to turn into something else entirely.
+**Built for makers.** Minimal Debian, user session, near-zero system changes. Nothing locked — underneath it's still your Debian, yours to extend, break, fix, repurpose.
 
-**Open for developers.** Every node exposes a REST API. The full stack — playback, volume, sources, Bluetooth, services — is programmable over HTTP. No need to dig into the internals to build on top of it.
+**Open for developers.** Every node exposes a REST API. Playback, volume, sources, Bluetooth, services — all programmable over HTTP.
 
-**Any player, automatically.** The API and UI don't know about specific audio apps. They talk to them through a standard protocol — so anything on the Pi that speaks it shows up on its own. odio ships a curated stack out of the box, but add your own player or remove one you don't use: the API doesn't care, it sees whatever is running.
+**Any player, automatically.** The API talks to audio apps through a standard protocol. odio ships a curated stack; add or remove players — the API just sees what's running.
 
-**The UI replaces your stereo's remote.** Power, volume, play/pause, next, source. That's it. Browsing a Spotify catalog or a 20 000-track local collection stays the job of the Spotify app, BubbleUPnP, myMPD — pick your tool.
+**UI replaces your remote.** Power, volume, play/pause, next, source. Browsing catalogs stays with Spotify, BubbleUPnP, myMPD — pick your tool.
 
-Custom clients, custom automations, voice control wired to Piper and Whisper, parental controls your kid will learn to bypass. The API is the product. Your setup, your rules.
+Custom clients, automations, voice control (Piper, Whisper), parental controls your kid will learn to bypass. The API is the product. Your setup, your rules.
