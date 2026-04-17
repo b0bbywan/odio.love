@@ -22,7 +22,7 @@ import { Flag, Terminal, Copy, Check } from '../icons';
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6" style="grid-template-rows: subgrid;" >
       <!-- Flash an image -->
       <div
-        class="rounded-xl p-8 border grid gap-4 row-span-4"
+        class="rounded-xl p-8 border grid grid-cols-1 gap-4 row-span-4 min-w-0 overflow-hidden"
         style="background-color: var(--color-bg); border-color: var(--color-moss); grid-template-rows: subgrid;"
       >
         <div class="flex items-center gap-3">
@@ -33,7 +33,7 @@ import { Flag, Terminal, Copy, Check } from '../icons';
           Use <a href="https://www.raspberrypi.com/software/" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2" style="color: var(--color-leaf);">Raspberry Pi Imager</a> with a custom repository URL. Configure hostname, SSH & WiFi, then flash.
         </p>
         <div
-          class="self-end rounded-lg border flex items-center"
+          class="self-end w-full rounded-lg border flex items-center"
           style="background-color: var(--color-surface); border-color: var(--color-border);"
         >
           <span
@@ -61,7 +61,7 @@ import { Flag, Terminal, Copy, Check } from '../icons';
 
       <!-- Install on Debian -->
       <div
-        class="rounded-xl p-8 border grid gap-4 row-span-4"
+        class="rounded-xl p-8 border grid grid-cols-1 gap-4 row-span-4 min-w-0 overflow-hidden"
         style="background-color: var(--color-bg); border-color: var(--color-moss); grid-template-rows: subgrid;"
       >
         <div class="flex items-center gap-3">
@@ -72,7 +72,7 @@ import { Flag, Terminal, Copy, Check } from '../icons';
           Debian 13 (trixie) and Ubuntu compatible. The installer handles all dependencies and services.
         </p>
         <div
-          class="self-end rounded-lg border flex items-center"
+          class="self-end w-full rounded-lg border flex items-center"
           style="background-color: var(--color-surface); border-color: var(--color-border);"
         >
           <span
