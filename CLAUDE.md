@@ -39,6 +39,10 @@ All page content lives in `/src/data/` as plain JS files (`features.js`, `compar
 
 - `src/content/manifesto.mdx` — the project manifesto rendered via `Manifesto.astro`
 
+### Activity section
+
+`Activity.astro` is a compact KPI strip that client-side-fetches `https://docs.odio.love/stats.json` and links out to `https://docs.odio.love/community/activity/` for the full chart/table. The stats pipeline itself lives in the `odio-docs` repo — this site only consumes the published JSON, no local copy.
+
 ### Deployment
 
 Deployed to Vercel as a static site.
