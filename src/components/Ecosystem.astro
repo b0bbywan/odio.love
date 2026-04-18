@@ -1,5 +1,6 @@
 ---
 import { ecosystemProjects } from '../data/ecosystem.js';
+import { ecosystemCountLabel } from '../data/config.js';
 import { GitHub } from '../icons';
 ---
 
@@ -15,7 +16,7 @@ import { GitHub } from '../icons';
       The ecosystem
     </h2>
     <p class="text-lg mb-12" style="color: var(--color-muted);">
-      Six repositories. One coherent stack.
+      {ecosystemCountLabel} repositories. One coherent stack.
     </p>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

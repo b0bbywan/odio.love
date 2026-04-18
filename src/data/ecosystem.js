@@ -42,6 +42,13 @@ export const ecosystemProjects = [
     tech: { label: 'Go', color: '#00ADD8' },
   },
   {
+    name: 'go-odio-notify',
+    desc: 'Audio notification library and CLI. Sound feedback for system events across the odio stack.',
+    url: 'https://github.com/b0bbywan/go-odio-notify',
+    live: null,
+    tech: { label: 'Go', color: '#00ADD8' },
+  },
+  {
     name: 'odio-apt-repo',
     desc: 'The apt repository. Fully CI-maintained. Packages are built and published automatically on every release.',
     url: 'https://github.com/b0bbywan/odio-apt-repo',
@@ -59,7 +66,7 @@ export const ecosystemProjects = [
     name: 'odio.love',
     desc: 'This site. Static Astro build, deployed to Vercel.',
     url: 'https://github.com/b0bbywan/odio.love',
-    live: null,
+    live: 'https://docs.odio.love/',
     tech: { label: 'Astro', color: '#FF5D01' },
   },
 ];

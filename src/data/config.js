@@ -1,3 +1,5 @@
+import { ecosystemProjects } from './ecosystem.js';
+
 const isBeta = import.meta.env.PUBLIC_BETA === 'true';
 export const installCmd = isBeta
   ? 'curl -fsSL https://beta.odio.love/install | bash'
@@ -41,3 +43,15 @@ export const verifiedOther = [
 export const imagerManifestUrl = isBeta
   ? 'https://beta.odio.love/odio.rpi-imager-manifest'
   : 'https://odio.love/odio.rpi-imager-manifest';
+
+const numberWords = [
+  'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight',
+  'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen',
+  'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty',
+];
+
+export const ecosystemCountLabel = (() => {
+  const n = ecosystemProjects.length;
+  const w = numberWords[n] ?? String(n);
+  return w.charAt(0).toUpperCase() + w.slice(1);
+})();
