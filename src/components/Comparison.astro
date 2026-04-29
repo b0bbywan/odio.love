@@ -1,0 +1,70 @@
+---
+import { comparisonRows } from '../data/comparison.js';
+---
+
+<section
+  id="comparison"
+  class="py-24 px-6 border-t"
+  style="background-color: var(--color-bg); border-color: var(--color-border);"
+>
+  <div class="max-w-4xl mx-auto">
+    <h2
+      class="text-4xl md:text-5xl font-light mb-4 tracking-tight"
+      style="font-family: var(--font-display); color: var(--color-text);"
+    >
+      What freedom costs elsewhere
+    </h2>
+    <p class="text-lg mb-12" style="color: var(--color-muted);">
+      The same features. Very different terms.
+    </p>
+
+    <div class="overflow-x-auto rounded-xl border" style="border-color: var(--color-border);">
+      <table class="w-full text-sm border-collapse">
+        <thead>
+          <tr style="background-color: var(--color-bg);">
+            <th
+              class="text-left px-5 py-4 font-medium border-b"
+              style="color: var(--color-muted); border-color: var(--color-border);"
+            >Feature</th>
+            <th
+              class="text-center px-5 py-4 font-medium border-b border-l"
+              style="color: var(--color-amber); border-color: var(--color-border); border-left-color: var(--color-amber);"
+            >odio</th>
+            <th
+              class="text-center px-5 py-4 font-medium border-b border-l"
+              style="color: var(--color-muted); border-color: var(--color-border);"
+            >Volumio (free)</th>
+            <th
+              class="text-center px-5 py-4 font-medium border-b border-l"
+              style="color: var(--color-muted); border-color: var(--color-border);"
+            >Commercial</th>
+          </tr>
+        </thead>
+        <tbody>
+          {comparisonRows.map((row, i) => (
+            <tr
+              style={i % 2 === 0 ? 'background-color: var(--color-surface);' : 'background-color: var(--color-bg);'}
+            >
+              <td
+                class="px-5 py-3.5 border-b"
+                style="color: var(--color-text); border-color: var(--color-border);"
+              >{row.feature}</td>
+              <td
+                class="px-5 py-3.5 border-b border-l text-center font-medium"
+                style={`border-color: var(--color-border); border-left: 2px solid var(--color-amber); color: ${row.odio.positive ? 'var(--color-leaf)' : 'var(--color-muted)'};`}
+              >{row.odio.value}</td>
+              <td
+                class="px-5 py-3.5 border-b border-l text-center"
+                style={`border-color: var(--color-border); color: ${row.volumio.positive ? 'var(--color-leaf)' : 'var(--color-muted)'};`}
+              >{row.volumio.value}</td>
+              <td
+                class="px-5 py-3.5 border-b border-l text-center"
+                style={`border-color: var(--color-border); color: ${row.commercial.positive ? 'var(--color-leaf)' : 'var(--color-muted)'};`}
+              >{row.commercial.value}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

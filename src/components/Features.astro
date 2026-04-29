@@ -1,0 +1,51 @@
+---
+import { features } from '../data/features.js';
+---
+
+<section
+  id="features"
+  class="py-24 px-6"
+  style="background-color: var(--color-surface);"
+>
+  <div class="max-w-5xl mx-auto">
+    <h2
+      class="text-4xl md:text-5xl font-light mb-4 tracking-tight"
+      style="font-family: var(--font-display); color: var(--color-text);"
+    >
+      Everything. No paywall.
+    </h2>
+    <p class="text-lg mb-14" style="color: var(--color-muted);">
+      Every protocol. Every source. Every room. Free.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {features.map(({ icon: Icon, name, desc }) => (
+        <div
+          class="feature-card rounded-xl p-6 border flex flex-col gap-4 transition-colors"
+          style="background-color: var(--color-surface); border-color: var(--color-border);"
+        >
+          <div class="flex items-center justify-center gap-3">
+            <Icon
+              width="22"
+              height="22"
+              class="feature-icon shrink-0"
+              style="color: var(--color-moss);"
+              aria-hidden="true"
+            />
+            <h3 class="font-medium" style="color: var(--color-text);">{name}</h3>
+          </div>
+          <p class="text-sm leading-relaxed text-center" style="color: var(--color-muted);">{desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .feature-card:hover {
+    border-color: var(--color-moss);
+  }
+  .feature-card:hover .feature-icon {
+    color: var(--color-leaf);
+  }
+</style>
