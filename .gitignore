@@ -4,5 +4,4 @@ dist/
 .env
 .env.*
 !.env.example
-public/architecture*.svg
 misc/

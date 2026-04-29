@@ -3,8 +3,9 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "node scripts/generate-diagram.mjs && astro dev",
-    "build": "node scripts/generate-diagram.mjs && astro build",
+    "dev": "astro dev",
+    "build": "astro build",
+    "diagrams": "node scripts/generate-diagram.mjs",
     "preview": "astro preview"
   },
   "dependencies": {
