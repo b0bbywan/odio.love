@@ -1,0 +1,118 @@
+---
+---
+
+<section
+  id="activity"
+  class="py-20 px-6"
+  style="background-color: var(--color-bg);"
+  data-activity
+  hidden
+>
+  <div class="max-w-4xl mx-auto text-center">
+    <p
+      class="text-sm mb-4"
+      style="color: var(--color-subtle); font-family: var(--font-mono);"
+      data-since
+    >
+    </p>
+    <div class="flex flex-col gap-y-6 mb-8" data-kpis>
+    </div>
+    <a
+      href="https://docs.odio.love/community/activity/"
+      class="inline-block px-5 py-2.5 rounded-lg text-sm transition-colors"
+      style="border: 1px solid var(--color-moss); color: var(--color-leaf);"
+      onmouseover="this.style.backgroundColor='var(--color-moss)';this.style.color='var(--color-text)'"
+      onmouseout="this.style.backgroundColor='transparent';this.style.color='var(--color-leaf)'"
+    >
+      See full activity on docs →
+    </a>
+  </div>
+</section>
+
+<script>
+  const section = document.querySelector<HTMLElement>('[data-activity]');
+  if (section) {
+    const fmt = new Intl.NumberFormat('en-US');
+    fetch('https://docs.odio.love/stats.json')
+      .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
+      .then((stats) => {
+        const since = new Date(stats.since).toLocaleDateString('en-US', {
+          month: 'long',
+          year: 'numeric',
+        });
+        const sinceEl = section.querySelector<HTMLElement>('[data-since]');
+        if (sinceEl) sinceEl.textContent = `SINCE ${since.toUpperCase()}`;
+
+        type Kpi =
+          | { value: string; label: string }
+          | { primary: string; secondary: string; label: string };
+
+        const rows: Kpi[][] = [
+          [
+            {
+              primary: fmt.format(stats.totals.pr.merged),
+              secondary: `−${fmt.format(stats.totals.pr.closedUnmerged)}`,
+              label: 'PRs merged / closed',
+            },
+            { value: fmt.format(stats.totals.commits), label: 'commits' },
+            {
+              primary: `+${fmt.format(stats.totals.locAdded)}`,
+              secondary: `−${fmt.format(stats.totals.locRemoved)}`,
+              label: 'lines added / removed',
+            },
+          ],
+          [
+            { value: fmt.format(stats.totals.releases), label: 'releases' },
+            { value: `${fmt.format(stats.totals.stars)}★`, label: 'stars' },
+          ],
+        ];
+
+        const singleCls =
+          'text-4xl md:text-5xl font-medium tabular-nums leading-none';
+        const pairCls =
+          'text-2xl md:text-3xl font-medium tabular-nums leading-tight';
+        const monoStyle = 'font-family: var(--font-mono);';
+        const leafStyle = `${monoStyle} color: var(--color-leaf);`;
+        const subtleStyle = `${monoStyle} color: var(--color-subtle);`;
+        const labelCls = 'text-xs mt-2 uppercase tracking-wider';
+        const labelStyle = `${monoStyle} color: var(--color-muted);`;
+
+        const renderKpi = (k: Kpi) => {
+          const value =
+            'primary' in k
+              ? `
+                  <div class="flex-1 flex flex-col items-end justify-center ${pairCls}">
+                    <span style="${leafStyle}">${k.primary}</span>
+                    <span style="${subtleStyle}">${k.secondary}</span>
+                  </div>
+                `
+              : `
+                  <div class="flex-1 flex items-center justify-center ${singleCls}" style="${leafStyle}">
+                    ${k.value}
+                  </div>
+                `;
+          return `
+            <div class="flex flex-col items-center">
+              ${value}
+              <div class="${labelCls}" style="${labelStyle}">${k.label}</div>
+            </div>
+          `;
+        };
+
+        const host = section.querySelector<HTMLElement>('[data-kpis]');
+        if (host) {
+          host.innerHTML = rows
+            .map(
+              (row) => `
+                <div class="flex flex-wrap justify-center items-stretch gap-x-10 gap-y-6">
+                  ${row.map(renderKpi).join('')}
+                </div>
+              `
+            )
+            .join('');
+        }
+        section.hidden = false;
+      })
+      .catch(() => {});
+  }
+</script>

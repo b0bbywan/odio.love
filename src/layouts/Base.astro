@@ -1,0 +1,71 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = 'odio — Open-source Raspberry Pi audio streamer. Self-hosted, Home Assistant native.',
+  description = 'odio turns any Raspberry Pi into a free self-hosted audio streamer. AirPlay, Bluetooth, Spotify, Tidal, multi-room, Home Assistant. One curl command on your existing Pi OS. No flashing, no account, no telemetry. The Volumio alternative that stays free.',
+  ogImage = 'https://odio.love/logo.png',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const isBeta = import.meta.env.PUBLIC_BETA === 'true';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    {!isBeta && (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "name": "odio",
+            "url": "https://odio.love",
+            "description": description
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "odio",
+            "applicationCategory": "MultimediaApplication",
+            "operatingSystem": "Linux",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+            "url": "https://odio.love"
+          }
+        ]
+      })} />
+    )}
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

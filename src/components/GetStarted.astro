@@ -1,0 +1,186 @@
+---
+import { installCmd, compatibleHardware, verifiedPlatforms, verifiedOther, imagerManifestUrl } from '../data/config.js';
+import { Flag, Terminal, Copy, Check } from '../icons';
+---
+
+<section
+  class="py-24 px-6 border-t"
+  style="background-color: var(--color-surface); border-color: var(--color-border);"
+  id="get-started"
+>
+  <div class="max-w-5xl mx-auto">
+    <h2
+      class="text-4xl md:text-5xl font-light mb-4 tracking-tight"
+      style="font-family: var(--font-display); color: var(--color-text);"
+    >
+      Get started
+    </h2>
+    <p class="text-lg mb-12" style="color: var(--color-muted);">
+      Two paths. Same destination.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6" style="grid-template-rows: subgrid;" >
+      <!-- Flash an image -->
+      <div
+        class="rounded-xl p-8 border grid grid-cols-1 gap-4 row-span-4 min-w-0 overflow-hidden"
+        style="background-color: var(--color-bg); border-color: var(--color-moss); grid-template-rows: subgrid;"
+      >
+        <div class="flex items-center gap-3">
+          <Flag width="24" height="24" style="color: var(--color-moss);" aria-hidden="true" />
+          <h3 class="text-xl font-medium" style="color: var(--color-text);">Flash an image</h3>
+        </div>
+        <p class="text-sm leading-relaxed" style="color: var(--color-muted);">
+          Use <a href="https://www.raspberrypi.com/software/" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2" style="color: var(--color-leaf);">Raspberry Pi Imager</a> with a custom repository URL. Configure hostname, SSH & WiFi, then flash.
+        </p>
+        <div
+          class="self-end w-full rounded-lg border flex items-center"
+          style="background-color: var(--color-surface); border-color: var(--color-border);"
+        >
+          <span
+            class="text-xs flex-1 min-w-0 overflow-x-auto whitespace-nowrap px-4 py-3"
+            style="font-family: var(--font-mono); color: var(--color-leaf);"
+            id="gs-manifest-url"
+          >{imagerManifestUrl}</span>
+          <button
+            onclick="const s=this.querySelector('svg');const c=this.querySelector('.check');navigator.clipboard.writeText(document.getElementById('gs-manifest-url').textContent).then(()=>{s.style.display='none';c.style.display='block';setTimeout(()=>{s.style.display='block';c.style.display='none'},2000)})"
+            class="flex-shrink-0 p-1.5 mr-2 rounded cursor-pointer transition-colors"
+            style="color: var(--color-muted);"
+            onmouseover="this.style.color='var(--color-leaf)'"
+            onmouseout="this.style.color='var(--color-muted)'"
+            title="Copy"
+          >
+            <Copy width="14" height="14" />
+            <Check class="check" width="14" height="14" style="display:none" />
+          </button>
+        </div>
+        <ul class="flex flex-col gap-1.5 text-xs" style="color: var(--color-subtle);">
+          <li>Imager → Options App → Content Repository → Use custom URL</li>
+          <li>Available in armhf (32-bit) and arm64 (64-bit)</li>
+        </ul>
+      </div>
+
+      <!-- Install on Debian -->
+      <div
+        class="rounded-xl p-8 border grid grid-cols-1 gap-4 row-span-4 min-w-0 overflow-hidden"
+        style="background-color: var(--color-bg); border-color: var(--color-moss); grid-template-rows: subgrid;"
+      >
+        <div class="flex items-center gap-3">
+          <Terminal width="24" height="24" style="color: var(--color-leaf);" aria-hidden="true" />
+          <h3 class="text-xl font-medium" style="color: var(--color-text);">Install on Debian / Pi OS</h3>
+        </div>
+        <p class="text-sm leading-relaxed" style="color: var(--color-muted);">
+          Debian 13 (trixie) and Ubuntu compatible. The installer handles all dependencies and services.
+        </p>
+        <div
+          class="self-end w-full rounded-lg border flex items-center"
+          style="background-color: var(--color-surface); border-color: var(--color-border);"
+        >
+          <span
+            class="text-xs flex-1 min-w-0 overflow-x-auto whitespace-nowrap px-4 py-3"
+            style="font-family: var(--font-mono); color: var(--color-leaf);"
+            id="gs-install-cmd"
+          >{installCmd}</span>
+          <button
+            onclick="const s=this.querySelector('svg');const c=this.querySelector('.check');navigator.clipboard.writeText(document.getElementById('gs-install-cmd').textContent).then(()=>{s.style.display='none';c.style.display='block';setTimeout(()=>{s.style.display='block';c.style.display='none'},2000)})"
+            class="flex-shrink-0 p-1.5 mr-2 rounded cursor-pointer transition-colors"
+            style="color: var(--color-muted);"
+            onmouseover="this.style.color='var(--color-leaf)'"
+            onmouseout="this.style.color='var(--color-muted)'"
+            title="Copy"
+          >
+            <Copy width="14" height="14" />
+            <Check class="check" width="14" height="14" style="display:none" />
+          </button>
+        </div>
+        <ul class="flex flex-col gap-1.5 text-xs" style="color: var(--color-subtle);">
+          <li>~800 MB - ~5 min on x86, <15 min on Pi 3B+, up to 1h20 on a Pi B+ at 800 MHz</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="text-sm mb-6" style="color: var(--color-amber);">
+      Tip: set up DAC and overclocking (armhf) in /boot/firmware/config.txt beforehand to save a reboot.
+    </p>
+
+    <p class="text-sm mb-14" style="color: var(--color-muted);">
+      Need help? Check the <a
+        href="https://docs.odio.love"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="underline underline-offset-2 transition-colors"
+        style="color: var(--color-leaf);"
+        onmouseover="this.style.color='var(--color-text)'"
+        onmouseout="this.style.color='var(--color-leaf)'"
+      >documentation</a> for detailed guides and API reference.
+    </p>
+
+    <!-- Compatible hardware -->
+    <div>
+      <h3
+        class="text-lg font-medium mb-5"
+        style="color: var(--color-text);"
+      >Compatible hardware</h3>
+      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        {compatibleHardware.map((hw) => (
+          <li class="flex items-center gap-2.5 text-sm" style="color: var(--color-muted);">
+            <Check width="14" height="14" style="color: var(--color-moss); flex-shrink: 0;" aria-hidden="true" />
+            {hw}
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Beta disclaimer -->
+    <div
+      class="mt-10 rounded-xl px-6 py-5 border flex flex-col gap-3"
+      style="background-color: var(--color-bg); border-color: var(--color-border);"
+    >
+      <p class="text-base" style="color: var(--color-muted);">
+        odio is still in <strong style="color: var(--color-amber);">beta</strong> - stable for daily use, but expect rough edges on existing installs.
+        Try it on your hardware, <a
+          href="https://github.com/b0bbywan/odios/issues"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="underline underline-offset-2 transition-colors"
+          style="color: var(--color-leaf);"
+          onmouseover="this.style.color='var(--color-text)'"
+          onmouseout="this.style.color='var(--color-leaf)'"
+        >report bugs</a> and help grow the list.
+      </p>
+      <div>
+        <p class="text-xs uppercase tracking-widest mb-3" style="color: var(--color-subtle);">
+          Verified on -
+          <a
+            href="https://github.com/b0bbywan/odios/issues"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="underline underline-offset-2 transition-colors normal-case tracking-normal"
+            style="color: var(--color-subtle);"
+            onmouseover="this.style.color='var(--color-muted)'"
+            onmouseout="this.style.color='var(--color-subtle)'"
+          >add yours ↗</a>
+        </p>
+        <div class="flex flex-col gap-2">
+          {verifiedPlatforms.map((p) => (
+            <div class="flex items-baseline gap-3">
+              <span
+                class="text-xs font-mono shrink-0 w-14"
+                style={p.incoming ? 'color: var(--color-subtle);' : 'color: var(--color-amber);'}
+              >{p.arch}</span>
+              {p.incoming
+                ? <span class="text-xs italic" style="color: var(--color-subtle);">incoming…</span>
+                : <span class="text-sm" style="color: var(--color-muted);">{p.examples.join(', ')}</span>
+              }
+            </div>
+          ))}
+          <div class="flex items-baseline gap-3 mt-1 pt-2" style="border-top: 1px solid var(--color-border);">
+            <span class="text-xs font-mono shrink-0 w-14" style="color: var(--color-subtle);">other</span>
+            <span class="text-sm" style="color: var(--color-subtle);">
+              {verifiedOther.map((o) => `${o.label} (${o.note})`).join(', ')}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

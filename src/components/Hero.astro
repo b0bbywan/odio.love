@@ -1,0 +1,211 @@
+---
+import { installCmd } from '../data/config.js';
+import { GitHub, Smartphone, BookOpen, MessageCircle, Copy, Check, ArrowDown } from '../icons';
+---
+
+<section
+  class="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden"
+  style="background-color: var(--color-bg);"
+>
+  <!-- Header links -->
+  <div class="absolute top-5 right-6 flex items-center gap-4 z-20">
+    <a
+      href="https://docs.odio.love"
+      target="_blank"
+      rel="noopener noreferrer"
+      title="Documentation"
+      class="flex items-center gap-1.5 text-xs transition-colors"
+      style="color: var(--color-muted);"
+      onmouseover="this.style.color='var(--color-leaf)'"
+      onmouseout="this.style.color='var(--color-muted)'"
+    >
+      <BookOpen width="15" height="15" aria-hidden="true" />
+      docs
+    </a>
+    <a
+      href="https://github.com/b0bbywan/odios/discussions"
+      target="_blank"
+      rel="noopener noreferrer"
+      title="Forum"
+      class="flex items-center gap-1.5 text-xs transition-colors"
+      style="color: var(--color-muted);"
+      onmouseover="this.style.color='var(--color-leaf)'"
+      onmouseout="this.style.color='var(--color-muted)'"
+    >
+      <MessageCircle width="15" height="15" aria-hidden="true" />
+      forum
+    </a>
+    <a
+      id="release-link"
+      href="https://github.com/b0bbywan/odios/releases/latest"
+      target="_blank"
+      rel="noopener noreferrer"
+      title="odio — installer"
+      class="flex items-center gap-1.5 text-xs transition-colors"
+      style="color: var(--color-muted);"
+      onmouseover="this.style.color='var(--color-leaf)'"
+      onmouseout="this.style.color='var(--color-muted)'"
+    >
+      <GitHub width="15" height="15" aria-hidden="true" />
+      <span>odio<span id="release-tag"></span></span>
+    </a>
+    <a
+      href="https://my.home-assistant.io/redirect/hacs_repository/?owner=b0bbywan&repository=odio-ha&category=integration"
+      target="_blank"
+      rel="noopener noreferrer"
+      title="odio-ha — Home Assistant"
+      class="hidden sm:block"
+    >
+      <img
+        src="https://my.home-assistant.io/badges/hacs_repository.svg"
+        alt="Add odio-ha to HACS"
+        style="height: 20px; width: auto;"
+      />
+    </a>
+    <a
+      href="https://pwa.odio.love"
+      target="_blank"
+      rel="noopener noreferrer"
+      title="odio PWA"
+      class="hidden sm:flex items-center gap-1.5 text-xs transition-colors"
+      style="color: var(--color-muted);"
+      onmouseover="this.style.color='var(--color-leaf)'"
+      onmouseout="this.style.color='var(--color-muted)'"
+    >
+      <Smartphone width="15" height="15" aria-hidden="true" />
+      pwa
+    </a>
+  </div>
+
+  <!-- SVG noise texture -->
+  <svg class="absolute inset-0 w-full h-full opacity-[0.04] pointer-events-none" aria-hidden="true">
+    <filter id="noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+      <feColorMatrix type="saturate" values="0" />
+    </filter>
+    <rect width="100%" height="100%" filter="url(#noise)" />
+  </svg>
+
+  <!-- Subtle radial glow -->
+  <div
+    class="absolute inset-0 pointer-events-none"
+    style="background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(74,124,89,0.08) 0%, transparent 70%);"
+    aria-hidden="true"
+  ></div>
+
+  <div class="relative z-10 w-full flex flex-col items-center text-center max-w-3xl mx-auto gap-8">
+    <!-- Logo -->
+    <img
+      src="/logo.png"
+      alt="odio logo"
+      width="80"
+      height="80"
+      class="w-20 h-20 object-contain"
+      onerror="this.style.display='none'"
+    />
+
+    <!-- Title -->
+    <h1
+      class="text-6xl sm:text-7xl md:text-8xl font-light tracking-tight leading-none"
+      style="font-family: var(--font-display);"
+    >
+      odio<span style="color: var(--color-amber);">·</span>love
+    </h1>
+
+    <!-- Tagline -->
+    <p
+      class="text-xl sm:text-2xl font-light leading-relaxed"
+      style="color: var(--color-muted);"
+    >
+      That Pi in your drawer?<br />
+      <span style="color: var(--color-text);">It's already a €400 streamer.</span>
+    </p>
+
+    <!-- Install command -->
+    <div
+      class="w-full max-w-2xl rounded-lg border flex items-center"
+      style="background-color: var(--color-surface); border-color: var(--color-border);"
+    >
+      <span
+        class="text-xs sm:text-sm flex-1 min-w-0 overflow-x-auto whitespace-nowrap px-4 py-3"
+        style="font-family: var(--font-mono); color: var(--color-leaf);"
+        id="install-cmd"
+      >{installCmd}</span>
+      <button
+        onclick="const s=this.querySelector('svg');const c=this.querySelector('.check');navigator.clipboard.writeText(document.getElementById('install-cmd').textContent).then(()=>{s.style.display='none';c.style.display='block';setTimeout(()=>{s.style.display='block';c.style.display='none'},2000)})"
+        class="flex-shrink-0 p-1.5 mr-2 rounded cursor-pointer transition-colors"
+        style="color: var(--color-muted);"
+        onmouseover="this.style.color='var(--color-leaf)'"
+        onmouseout="this.style.color='var(--color-muted)'"
+        title="Copy"
+      >
+        <Copy width="14" height="14" />
+        <Check class="check" width="14" height="14" style="display:none" />
+      </button>
+    </div>
+
+    <!-- Headline -->
+    <p
+      class="text-base sm:text-lg font-light"
+      style="color: var(--color-muted);"
+    >
+      Flash an SD card. Your Pi wakes up as a full streamer, ready for Home Assistant.
+    </p>
+
+    <!-- CTA buttons -->
+    <div class="flex flex-col sm:flex-row items-center gap-4">
+      <a
+        href="#get-started"
+        class="px-6 py-3 rounded-lg font-medium transition-colors"
+        style="background-color: var(--color-moss); color: var(--color-text);"
+        onmouseover="this.style.backgroundColor='var(--color-leaf)'"
+        onmouseout="this.style.backgroundColor='var(--color-moss)'"
+      >
+        Get started ↓
+      </a>
+    </div>
+  </div>
+
+  <!-- Release tag fetch -->
+  <script>
+    const CACHE_KEY = 'odios_release';
+    const CACHE_TTL = 3600000; // 1h
+
+    function showTag(tag: string) {
+      const el = document.getElementById('release-tag');
+      if (el) el.textContent = '\u2009' + tag;
+    }
+
+    function fetchTag() {
+      const cached = localStorage.getItem(CACHE_KEY);
+      if (cached) {
+        const { tag, ts } = JSON.parse(cached);
+        if (Date.now() - ts < CACHE_TTL) { showTag(tag); return; }
+      }
+      fetch('https://api.github.com/repos/b0bbywan/odios/releases/latest')
+        .then(r => r.json())
+        .then(d => {
+          if (d.tag_name) {
+            localStorage.setItem(CACHE_KEY, JSON.stringify({ tag: d.tag_name, ts: Date.now() }));
+            showTag(d.tag_name);
+          }
+        })
+        .catch(() => {});
+    }
+
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(fetchTag);
+    } else {
+      setTimeout(fetchTag, 200);
+    }
+  </script>
+
+  <!-- Scroll indicator -->
+  <div
+    class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce"
+    style="color: var(--color-border);"
+    aria-hidden="true"
+  >
+    <ArrowDown width="24" height="24" />
+  </div>
+</section>
