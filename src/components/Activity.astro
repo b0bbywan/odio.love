@@ -17,6 +17,15 @@
     </p>
     <div class="flex flex-col gap-y-6 mb-8" data-kpis>
     </div>
+
+    <div class="mb-10 max-w-md mx-auto" data-releases hidden>
+      <p
+        class="text-xs uppercase tracking-wider mb-3"
+        style="font-family: var(--font-mono); color: var(--color-subtle);"
+      >Latest releases</p>
+      <ul class="flex flex-col gap-2 text-left" data-releases-list></ul>
+    </div>
+
     <a
       href="https://docs.odio.love/community/activity/"
       class="inline-block px-5 py-2.5 rounded-lg text-sm transition-colors"
@@ -28,6 +37,17 @@
     </a>
   </div>
 </section>
+
+<style>
+  .release-row {
+    border: 1px solid var(--color-border);
+    transition: border-color 0.15s, background-color 0.15s;
+  }
+  .release-row:hover {
+    border-color: var(--color-leaf);
+    background-color: var(--color-surface);
+  }
+</style>
 
 <script>
   const section = document.querySelector<HTMLElement>('[data-activity]');
@@ -114,5 +134,97 @@
         section.hidden = false;
       })
       .catch(() => {});
+
+    const RELEASES_KEY = 'odios_releases_v2';
+    const RELEASES_TTL = 3600000; // 1h
+
+    type Release = {
+      tag_name: string;
+      name: string | null;
+      html_url: string;
+      published_at: string;
+      prerelease: boolean;
+      draft: boolean;
+      body: string | null;
+    };
+
+    function extractHighlights(body: string | null): string {
+      if (!body) return '';
+      const items: string[] = [];
+      for (const line of body.split(/\r?\n/)) {
+        const m = line.trim().match(/^[-*]\s+\*\*([^*]+)\*\*/);
+        if (m) items.push(m[1].trim());
+        if (items.length >= 3) break;
+      }
+      return items.join(' · ');
+    }
+
+    function renderReleases(releases: Release[]) {
+      const wrap = section!.querySelector<HTMLElement>('[data-releases]');
+      const host = section!.querySelector<HTMLElement>('[data-releases-list]');
+      if (!wrap || !host) return;
+      const stable = releases
+        .filter((r) => !r.prerelease && !r.draft)
+        .slice(0, 5);
+      if (!stable.length) return;
+      host.innerHTML = stable
+        .map((r) => {
+          const title = r.name && r.name.trim() ? r.name : r.tag_name;
+          const date = new Date(r.published_at).toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric',
+          });
+          const highlights = extractHighlights(r.body);
+          return `
+            <li>
+              <a
+                href="${r.html_url}"
+                target="_blank"
+                rel="noopener"
+                class="release-row flex flex-col gap-1 px-4 py-3 rounded-lg"
+                style="font-family: var(--font-mono); text-decoration: none;"
+              >
+                <div class="flex justify-between items-baseline gap-4">
+                  <span style="color: var(--color-leaf);">${title}</span>
+                  <span class="text-xs" style="color: var(--color-subtle);">${date}</span>
+                </div>
+                ${highlights ? `<div class="text-xs text-left" style="color: var(--color-muted);">${highlights}</div>` : ''}
+              </a>
+            </li>
+          `;
+        })
+        .join('');
+      wrap.hidden = false;
+    }
+
+    function fetchReleases() {
+      const cached = localStorage.getItem(RELEASES_KEY);
+      if (cached) {
+        try {
+          const { data, ts } = JSON.parse(cached);
+          if (Date.now() - ts < RELEASES_TTL) {
+            renderReleases(data);
+            return;
+          }
+        } catch {}
+      }
+      fetch('https://api.github.com/repos/b0bbywan/odios/releases?per_page=20')
+        .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
+        .then((data: Release[]) => {
+          localStorage.setItem(
+            RELEASES_KEY,
+            JSON.stringify({ data, ts: Date.now() })
+          );
+          renderReleases(data);
+        })
+        .catch(() => {});
+    }
+
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(fetchReleases);
+    } else {
+      setTimeout(fetchReleases, 200);
+    }
   }
 </script>
