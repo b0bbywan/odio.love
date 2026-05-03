@@ -31,7 +31,7 @@ export const comparisonRows = [
   },
   {
     feature: 'Music library management',
-    odio: { value: 'Streamer first: use your favorite app', positive: null },
+    odio: { value: 'Streamer first; optional myMPD library browser', positive: null },
     volumio: { value: 'Built-in library browser', positive: null },
     commercial: { value: 'Built-in (locked ecosystem)', positive: null },
   },
@@ -63,6 +63,12 @@ export const comparisonRows = [
     feature: 'Tidal / Tidal Connect',
     odio: { value: '✅ Included (via upmpdcli)', positive: true },
     volumio: { value: '💰 Premium only', positive: false },
+    commercial: { value: 'Varies', positive: null },
+  },
+  {
+    feature: 'Web radios',
+    odio: { value: '✅ Included (myMPD / upmpdcli)', positive: true },
+    volumio: { value: '✅ Free plugin', positive: true },
     commercial: { value: 'Varies', positive: null },
   },
   {
@@ -115,9 +121,15 @@ export const comparisonRows = [
   },
   {
     feature: 'Upgrade',
-    odio: { value: 'apt upgrade', positive: true },
+    odio: { value: 'In-place via odio-upgrade; OTA UI/HA upcoming', positive: true },
     volumio: { value: 'OTA / reflash between major versions', positive: false },
     commercial: { value: 'Vendor-controlled OTA', positive: false },
+  },
+  {
+    feature: 'Security updates',
+    odio: { value: '✅ Continuous (unattended-upgrades on SD images)', positive: true },
+    volumio: { value: 'Latest kernel at release', positive: false },
+    commercial: { value: 'Vendor-controlled', positive: false },
   },
   {
     feature: 'Long-term stability',
