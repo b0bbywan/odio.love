@@ -17,7 +17,7 @@
     },
     {
       "source": "/upgrade",
-      "destination": "https://github.com/b0bbywan/odios/releases/latest/download/odio-upgrade",
+      "destination": "https://github.com/b0bbywan/odios/releases/latest/download/odio-upgrade.py",
       "permanent": false
     }
   ]
