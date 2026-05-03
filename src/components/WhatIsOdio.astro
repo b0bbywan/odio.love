@@ -6,7 +6,6 @@ const stats = [
   { value: '< 50ms', label: 'p95 response time' },
   { value: '0 %', label: 'CPU at idle' },
   { value: '< 20 MB', label: 'RAM' },
-  { value: '10', label: 'years on the same Pi B+' },
 ];
 ---
 
@@ -26,7 +25,7 @@ const stats = [
     </div>
 
     <!-- Stats -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       {stats.map((stat) => (
         <div
           class="rounded-xl p-6 border text-center"
