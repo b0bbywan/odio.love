@@ -95,4 +95,27 @@ const stats = [
     cursor: help;
     color: var(--color-text);
   }
+
+  .what-is-odio-prose :global(dl) {
+    margin: 0 0 1.25rem 0;
+  }
+  .what-is-odio-prose :global(dl > div) {
+    font-size: 1.125rem;
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+    text-align: justify;
+  }
+  .what-is-odio-prose :global(dt) {
+    display: inline;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+  .what-is-odio-prose :global(dt::after) {
+    content: ' ';
+  }
+  .what-is-odio-prose :global(dd) {
+    display: inline;
+    margin: 0;
+    color: var(--color-muted);
+  }
 </style>
