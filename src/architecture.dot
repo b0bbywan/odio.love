@@ -1,0 +1,121 @@
+digraph odio {
+  rankdir=TB
+  newrank=true
+  compound=true
+  fontname="monospace"
+  fontsize=11
+  bgcolor="transparent"
+  node [fontname="monospace" fontsize=11 style=filled fillcolor="#152018"
+        color="#2a4030" fontcolor="#e8f0ea" shape=box penwidth=0.8]
+  edge [color="#2a4030" fontname="monospace" fontsize=9 fontcolor="#8aab92"]
+  splines=ortho
+
+  /* ============================================================
+     API Clients
+     ============================================================ */
+  subgraph cluster_clients {
+    label="" style=invis
+
+    pwa       [label="odio-pwa"]
+    ha        [label="odio-ha"]
+    custom    [label="  Your client  " style="filled,dashed"
+               color="#2a4030" fontcolor="#8aab92"]
+  }
+
+  /* ============================================================
+     systemd user session
+     ============================================================ */
+  subgraph cluster_session {
+    label="systemd user session" fontcolor="#8aab92"
+    style="filled,bold" fillcolor="#0d1a10" color="#2a4030" penwidth=2
+
+    /* go-odio-api */
+    api [label="go-odio-api\nREST + SSE + Web UI"
+         color="#7ab896" fontcolor="#7ab896" penwidth=1.5]
+
+    /* D-Bus session */
+    subgraph cluster_dbus_session {
+      label="D-Bus session" fontcolor="#8aab92" style=filled
+      fillcolor="#152018" color="#2a4030"
+
+      mpris [label="MPRIS"]
+    }
+
+    /* D-Bus system */
+    subgraph cluster_dbus_system {
+      label="D-Bus system" fontcolor="#8aab92" style=filled
+      fillcolor="#152018" color="#2a4030"
+
+      bluez_dbus [label="BlueZ"]
+      logind     [label="logind"]
+    }
+
+    /* PulseAudio */
+    pulse [label="PulseAudio"]
+
+    /* Audio sources */
+    subgraph cluster_sources {
+      label="Audio Sources" fontcolor="#8aab92" style=filled
+      fillcolor="#152018" color="#2a4030"
+
+      mpd       [label="MPD"]
+      shairport [label="   Shairport Sync   "]
+      spotifyd  [label="Spotifyd"]
+      snapcast  [label="Snapcast"]
+      upmpdcli  [label="upmpdcli"]
+    }
+  }
+
+  /* ============================================================
+     Clients -> API
+     ============================================================ */
+  pwa    -> api [label="HTTP + SSE" style=dashed]
+  ha     -> api [label="HTTP + SSE" style=dashed]
+  custom -> api [label="HTTP" style=dashed color="#2a4030"]
+
+  /* ============================================================
+     API -> D-Bus
+     ============================================================ */
+  api -> mpris     [color="#7ab896"]
+  api -> bluez_dbus[color="#7ab896"]
+  api -> logind    [color="#7ab896"]
+
+  /* ============================================================
+     API -> PulseAudio
+     ============================================================ */
+  api -> pulse [label="volume / routing" color="#7ab896"]
+
+  /* ============================================================
+     API -> systemctl
+     ============================================================ */
+  api -> mpd       [label="systemctl" style=dashed color="#7ab896" fontcolor="#7ab896"]
+  api -> shairport [label="systemctl" style=dashed color="#7ab896" fontcolor="#7ab896"]
+  api -> spotifyd  [label="systemctl" style=dashed color="#7ab896" fontcolor="#7ab896"]
+  api -> snapcast  [label="systemctl" style=dashed color="#7ab896" fontcolor="#7ab896"]
+  api -> upmpdcli  [label="systemctl" style=dashed color="#7ab896" fontcolor="#7ab896"]
+  api -> pulse     [label="systemctl" style=dashed color="#7ab896" fontcolor="#7ab896"]
+
+  /* ============================================================
+     Sources -> PulseAudio
+     ============================================================ */
+  mpd        -> pulse
+  shairport  -> pulse
+  snapcast   -> pulse
+  spotifyd   -> pulse
+  bluez_dbus -> pulse
+  upmpdcli   -> mpd
+
+  /* ============================================================
+     Sources -> D-Bus
+     ============================================================ */
+  mpd        -> mpris
+  shairport  -> mpris
+  spotifyd   -> mpris
+
+  /* ============================================================
+     Layout hints
+     ============================================================ */
+  {rank=same pwa ha custom}
+  {rank=same mpris bluez_dbus logind}
+  {rank=same mpd shairport spotifyd snapcast upmpdcli}
+}

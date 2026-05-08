@@ -1,0 +1,22 @@
+# odio
+
+> Open-source audio streaming OS for Raspberry Pi, built for makers and tinkerers. Flash an SD card and your Pi wakes up as a full audiophile streamer: no subscription, no cloud, no vendor lock-in.
+
+odio runs on Pi B/Zero W through Pi 5 (armv6l/armv7/arm64) and on x86-64 Debian 13. One install script, MPD-based, hackable end-to-end, designed for Home Assistant integration as native entities (not just a media player card).
+
+## What sets it apart
+- Audio protocols: AirPlay 2, Bluetooth audio, Snapcast multi-room, UPnP/DLNA, PulseAudio TCP sink, web radios, CD & USB auto-play with metadata
+- Streaming services: Qobuz, Tidal, Spotify Connect, YouTube, SoundCloud
+- Native Home Assistant integration (services, outputs, Bluetooth, power)
+- Pre-built Pi flash images + `odio-upgrade` for in-place updates
+
+## Key pages
+- [Landing page](https://odio.love/): features, comparison, install command
+- [Documentation](https://docs.odio.love/): guides, configuration, community activity
+- [GitHub odios](https://github.com/b0bbywan/odios): installer, releases, discussions/forum
+- [GitHub go-odio-api](https://github.com/b0bbywan/go-odio-api): core REST API + embedded web UI (Go), the engine behind the stack
+- [PWA](https://pwa.odio.love/): web control app
+- [Install script](https://odio.love/install): `curl -fsSL https://odio.love/install | bash`
+
+## Maintainer
+- [b0bbywan](https://github.com/b0bbywan): creator of the odio stack. Senior R&D engineer based in Lille, France, 15 years in tech startups (gaming, SaaS, robotics, IoT).

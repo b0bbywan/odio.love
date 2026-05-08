@@ -1,0 +1,119 @@
+digraph odio_network {
+  rankdir=TD
+  newrank=true
+  fontname="monospace"
+  fontsize=11
+  bgcolor="transparent"
+  nodesep=0.2
+  ranksep=1.2
+
+  node [fontname="monospace" fontsize=10 style=filled fillcolor="#152018"
+        color="#2a4030" fontcolor="#e8f0ea" shape=box penwidth=0.8]
+
+  /* audio stream edges: muted */
+  edge [color="#4a7c59" fontname="monospace" fontsize=9 fontcolor="#8aab92" arrowsize=0.6]
+
+  /* ============================================================
+     Device clusters
+     ============================================================ */
+  subgraph cluster_desktop {
+    label="Mac / PC / Linux" fontcolor="#e8f0ea" style=filled
+    fillcolor="#111d14" color="#4a7c59" penwidth=1.5
+
+    d_airplay  [label="AirPlay" fontsize=9]
+    d_spotify  [label="Spotify Connect" fontsize=9]
+    d_bt       [label="Bluetooth" fontsize=9]
+    d_tcp      [label="PulseAudio TCP" fontsize=9]
+    d_pwa      [label="odio-pwa" fontsize=9 fillcolor="#1a2e1e" color="#7ab896" fontcolor="#7ab896"]
+  }
+
+  subgraph cluster_phone {
+    label="Phone / Tablet" fontcolor="#e8f0ea" style=filled
+    fillcolor="#111d14" color="#4a7c59" penwidth=1.5
+
+    p_airplay  [label="AirPlay" fontsize=9]
+    p_spotify  [label="Spotify Connect" fontsize=9]
+    p_bt       [label="Bluetooth" fontsize=9]
+    p_upnp     [label="UPnP" fontsize=9]
+    p_snap     [label="Snapcast" fontsize=9]
+    p_malp     [label="M.A.L.P." fontsize=9]
+    p_pwa      [label="odio-pwa" fontsize=9 fillcolor="#1a2e1e" color="#7ab896" fontcolor="#7ab896"]
+  }
+
+  subgraph cluster_nas {
+    label="NAS" fontcolor="#e8f0ea" style=filled
+    fillcolor="#111d14" color="#4a7c59" penwidth=1.5
+
+    n_snap [label="Snapcast" fontsize=9]
+    n_mpd  [label="MPD" fontsize=9]
+    n_upnp [label="UPnP/minidlna" fontsize=9]
+    n_ha   [label="Home Assistant" fontsize=9 fillcolor="#1a2e1e" color="#7ab896" fontcolor="#7ab896"]
+  }
+
+  /* ============================================================
+     odios cluster
+     ============================================================ */
+  subgraph cluster_odio {
+    label="odios" fontcolor="#7ab896" fontsize=13
+    style="filled,bold" fillcolor="#0d1a10" color="#7ab896" penwidth=2
+
+    api        [label="go-odio-api\nREST + SSE" fillcolor="#152018" color="#7ab896" fontcolor="#7ab896"]
+
+    shairport  [label="Shairport Sync"]
+    spotifyd   [label="spotifyd"]
+    bluez_a2dp [label="BlueZ A2DP"]
+    upmpdcli   [label="upmpdcli"]
+    snapcast   [label="Snapcast"]
+    mpd        [label="MPD"]
+    pulse      [label="PulseAudio" fillcolor="#152018" color="#7ab896" fontcolor="#7ab896"]
+  }
+
+  /* ============================================================
+     Desktop -> odios (audio)
+     ============================================================ */
+  d_airplay -> shairport  [minlen=2]
+  d_spotify -> spotifyd   [minlen=2]
+  d_bt      -> bluez_a2dp [minlen=2]
+  d_tcp     -> pulse      [minlen=2]
+
+  /* ============================================================
+     Phone -> odios (audio)
+     ============================================================ */
+  p_airplay -> shairport  [minlen=2]
+  p_spotify -> spotifyd   [minlen=2]
+  p_bt      -> bluez_a2dp [minlen=2]
+  p_upnp    -> upmpdcli   [minlen=2]
+  p_snap    -> snapcast   [minlen=2]
+  p_malp    -> mpd        [minlen=2]
+
+  /* ============================================================
+     NAS -> odios (audio)
+     ============================================================ */
+  n_snap -> snapcast [minlen=2]
+  n_mpd  -> pulse    [minlen=2]
+  n_upnp -> upmpdcli [minlen=2]
+
+  /* ============================================================
+     pwa / HA -> go-odio-api (control, dashed leaf)
+     ============================================================ */
+  d_pwa -> api [minlen=2 style=dashed color="#7ab896" fontcolor="#7ab896" label="HTTP+SSE"]
+  p_pwa -> api [minlen=2 style=dashed color="#7ab896"]
+  n_ha  -> api [minlen=2 style=dashed color="#7ab896" fontcolor="#7ab896" label="HTTP+SSE"]
+
+  /* ============================================================
+     Sources -> PulseAudio
+     ============================================================ */
+  shairport  -> pulse
+  spotifyd   -> pulse
+  bluez_a2dp -> pulse
+  snapcast   -> pulse
+  mpd        -> pulse
+  upmpdcli   -> mpd
+
+  /* ============================================================
+     Layout hints
+     ============================================================ */
+  {rank=same d_airplay d_spotify d_bt d_tcp d_pwa}
+  {rank=same p_airplay p_spotify p_bt p_upnp p_snap p_pwa}
+  {rank=same n_snap n_mpd n_upnp n_ha}
+}

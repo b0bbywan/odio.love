@@ -1,0 +1,146 @@
+---
+import { execSync } from 'child_process';
+import { Discord, GitHub, Heart } from '../icons';
+
+const discordCode = import.meta.env.PUBLIC_DISCORD_INVITE ?? '';
+
+let version = 'unknown';
+try {
+  version = execSync('git describe --tags --always --dirty', { encoding: 'utf8' }).trim();
+} catch {}
+
+const deps = [
+  { name: 'Debian', url: 'https://www.debian.org/' },
+  { name: 'MPD', url: 'https://www.musicpd.org/' },
+  { name: 'PulseAudio', url: 'https://www.freedesktop.org/wiki/Software/PulseAudio/' },
+  { name: 'Shairport Sync', url: 'https://github.com/mikebrady/shairport-sync' },
+  { name: 'Snapcast', url: 'https://github.com/badaix/snapcast' },
+  { name: 'upmpdcli', url: 'https://www.lesbonscomptes.com/upmpdcli/' },
+  { name: 'Home Assistant', url: 'https://www.home-assistant.io/' },
+];
+
+const hostedBy = [
+  { name: 'GitHub', url: 'https://github.com/', label: 'CI' },
+  { name: 'Vercel', url: 'https://vercel.com/', label: 'hosting' },
+  { name: 'OVH', url: 'https://www.ovh.com/', label: 'DNS' },
+];
+---
+
+<footer
+  class="py-12 px-6 border-t"
+  style="background-color: var(--color-surface); border-color: var(--color-border);"
+>
+  <div class="max-w-5xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-center gap-8">
+      <!-- Left: license + attribution -->
+      <div class="space-y-3">
+        <p class="text-sm" style="color: var(--color-muted);">
+          odio.love is released under the
+          <a
+            href="https://github.com/b0bbywan/odios/blob/main/LICENSE"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="underline underline-offset-2 transition-colors"
+            style="color: var(--color-muted);"
+            onmouseover="this.style.color='var(--color-leaf)'"
+            onmouseout="this.style.color='var(--color-muted)'"
+          >BSD 2-Clause License</a>.
+        </p>
+        <p class="text-sm" style="color: var(--color-subtle);">
+          Built on the shoulders of:
+          {deps.map((dep, i) => (
+            <>
+              <a
+                href={dep.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="transition-colors underline underline-offset-2"
+                style="color: var(--color-subtle);"
+                onmouseover="this.style.color='var(--color-muted)'"
+                onmouseout="this.style.color='var(--color-subtle)'"
+              >{dep.name}</a>{i < deps.length - 1 ? ', ' : '.'}
+            </>
+          ))}
+        </p>
+        <p class="text-sm" style="color: var(--color-subtle);">
+          Hosted by:
+          {hostedBy.map((svc, i) => (
+            <>
+              <a
+                href={svc.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={svc.label}
+                class="transition-colors underline underline-offset-2"
+                style="color: var(--color-subtle);"
+                onmouseover="this.style.color='var(--color-muted)'"
+                onmouseout="this.style.color='var(--color-subtle)'"
+              >{svc.name}</a>{i < hostedBy.length - 1 ? ', ' : '.'}
+            </>
+          ))}
+        </p>
+      </div>
+
+      <!-- Center: logo easter egg -->
+      <div class="group flex flex-col items-center justify-center">
+        <a href="https://reemploi.odio.love/" target="_blank" rel="noopener noreferrer" class="opacity-60 hover:opacity-100 transition-opacity">
+          <img src="/logo.png" alt="odio" width="96" height="96" />
+        </a>
+        <span
+          class="mt-2 text-xs italic opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-700"
+          style="color: var(--color-amber);"
+        >the most sustainable device is the one already manufactured</span>
+      </div>
+
+      <!-- Right: links -->
+      <div class="flex flex-col items-end gap-2">
+        <a
+          href="https://github.com/b0bbywan"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-2 text-sm transition-colors"
+          style="color: var(--color-subtle);"
+          onmouseover="this.style.color='var(--color-muted)'"
+          onmouseout="this.style.color='var(--color-subtle)'"
+          aria-label="b0bbywan on GitHub"
+        >
+          <GitHub width="16" height="16" aria-hidden="true" />
+          b0bbywan
+        </a>
+        <a
+          href="#"
+          role="link"
+          data-d={discordCode}
+          onclick="window.open('https://disc'+'ord.gg/'+this.dataset.d,'_blank','noopener');return false"
+          class="flex items-center gap-2 text-sm transition-colors cursor-pointer"
+          style="color: var(--color-subtle);"
+          onmouseover="this.style.color='var(--color-muted)'"
+          onmouseout="this.style.color='var(--color-subtle)'"
+          aria-label="odio Discord"
+        >
+          <Discord width="16" height="16" aria-hidden="true" />
+          Discord
+        </a>
+        <a
+          href="https://github.com/sponsors/b0bbywan"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-1.5 text-sm transition-colors"
+          style="color: var(--color-subtle);"
+          onmouseover="this.style.color='var(--color-amber)'"
+          onmouseout="this.style.color='var(--color-subtle)'"
+        >
+          <Heart width="14" height="14" aria-hidden="true" />
+          Support odio development
+        </a>
+      </div>
+    </div>
+
+    <div class="mt-8 pt-6 border-t flex flex-col items-center" style="border-color: var(--color-border);">
+      <p class="text-xs text-center" style="color: var(--color-subtle);">
+        odio·love — Your Pi. Your music. No expiry date.
+      </p>
+      <p class="text-xs text-center font-mono mt-1" style="color: var(--color-subtle);">{version}</p>
+    </div>
+  </div>
+</footer>

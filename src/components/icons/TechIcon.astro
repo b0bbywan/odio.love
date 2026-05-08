@@ -1,0 +1,36 @@
+---
+import {
+  siGo,
+  siAnsible,
+  siSvelte,
+  siPython,
+  siAstro,
+  siGithubactions,
+} from 'simple-icons';
+
+const icons: Record<string, { path: string; viewBox?: string }> = {
+  Go: siGo,
+  Ansible: siAnsible,
+  Svelte: siSvelte,
+  Python: siPython,
+  Astro: siAstro,
+  'GitHub Actions': siGithubactions,
+};
+
+const { name, color, size = 18 } = Astro.props;
+const icon = icons[name];
+---
+
+{icon && (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill={color}
+    aria-label={name}
+    role="img"
+  >
+    <title>{name}</title>
+    <path d={icon.path} />
+  </svg>
+)}

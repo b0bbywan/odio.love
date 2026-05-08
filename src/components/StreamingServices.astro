@@ -1,0 +1,67 @@
+---
+import { services } from '../data/streaming.js';
+import * as simpleIcons from 'simple-icons';
+---
+
+<section
+  id="streaming"
+  class="py-24 px-6 border-t"
+  style="background-color: var(--color-bg); border-color: var(--color-border);"
+>
+  <div class="max-w-5xl mx-auto">
+    <h2
+      class="text-4xl md:text-5xl font-light mb-4 tracking-tight"
+      style="font-family: var(--font-display); color: var(--color-text);"
+    >
+      Streaming services
+    </h2>
+    <p class="text-lg mb-12" style="color: var(--color-muted);">
+      Your music sources, on your Pi. No extra cost.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {services.map((s) => (
+        <a
+          href={`https://docs.odio.love${s.docs}`}
+          target="_blank"
+          rel="noopener"
+          class="service-card rounded-xl p-6 border flex flex-col gap-4 transition-colors relative"
+          style="background-color: var(--color-surface); text-decoration: none;"
+        >
+          <span class="service-link-arrow absolute top-3 right-3" aria-hidden="true">↗</span>
+          <div class="flex items-center justify-center gap-3 mb-2">
+            {s.icon && simpleIcons[s.icon] && (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill={s.iconColor} aria-hidden="true" style="flex-shrink:0;">
+                <path d={simpleIcons[s.icon].path} />
+              </svg>
+            )}
+            {s.iconImg && (
+              <img src={s.iconImg} alt="" width="22" height="22" aria-hidden="true" style="flex-shrink:0;" />
+            )}
+            <h3 class="font-medium" style="color: var(--color-text);">{s.name}</h3>
+          </div>
+          <p class="text-sm leading-relaxed text-center" style="color: var(--color-muted);">{s.desc}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .service-card {
+    border-color: var(--color-border);
+  }
+  .service-card:hover {
+    border-color: var(--color-leaf);
+  }
+  .service-link-arrow {
+    color: var(--color-subtle);
+    font-size: 0.875rem;
+    opacity: 0.5;
+    transition: opacity 0.2s, color 0.2s;
+  }
+  .service-card:hover .service-link-arrow {
+    color: var(--color-leaf);
+    opacity: 1;
+  }
+</style>

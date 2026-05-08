@@ -1,0 +1,179 @@
+---
+import Base from '../layouts/Base.astro';
+import Footer from '../components/Footer.astro';
+import { Content } from '../content/how-it-works.mdx';
+---
+
+<Base
+  title="How odio works — Architecture & design"
+  description="odio is a platform, not an appliance. User session, go-odio-api, Home Assistant, and a full CI pipeline from apt packages to flashable image. The open-source Raspberry Pi audio stack, explained."
+>
+  <main aria-label="How odio works">
+    <!-- Back link -->
+    <div class="px-6 pt-8 max-w-4xl mx-auto">
+      <a
+        href="/"
+        aria-label="Back to odio.love"
+        class="text-sm transition-colors"
+        style="color: var(--color-muted);"
+        onmouseover="this.style.color='var(--color-leaf)'"
+        onmouseout="this.style.color='var(--color-muted)'"
+        onfocus="this.style.color='var(--color-leaf)'"
+        onblur="this.style.color='var(--color-muted)'"
+      >
+        ← odio.love
+      </a>
+    </div>
+
+    <div class="how-prose">
+      <Content />
+    </div>
+  </main>
+
+  <Footer />
+</Base>
+
+<style>
+  /* Alternating section backgrounds — automatic, no manual color needed in MDX */
+  .how-prose :global(section) {
+    padding: 6rem 1.5rem;
+    font-size: 1.125rem;
+    line-height: 1.75;
+  }
+  .how-prose :global(section:nth-child(odd)) {
+    background-color: var(--color-bg);
+  }
+  .how-prose :global(section:nth-child(even)) {
+    background-color: var(--color-surface);
+  }
+
+  /* Ecosystem section overrides */
+  .how-prose :global(section.ecosystem h2) {
+    font-size: 2.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .how-prose :global(.ecosystem-sub) {
+    font-size: 1.125rem;
+    color: var(--color-muted);
+    margin-bottom: 3rem !important;
+  }
+
+  .how-prose :global(h2) {
+    font-family: var(--font-display);
+    font-size: 2.75rem;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+    margin-bottom: 2.5rem;
+  }
+
+  .how-prose :global(p) {
+    font-size: 1.125rem;
+    line-height: 1.75;
+    color: var(--color-muted);
+    margin-bottom: 1.25rem;
+    text-align: justify;
+  }
+
+  .how-prose :global(strong) {
+    color: var(--color-leaf);
+    font-weight: 500;
+  }
+
+  .how-prose :global(code) {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    color: var(--color-amber);
+    background-color: var(--color-surface);
+    padding: 0.1em 0.4em;
+    border-radius: 3px;
+  }
+
+  /* Zoomable diagrams */
+  .how-prose :global(img.zoomable) {
+    cursor: zoom-in;
+    transition: opacity 0.15s;
+  }
+  .how-prose :global(img.zoomable:hover) {
+    opacity: 0.85;
+  }
+
+  #img-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.85);
+    cursor: zoom-out;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  #img-lightbox.open {
+    display: flex;
+  }
+  #img-lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.6);
+    object-fit: contain;
+  }
+  #img-lightbox-close {
+    position: fixed;
+    top: 1.25rem;
+    right: 1.5rem;
+    color: #e8f0ea;
+    font-size: 1.75rem;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0.7;
+    background: none;
+    border: none;
+    padding: 0.25rem 0.5rem;
+  }
+  #img-lightbox-close:hover {
+    opacity: 1;
+  }
+</style>
+
+<div id="img-lightbox" role="dialog" aria-modal="true" aria-label="Image agrandie">
+  <button id="img-lightbox-close" aria-label="Fermer">✕</button>
+  <img src="" alt="" />
+</div>
+
+<script>
+  const lightbox = document.getElementById('img-lightbox') as HTMLElement;
+  const lightboxImg = lightbox.querySelector('img') as HTMLImageElement;
+  const closeBtn = document.getElementById('img-lightbox-close') as HTMLButtonElement;
+
+  // Target standalone imgs (not inside <a>) in how-prose
+  const prose = document.querySelector('.how-prose');
+  if (prose) {
+    prose.querySelectorAll<HTMLImageElement>('img').forEach((img) => {
+      if (!img.closest('a')) {
+        img.classList.add('zoomable');
+        img.addEventListener('click', () => {
+          lightboxImg.src = img.src;
+          lightboxImg.alt = img.alt;
+          lightbox.classList.add('open');
+          document.body.style.overflow = 'hidden';
+        });
+      }
+    });
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+    lightboxImg.src = '';
+  }
+
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+  closeBtn.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+</script>

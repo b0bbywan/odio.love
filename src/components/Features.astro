@@ -1,0 +1,68 @@
+---
+import { features } from '../data/features.js';
+---
+
+<section
+  id="features"
+  class="py-24 px-6"
+  style="background-color: var(--color-surface);"
+>
+  <div class="max-w-5xl mx-auto">
+    <h2
+      class="text-4xl md:text-5xl font-light mb-4 tracking-tight"
+      style="font-family: var(--font-display); color: var(--color-text);"
+    >
+      Everything. No paywall.
+    </h2>
+    <p class="text-lg mb-14" style="color: var(--color-muted);">
+      Every protocol. Every source. Every room. Free.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {features.map(({ icon: Icon, name, desc, docs }) => (
+        <a
+          href={`https://docs.odio.love${docs}`}
+          target="_blank"
+          rel="noopener"
+          class="feature-card rounded-xl p-6 border flex flex-col gap-4 transition-colors relative no-underline"
+          style="background-color: var(--color-surface); text-decoration: none;"
+        >
+          <span class="feature-link-arrow absolute top-3 right-3" aria-hidden="true">↗</span>
+          <div class="flex items-center justify-center gap-3">
+            <Icon
+              width="22"
+              height="22"
+              class="feature-icon shrink-0"
+              style="color: var(--color-moss);"
+              aria-hidden="true"
+            />
+            <h3 class="font-medium" style="color: var(--color-text);">{name}</h3>
+          </div>
+          <p class="text-sm leading-relaxed text-center" style="color: var(--color-muted);">{desc}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .feature-card {
+    border-color: var(--color-border);
+  }
+  .feature-card:hover {
+    border-color: var(--color-leaf);
+  }
+  .feature-card:hover .feature-icon {
+    color: var(--color-leaf);
+  }
+  .feature-link-arrow {
+    color: var(--color-subtle);
+    font-size: 0.875rem;
+    opacity: 0.5;
+    transition: opacity 0.2s, color 0.2s;
+  }
+  .feature-card:hover .feature-link-arrow {
+    color: var(--color-leaf);
+    opacity: 1;
+  }
+</style>
