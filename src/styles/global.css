@@ -46,4 +46,43 @@
     font-family: var(--font-body);
     overflow-x: hidden;
   }
+
+  a:focus-visible,
+  button:focus-visible,
+  summary:focus-visible,
+  details:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid var(--color-leaf);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .skip-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0.75rem 1rem;
+    background-color: var(--color-leaf);
+    color: var(--color-bg);
+    font-weight: 500;
+    z-index: 100;
+    transform: translateY(-200%);
+    transition: transform 0.15s;
+  }
+  .skip-link:focus {
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
