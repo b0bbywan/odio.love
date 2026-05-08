@@ -1,5 +1,9 @@
 ---
 import '../styles/global.css';
+import { features } from '../data/features.js';
+import { services } from '../data/streaming.js';
+import { repos } from '../data/repos.js';
+import pkg from '../../package.json';
 
 interface Props {
   title?: string;
@@ -14,6 +18,17 @@ const {
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const featureList = [...features.map((f) => f.name), ...services.map((s) => s.name)];
+const installerRepo = repos.find((r) => r.name === 'odios')?.url ?? 'https://github.com/b0bbywan/odios';
+const screenshots = [
+  'audio-cd-playback.png',
+  'bt-playing.png',
+  'embedded-ui.png',
+  'odio-ha.png',
+  'pwa-instances.png',
+  'rpi-imager.png',
+].map((f) => `https://odio.love/screenshots/${f}`);
 ---
 
 <!doctype html>
@@ -54,15 +69,28 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         {
           "@type": "SoftwareApplication",
           "name": "odio",
+          "url": "https://odio.love",
           "applicationCategory": "MultimediaApplication",
-          "operatingSystem": "Linux",
-          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
-          "url": "https://odio.love"
+          "applicationSubCategory": "Audio Streaming",
+          "operatingSystem": "Raspberry Pi OS, Debian",
+          "softwareVersion": pkg.version,
+          "codeRepository": installerRepo,
+          "downloadUrl": "https://odio.love/install",
+          "license": "https://opensource.org/licenses/BSD-2-Clause",
+          "screenshot": screenshots,
+          "featureList": featureList,
+          "author": {
+            "@type": "Person",
+            "name": "b0bbywan",
+            "url": "https://github.com/b0bbywan"
+          },
+          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
         }
       ]
     })} />
   </head>
   <body>
+    <a href="#main" class="skip-link">Skip to main content</a>
     <slot />
   </body>
 </html>
