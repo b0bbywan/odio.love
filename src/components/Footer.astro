@@ -1,13 +1,9 @@
 ---
-import { execSync } from 'child_process';
 import { Discord, GitHub, Heart } from '../icons';
+import pkg from '../../package.json';
 
 const discordCode = import.meta.env.PUBLIC_DISCORD_INVITE ?? '';
-
-let version = 'unknown';
-try {
-  version = execSync('git describe --tags --always --dirty', { encoding: 'utf8' }).trim();
-} catch {}
+const version = `v${pkg.version}`;
 
 const deps = [
   { name: 'Debian', url: 'https://www.debian.org/' },
