@@ -1,9 +1,6 @@
 import { ecosystemProjects } from './ecosystem.js';
 
-const isBeta = import.meta.env.PUBLIC_BETA === 'true';
-export const installCmd = isBeta
-  ? 'curl -fsSL https://beta.odio.love/install | bash'
-  : 'curl -fsSL https://odio.love/install | bash';
+export const installCmd = 'curl -fsSL https://odio.love/install | bash';
 
 export const compatibleHardware = [
   'Raspberry Pi B, B+, Zero W - armv6l (800 MHz recommended)',
@@ -40,9 +37,7 @@ export const verifiedOther = [
   { label: 'Fedora 43 x86-64', note: 'API only/manual' },
 ];
 
-export const imagerManifestUrl = isBeta
-  ? 'https://beta.odio.love/odio.rpi-imager-manifest'
-  : 'https://odio.love/odio.rpi-imager-manifest';
+export const imagerManifestUrl = 'https://odio.love/odio.rpi-imager-manifest';
 
 const numberWords = [
   'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight',

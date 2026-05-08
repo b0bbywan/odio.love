@@ -12,10 +12,6 @@ npm run preview   # Serve production build locally
 
 No linting or test scripts are configured.
 
-## Environment Variables
-
-- `PUBLIC_BETA` — set to `'true'` to switch to beta mode (affects site URL, robots.txt exclusion from crawlers, and install script endpoint)
-
 ## Architecture
 
 **odio.love** is a static marketing site for the *odio* Raspberry Pi audio streaming project, built with Astro 5 + Tailwind CSS 4 + Svelte 5.
@@ -28,7 +24,7 @@ All page content lives in `/src/data/` as plain JS files (`features.js`, `compar
 
 - `src/pages/index.astro` — landing page; composes all 10 section components in order
 - `src/pages/install.ts` — API endpoint that proxies the latest install script from GitHub releases
-- `src/pages/robots.txt.ts` — dynamic robots.txt; disallows all crawlers when `PUBLIC_BETA` is set
+- `src/pages/robots.txt.ts` — robots.txt allowing all crawlers, with sitemap pointer
 
 ### Layout & Styles
 
