@@ -61,10 +61,40 @@ const screenshots = [
       "@context": "https://schema.org",
       "@graph": [
         {
+          "@type": "Organization",
+          "@id": "https://odio.love/#organization",
+          "name": "odio",
+          "url": "https://odio.love",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://odio.love/logo.png"
+          },
+          "description": "Open-source Raspberry Pi audio streaming project: self-hosted, Home Assistant native, no telemetry.",
+          "founder": {
+            "@type": "Person",
+            "name": "b0bbywan",
+            "url": "https://github.com/b0bbywan"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer support",
+            "email": "contact@odio.love",
+            "url": "https://github.com/b0bbywan/odios/issues",
+            "availableLanguage": ["English", "French"]
+          },
+          "sameAs": [
+            "https://github.com/b0bbywan",
+            "https://docs.odio.love",
+            "https://www.linkedin.com/in/mrequillart/",
+            "https://mathieu-requillart.medium.com/"
+          ]
+        },
+        {
           "@type": "WebSite",
           "name": "odio",
           "url": "https://odio.love",
-          "description": description
+          "description": description,
+          "publisher": { "@id": "https://odio.love/#organization" }
         },
         {
           "@type": "SoftwareApplication",
@@ -74,7 +104,7 @@ const screenshots = [
           "applicationSubCategory": "Audio Streaming",
           "operatingSystem": "Raspberry Pi OS, Debian",
           "softwareVersion": pkg.version,
-          "codeRepository": installerRepo,
+          "sameAs": [installerRepo],
           "downloadUrl": "https://odio.love/install",
           "license": "https://opensource.org/licenses/BSD-2-Clause",
           "screenshot": screenshots,
@@ -84,6 +114,7 @@ const screenshots = [
             "name": "b0bbywan",
             "url": "https://github.com/b0bbywan"
           },
+          "publisher": { "@id": "https://odio.love/#organization" },
           "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
         }
       ]
