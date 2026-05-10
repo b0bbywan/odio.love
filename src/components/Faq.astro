@@ -1,13 +1,27 @@
 ---
 import { faq } from '../data/faq.js';
 
+const orgRef = { '@id': 'https://odio.love/#organization' };
+const softwareRef = { '@id': 'https://odio.love/#software' };
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  '@id': 'https://odio.love/#faq',
+  inLanguage: 'en',
+  about: softwareRef,
+  publisher: orgRef,
   mainEntity: faq.map(({ q, a }) => ({
     '@type': 'Question',
     name: q,
-    acceptedAnswer: { '@type': 'Answer', text: a },
+    inLanguage: 'en',
+    answerCount: 1,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: a,
+      inLanguage: 'en',
+      author: orgRef,
+    },
   })),
 };
 ---
