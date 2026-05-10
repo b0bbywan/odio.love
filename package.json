@@ -22,6 +22,6 @@
     "tailwindcss": "^4.2.4"
   },
   "devDependencies": {
-    "simple-icons": "^16.12.0"
+    "simple-icons": "^16.19.0"
   }
 }
