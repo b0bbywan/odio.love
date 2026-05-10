@@ -1,0 +1,6 @@
+---
+q: "Can odio run in Docker?"
+plainAnswer: "No, not as a real install target. Docker is used in CI to test the install playbook on x86_64, arm64, and armhf (via qemu), but the supported install path stays bare-metal Pi OS. The core API (go-odio-api) ships its own docker-compose if you want to embed just the brain into your setup. Containerizing the full audio stack is open territory, contributions welcome: github.com/b0bbywan/odios/discussions/43."
+---
+
+No, not as a real install target. Docker is used in CI to test the install playbook on x86_64, arm64, and armhf (via qemu), but the supported [install path](#get-started) stays bare-metal Pi OS. The core API ([go-odio-api](https://github.com/b0bbywan/go-odio-api)) ships its own docker-compose if you want to embed just the brain into your setup. Containerizing the full audio stack is open territory, [contributions welcome](https://github.com/b0bbywan/odios/discussions/43).

@@ -1,12 +1,38 @@
 ---
 import { installCmd } from '../data/config.js';
 import { GitHub, Smartphone, BookOpen, MessageCircle, Copy, Check, ArrowDown } from '../icons';
+
+const sectionNav = [
+  { href: '#features', label: 'Features', title: 'Audio features and protocols' },
+  { href: '#streaming', label: 'Streaming', title: 'Spotify, Tidal, Qobuz, web radios' },
+  { href: '#comparison', label: 'Compare', title: 'odio vs Volumio vs commercial streamers' },
+  { href: '#get-started', label: 'Install', title: 'One-line install on your Pi' },
+  { href: '#faq', label: 'FAQ', title: 'Common questions about odio' },
+  { href: '#manifesto', label: 'Manifesto', title: 'The why behind no-telemetry, no-cloud, no-account' },
+];
 ---
 
 <section
   class="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden"
   style="background-color: var(--color-bg);"
 >
+  <!-- Internal section nav -->
+  <nav
+    class="absolute top-5 left-6 hidden md:flex items-center gap-4 z-20"
+    aria-label="Page sections"
+  >
+    {sectionNav.map(({ href, label, title }) => (
+      <a
+        href={href}
+        title={title}
+        class="text-xs transition-colors"
+        style="color: var(--color-muted);"
+        onmouseover="this.style.color='var(--color-leaf)'"
+        onmouseout="this.style.color='var(--color-muted)'"
+      >{label}</a>
+    ))}
+  </nav>
+
   <!-- Header links -->
   <div class="absolute top-5 right-6 flex items-center gap-4 z-20">
     <a
