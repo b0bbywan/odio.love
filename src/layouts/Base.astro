@@ -41,6 +41,8 @@ const screenshots = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang="en" href={canonicalURL} />
+    <link rel="alternate" hreflang="x-default" href={canonicalURL} />
 
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -100,8 +102,8 @@ const screenshots = [
           "publisher": { "@id": "https://odio.love/#organization" }
         },
         {
-          "@type": "SoftwareApplication",
-          "@id": "https://odio.love/#software",
+          "@type": "OperatingSystem",
+          "@id": "https://odio.love/#os",
           "name": "odio",
           "url": "https://odio.love",
           "applicationCategory": "MultimediaApplication",
