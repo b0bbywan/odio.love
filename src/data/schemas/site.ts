@@ -10,7 +10,7 @@ export const DEFAULT_TITLE =
 export const DEFAULT_DESCRIPTION =
   'Revive any Raspberry Pi as a self-hosted audio streamer. AirPlay 2, Spotify, Snapcast multiroom, Home Assistant. One curl install. Free Volumio alternative.';
 
-export const OG_IMAGE = `${SITE_URL}/logo.png`;
+export const OG_IMAGE = `${SITE_URL}/og-cover.png`;
 
 export const SOCIALS: string[] = [
   'https://www.linkedin.com/in/mrequillart/',
