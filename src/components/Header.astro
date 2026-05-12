@@ -15,21 +15,15 @@ const { pageNav, sectionNav } = getNav(Astro.url.pathname);
       <a
         href={href}
         title={title}
-        class="text-sm transition-colors"
-        style="color: var(--color-muted);"
-        onmouseover="this.style.color='var(--color-leaf)'"
-        onmouseout="this.style.color='var(--color-muted)'"
+        class="text-sm transition-colors text-muted hover:text-leaf"
       >{label}</a>
     ))}
-    <span aria-hidden="true" class="h-4 w-px" style="background-color: var(--color-border);"></span>
+    <span aria-hidden="true" class="h-4 w-px bg-border"></span>
     {sectionNav.map(({ href, label, title }) => (
       <a
         href={href}
         title={title}
-        class="text-sm transition-colors"
-        style="color: var(--color-muted);"
-        onmouseover="this.style.color='var(--color-leaf)'"
-        onmouseout="this.style.color='var(--color-muted)'"
+        class="text-sm transition-colors text-muted hover:text-leaf"
       >{label}</a>
     ))}
   </nav>
@@ -37,8 +31,7 @@ const { pageNav, sectionNav } = getNav(Astro.url.pathname);
   <!-- Mobile menu (burger) -->
   <details class="md:hidden relative" id="mobile-menu">
     <summary
-      class="list-none cursor-pointer flex items-center p-1 rounded"
-      style="color: var(--color-muted);"
+      class="list-none cursor-pointer flex items-center p-1 rounded text-muted"
       aria-label="Open page sections menu"
     >
       <Menu width="20" height="20" aria-hidden="true" />
@@ -53,23 +46,17 @@ const { pageNav, sectionNav } = getNav(Astro.url.pathname);
           <a
             href={href}
             title={title}
-            class="block px-3 py-2 text-sm rounded transition-colors"
-            style="color: var(--color-muted);"
-            onmouseover="this.style.color='var(--color-leaf)'"
-            onmouseout="this.style.color='var(--color-muted)'"
+            class="block px-3 py-2 text-sm rounded transition-colors text-muted hover:text-leaf"
           >{label}</a>
         ))}
       </div>
-      <hr class="my-2 border-0 h-px" style="background-color: var(--color-border);" />
+      <hr class="my-2 border-0 h-px bg-border" />
       <div class="flex flex-col gap-1">
         {sectionNav.map(({ href, label, title }) => (
           <a
             href={href}
             title={title}
-            class="block px-3 py-2 text-sm rounded transition-colors"
-            style="color: var(--color-muted);"
-            onmouseover="this.style.color='var(--color-leaf)'"
-            onmouseout="this.style.color='var(--color-muted)'"
+            class="block px-3 py-2 text-sm rounded transition-colors text-muted hover:text-leaf"
           >{label}</a>
         ))}
       </div>
@@ -83,10 +70,7 @@ const { pageNav, sectionNav } = getNav(Astro.url.pathname);
       target="_blank"
       rel="noopener noreferrer"
       title="Documentation"
-      class="flex items-center gap-1.5 text-sm transition-colors"
-      style="color: var(--color-muted);"
-      onmouseover="this.style.color='var(--color-leaf)'"
-      onmouseout="this.style.color='var(--color-muted)'"
+      class="flex items-center gap-1.5 text-sm transition-colors text-muted hover:text-leaf"
     >
       <BookOpen width="16" height="16" aria-hidden="true" />
       docs
@@ -96,10 +80,7 @@ const { pageNav, sectionNav } = getNav(Astro.url.pathname);
       target="_blank"
       rel="noopener noreferrer"
       title="Forum"
-      class="flex items-center gap-1.5 text-sm transition-colors"
-      style="color: var(--color-muted);"
-      onmouseover="this.style.color='var(--color-leaf)'"
-      onmouseout="this.style.color='var(--color-muted)'"
+      class="flex items-center gap-1.5 text-sm transition-colors text-muted hover:text-leaf"
     >
       <MessageCircle width="16" height="16" aria-hidden="true" />
       forum
@@ -110,10 +91,7 @@ const { pageNav, sectionNav } = getNav(Astro.url.pathname);
       target="_blank"
       rel="noopener noreferrer"
       title="odio installer"
-      class="flex items-center gap-1.5 text-sm transition-colors"
-      style="color: var(--color-muted);"
-      onmouseover="this.style.color='var(--color-leaf)'"
-      onmouseout="this.style.color='var(--color-muted)'"
+      class="flex items-center gap-1.5 text-sm transition-colors text-muted hover:text-leaf"
     >
       <GitHub width="16" height="16" aria-hidden="true" />
       <span>odio<span id="release-tag"></span></span>
@@ -136,10 +114,7 @@ const { pageNav, sectionNav } = getNav(Astro.url.pathname);
       target="_blank"
       rel="noopener noreferrer"
       title="odio PWA"
-      class="hidden sm:flex items-center gap-1.5 text-sm transition-colors"
-      style="color: var(--color-muted);"
-      onmouseover="this.style.color='var(--color-leaf)'"
-      onmouseout="this.style.color='var(--color-muted)'"
+      class="hidden sm:flex items-center gap-1.5 text-sm transition-colors text-muted hover:text-leaf"
     >
       <Smartphone width="16" height="16" aria-hidden="true" />
       pwa

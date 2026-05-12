@@ -4,17 +4,13 @@ import { services, iconMap } from '../data/streaming.js';
 
 <section
   id="streaming"
-  class="py-24 px-6 border-t"
-  style="background-color: var(--color-bg); border-color: var(--color-border);"
+  class="py-24 px-6 border-t bg-bg border-border"
 >
   <div class="max-w-5xl mx-auto">
-    <h2
-      class="text-4xl md:text-5xl font-light mb-4 tracking-tight"
-      style="font-family: var(--font-display); color: var(--color-text);"
-    >
+    <h2 class="text-4xl md:text-5xl font-light mb-4 tracking-tight font-display text-text">
       Streaming services
     </h2>
-    <p class="text-lg mb-12" style="color: var(--color-muted);">
+    <p class="text-lg mb-12 text-muted">
       Your music sources, on your Pi. No extra cost.
     </p>
 
@@ -24,22 +20,21 @@ import { services, iconMap } from '../data/streaming.js';
           href={`https://docs.odio.love${s.docs}`}
           target="_blank"
           rel="noopener"
-          class="service-card rounded-xl p-6 border flex flex-col gap-4 transition-colors relative"
-          style="background-color: var(--color-surface); text-decoration: none;"
+          class="service-card rounded-xl p-6 border flex flex-col gap-4 transition-colors relative bg-surface no-underline"
         >
           <span class="service-link-arrow absolute top-3 right-3" aria-hidden="true">↗</span>
           <div class="flex items-center justify-center gap-3 mb-2">
             {s.icon && (
-              <svg width="22" height="22" viewBox="0 0 24 24" fill={s.iconColor} aria-hidden="true" style="flex-shrink:0;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill={s.iconColor} aria-hidden="true" class="shrink-0">
                 <path d={iconMap[s.icon].path} />
               </svg>
             )}
             {s.iconImg && (
-              <img src={s.iconImg} alt="" width="22" height="22" aria-hidden="true" style="flex-shrink:0;" />
+              <img src={s.iconImg} alt="" width="22" height="22" aria-hidden="true" class="shrink-0" />
             )}
-            <h3 class="font-medium" style="color: var(--color-text);">{s.name}</h3>
+            <h3 class="font-medium text-text">{s.name}</h3>
           </div>
-          <p class="text-sm leading-relaxed text-center" style="color: var(--color-muted);">{s.desc}</p>
+          <p class="text-sm leading-relaxed text-center text-muted">{s.desc}</p>
         </a>
       ))}
     </div>

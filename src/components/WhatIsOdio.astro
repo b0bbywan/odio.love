@@ -11,8 +11,7 @@ const stats = [
 
 <section
   id="what-is-odio"
-  class="py-24 px-6 border-t"
-  style="background-color: var(--color-surface); border-color: var(--color-border);"
+  class="py-24 px-6 border-t bg-surface border-border"
 >
   <div class="max-w-4xl mx-auto">
     <!-- Screenshots slider -->
@@ -27,17 +26,11 @@ const stats = [
     <!-- Stats -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       {stats.map((stat) => (
-        <div
-          class="rounded-xl p-6 border text-center"
-          style="background-color: var(--color-bg); border-color: var(--color-border);"
-        >
-          <div
-            class="text-3xl md:text-4xl font-light mb-2 tracking-tight"
-            style="font-family: var(--font-display); color: var(--color-amber);"
-          >
+        <div class="rounded-xl p-6 border text-center bg-bg border-border">
+          <div class="text-3xl md:text-4xl font-light mb-2 tracking-tight font-display text-amber">
             {stat.value}
           </div>
-          <div class="text-sm" style="color: var(--color-muted);">
+          <div class="text-sm text-muted">
             {stat.label}
           </div>
         </div>
@@ -48,10 +41,7 @@ const stats = [
     <div class="mt-10 flex justify-center gap-4">
       <a
         href="/how-it-works"
-        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-colors"
-        style="background-color: var(--color-moss); color: var(--color-text);"
-        onmouseover="this.style.backgroundColor='var(--color-leaf)'"
-        onmouseout="this.style.backgroundColor='var(--color-moss)'"
+        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-colors bg-moss text-text hover:bg-leaf"
       >
         How it works →
       </a>
@@ -59,10 +49,7 @@ const stats = [
         href="https://docs.odio.love"
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-colors"
-        style="background-color: var(--color-bg); color: var(--color-text);"
-        onmouseover="this.style.backgroundColor='var(--color-moss)'"
-        onmouseout="this.style.backgroundColor='var(--color-bg)'"
+        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-colors bg-bg text-text hover:bg-moss"
       >
         Documentation ↗
       </a>

@@ -3,10 +3,7 @@ import { installCmd } from '../data/config.js';
 import { Copy, Check, ArrowDown } from '../icons';
 ---
 
-<section
-  class="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden"
-  style="background-color: var(--color-bg);"
->
+<section class="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden bg-bg">
   <!-- SVG noise texture -->
   <svg class="absolute inset-0 w-full h-full opacity-[0.04] pointer-events-none" aria-hidden="true">
     <filter id="noise">
@@ -35,38 +32,25 @@ import { Copy, Check, ArrowDown } from '../icons';
     />
 
     <!-- Title -->
-    <h1
-      class="text-6xl sm:text-7xl md:text-8xl font-light tracking-tight leading-none"
-      style="font-family: var(--font-display);"
-    >
-      odio<span style="color: var(--color-amber);">·</span>love
+    <h1 class="text-6xl sm:text-7xl md:text-8xl font-light tracking-tight leading-none font-display">
+      odio<span class="text-amber">·</span>love
     </h1>
 
     <!-- Tagline -->
-    <p
-      class="text-xl sm:text-2xl font-light leading-relaxed"
-      style="color: var(--color-muted);"
-    >
+    <p class="text-xl sm:text-2xl font-light leading-relaxed text-muted">
       That Pi in your drawer?<br />
-      <span style="color: var(--color-text);">It's already a €400 streamer.</span>
+      <span class="text-text">It's already a €400 streamer.</span>
     </p>
 
     <!-- Install command -->
-    <div
-      class="w-full max-w-2xl rounded-lg border flex items-center"
-      style="background-color: var(--color-surface); border-color: var(--color-border);"
-    >
+    <div class="w-full max-w-2xl rounded-lg border flex items-center bg-surface border-border">
       <span
-        class="text-xs sm:text-sm flex-1 min-w-0 overflow-x-auto whitespace-nowrap px-4 py-3"
-        style="font-family: var(--font-mono); color: var(--color-leaf);"
+        class="text-xs sm:text-sm flex-1 min-w-0 overflow-x-auto whitespace-nowrap px-4 py-3 font-mono text-leaf"
         id="install-cmd"
       >{installCmd}</span>
       <button
-        onclick="const s=this.querySelector('svg');const c=this.querySelector('.check');navigator.clipboard.writeText(document.getElementById('install-cmd').textContent).then(()=>{s.style.display='none';c.style.display='block';setTimeout(()=>{s.style.display='block';c.style.display='none'},2000)})"
-        class="flex-shrink-0 p-1.5 mr-2 rounded cursor-pointer transition-colors"
-        style="color: var(--color-muted);"
-        onmouseover="this.style.color='var(--color-leaf)'"
-        onmouseout="this.style.color='var(--color-muted)'"
+        onclick="gsCopy(this, 'install-cmd')"
+        class="shrink-0 p-1.5 mr-2 rounded cursor-pointer transition-colors text-muted hover:text-leaf"
         title="Copy"
       >
         <Copy width="14" height="14" />
@@ -75,10 +59,7 @@ import { Copy, Check, ArrowDown } from '../icons';
     </div>
 
     <!-- Headline -->
-    <p
-      class="text-base sm:text-lg font-light"
-      style="color: var(--color-muted);"
-    >
+    <p class="text-base sm:text-lg font-light text-muted">
       Flash an SD card. Your Pi wakes up as a full streamer, ready for Home Assistant.
     </p>
 
@@ -86,10 +67,7 @@ import { Copy, Check, ArrowDown } from '../icons';
     <div class="flex flex-col sm:flex-row items-center gap-4">
       <a
         href="#get-started"
-        class="px-6 py-3 rounded-lg font-medium transition-colors"
-        style="background-color: var(--color-moss); color: var(--color-text);"
-        onmouseover="this.style.backgroundColor='var(--color-leaf)'"
-        onmouseout="this.style.backgroundColor='var(--color-moss)'"
+        class="px-6 py-3 rounded-lg font-medium transition-colors bg-moss text-text hover:bg-leaf"
       >
         Get started ↓
       </a>
@@ -98,8 +76,7 @@ import { Copy, Check, ArrowDown } from '../icons';
 
   <!-- Scroll indicator -->
   <div
-    class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce"
-    style="color: var(--color-border);"
+    class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-border"
     aria-hidden="true"
   >
     <ArrowDown width="24" height="24" />
