@@ -1,12 +1,10 @@
 ---
+import type { MDXInstance } from 'astro';
 import { SITE_URL, ORG_REF, OS_REF } from '../data/schemas/site.js';
 
-type FaqModule = {
-  frontmatter: { q: string; plainAnswer: string };
-  Content: any;
-};
+type FaqFrontmatter = { q: string; plainAnswer: string };
 
-const faqModules = import.meta.glob<FaqModule>('../content/faq/*.mdx', { eager: true });
+const faqModules = import.meta.glob<MDXInstance<FaqFrontmatter>>('../content/faq/*.mdx', { eager: true });
 const entries = Object.entries(faqModules)
   .sort(([a], [b]) => a.localeCompare(b))
   .map(([, m]) => m);
