@@ -20,9 +20,12 @@ import { services, iconMap } from '../data/streaming.js';
           href={`https://docs.odio.love${s.docs}`}
           target="_blank"
           rel="noopener"
-          class="service-card rounded-xl p-6 border flex flex-col gap-4 transition-colors relative bg-surface no-underline"
+          class="group rounded-xl p-6 border border-border hover:border-leaf flex flex-col gap-4 transition-colors relative bg-surface no-underline"
         >
-          <span class="service-link-arrow absolute top-3 right-3" aria-hidden="true">↗</span>
+          <span
+            class="absolute top-3 right-3 text-sm text-subtle opacity-50 group-hover:text-leaf group-hover:opacity-100 transition-[color,opacity] duration-200"
+            aria-hidden="true"
+          >↗</span>
           <div class="flex items-center justify-center gap-3 mb-2">
             {s.icon && (
               <svg width="22" height="22" viewBox="0 0 24 24" fill={s.iconColor} aria-hidden="true" class="shrink-0">
@@ -40,22 +43,3 @@ import { services, iconMap } from '../data/streaming.js';
     </div>
   </div>
 </section>
-
-<style>
-  .service-card {
-    border-color: var(--color-border);
-  }
-  .service-card:hover {
-    border-color: var(--color-leaf);
-  }
-  .service-link-arrow {
-    color: var(--color-subtle);
-    font-size: 0.875rem;
-    opacity: 0.5;
-    transition: opacity 0.2s, color 0.2s;
-  }
-  .service-card:hover .service-link-arrow {
-    color: var(--color-leaf);
-    opacity: 1;
-  }
-</style>
