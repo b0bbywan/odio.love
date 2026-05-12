@@ -81,7 +81,7 @@ const howToJsonLd = {
             id="gs-manifest-url"
           >{imagerManifestUrl}</span>
           <button
-            onclick="const s=this.querySelector('svg');const c=this.querySelector('.check');navigator.clipboard.writeText(document.getElementById('gs-manifest-url').textContent).then(()=>{s.style.display='none';c.style.display='block';setTimeout(()=>{s.style.display='block';c.style.display='none'},2000)})"
+            onclick="gsCopy(this, 'gs-manifest-url')"
             class="flex-shrink-0 p-1.5 mr-2 rounded cursor-pointer transition-colors"
             style="color: var(--color-muted);"
             onmouseover="this.style.color='var(--color-leaf)'"
@@ -120,7 +120,7 @@ const howToJsonLd = {
             id="gs-install-cmd"
           >{installCmd}</span>
           <button
-            onclick="const s=this.querySelector('svg');const c=this.querySelector('.check');navigator.clipboard.writeText(document.getElementById('gs-install-cmd').textContent).then(()=>{s.style.display='none';c.style.display='block';setTimeout(()=>{s.style.display='block';c.style.display='none'},2000)})"
+            onclick="gsCopy(this, 'gs-install-cmd')"
             class="flex-shrink-0 p-1.5 mr-2 rounded cursor-pointer transition-colors"
             style="color: var(--color-muted);"
             onmouseover="this.style.color='var(--color-leaf)'"
@@ -132,7 +132,7 @@ const howToJsonLd = {
           </button>
         </div>
         <ul class="flex flex-col gap-1.5 text-xs" style="color: var(--color-subtle);">
-          <li>~800 MB - ~5 min on x86, <15 min on Pi 3B+, up to 1h20 on a Pi B+ at 800 MHz</li>
+          <li>{'~800 MB - ~5 min on x86, <15 min on Pi 3B+, up to 1h20 on a Pi B+ at 800 MHz'}</li>
         </ul>
       </div>
     </div>
@@ -223,5 +223,22 @@ const howToJsonLd = {
     </div>
   </div>
 </section>
+
+<script is:inline>
+  function gsCopy(btn, sourceId) {
+    const src = document.getElementById(sourceId);
+    if (!src) return;
+    const svg = btn.querySelector('svg');
+    const check = btn.querySelector('.check');
+    navigator.clipboard.writeText(src.textContent || '').then(() => {
+      svg.style.display = 'none';
+      check.style.display = 'block';
+      setTimeout(() => {
+        svg.style.display = 'block';
+        check.style.display = 'none';
+      }, 2000);
+    });
+  }
+</script>
 
 <script type="application/ld+json" set:html={JSON.stringify(howToJsonLd)} />

@@ -1,6 +1,5 @@
 ---
-import { services } from '../data/streaming.js';
-import * as simpleIcons from 'simple-icons';
+import { services, iconMap } from '../data/streaming.js';
 ---
 
 <section
@@ -30,9 +29,9 @@ import * as simpleIcons from 'simple-icons';
         >
           <span class="service-link-arrow absolute top-3 right-3" aria-hidden="true">↗</span>
           <div class="flex items-center justify-center gap-3 mb-2">
-            {s.icon && simpleIcons[s.icon] && (
+            {s.icon && (
               <svg width="22" height="22" viewBox="0 0 24 24" fill={s.iconColor} aria-hidden="true" style="flex-shrink:0;">
-                <path d={simpleIcons[s.icon].path} />
+                <path d={iconMap[s.icon].path} />
               </svg>
             )}
             {s.iconImg && (
