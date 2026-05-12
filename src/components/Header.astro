@@ -122,8 +122,8 @@ const { pageNav, sectionNav } = getNav(Astro.url.pathname);
   </div>
 </header>
 
-<!-- Release tag fetch -->
 <script>
+  // Release tag fetch
   const CACHE_KEY = 'odios_release';
   const CACHE_TTL = 3600000;
 
@@ -154,10 +154,8 @@ const { pageNav, sectionNav } = getNav(Astro.url.pathname);
   } else {
     setTimeout(fetchTag, 200);
   }
-</script>
 
-<!-- Mobile menu close behavior -->
-<script>
+  // Mobile menu close behavior
   const menu = document.getElementById('mobile-menu') as HTMLDetailsElement | null;
   if (menu) {
     menu.querySelectorAll('a').forEach((a) =>
