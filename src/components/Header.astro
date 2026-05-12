@@ -1,0 +1,218 @@
+---
+import { GitHub, Smartphone, BookOpen, MessageCircle, Menu } from '../icons';
+
+const path = Astro.url.pathname;
+const isHowItWorks = path === '/how-it-works/' || path === '/how-it-works';
+
+const homeSections = [
+  { href: '/#features', label: 'Features', title: 'Audio features and protocols' },
+  { href: '/#streaming', label: 'Streaming', title: 'Spotify, Tidal, Qobuz, web radios' },
+  { href: '/#comparison', label: 'Compare', title: 'odio vs Volumio vs commercial streamers' },
+  { href: '/#get-started', label: 'Install', title: 'One-line install on your Pi' },
+  { href: '/#faq', label: 'FAQ', title: 'Common questions about odio' },
+  { href: '/#manifesto', label: 'Manifesto', title: 'The why behind no-telemetry, no-cloud, no-account' },
+];
+
+const howItWorksSections = [
+  { href: '/how-it-works/#the-stack', label: 'The stack', title: 'Services that make up odio' },
+  { href: '/how-it-works/#go-odio-api', label: 'go-odio-api', title: 'The orchestrator' },
+  { href: '/how-it-works/#odio-ha', label: 'odio-ha', title: 'Home Assistant integration' },
+  { href: '/how-it-works/#ecosystem', label: 'Ecosystem', title: 'Related odio repos' },
+  { href: '/how-it-works/#about-ai', label: 'About AI', title: 'How AI is used in odio' },
+];
+
+const pageNav = isHowItWorks
+  ? [{ href: '/', label: '← odio.love', title: 'Back to odio.love home' }]
+  : [{ href: '/how-it-works/', label: 'How it works', title: 'Inside odio: services, orchestration, CI pipeline' }];
+
+const sectionNav = isHowItWorks ? howItWorksSections : homeSections;
+---
+
+<header
+  class="fixed top-0 left-0 right-0 z-40 px-6 py-3 flex items-center justify-between gap-4"
+  style="background-color: rgba(10, 16, 10, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(30, 58, 24, 0.3);"
+>
+  <!-- Page + section nav (desktop) -->
+  <nav class="hidden md:flex items-center gap-4" aria-label="Navigation">
+    {pageNav.map(({ href, label, title }) => (
+      <a
+        href={href}
+        title={title}
+        class="text-sm transition-colors"
+        style="color: var(--color-muted);"
+        onmouseover="this.style.color='var(--color-leaf)'"
+        onmouseout="this.style.color='var(--color-muted)'"
+      >{label}</a>
+    ))}
+    <span aria-hidden="true" class="h-4 w-px" style="background-color: var(--color-border);"></span>
+    {sectionNav.map(({ href, label, title }) => (
+      <a
+        href={href}
+        title={title}
+        class="text-sm transition-colors"
+        style="color: var(--color-muted);"
+        onmouseover="this.style.color='var(--color-leaf)'"
+        onmouseout="this.style.color='var(--color-muted)'"
+      >{label}</a>
+    ))}
+  </nav>
+
+  <!-- Mobile menu (burger) -->
+  <details class="md:hidden relative" id="mobile-menu">
+    <summary
+      class="list-none cursor-pointer flex items-center p-1 rounded"
+      style="color: var(--color-muted);"
+      aria-label="Open page sections menu"
+    >
+      <Menu width="20" height="20" aria-hidden="true" />
+    </summary>
+    <nav
+      class="absolute top-full left-0 mt-2 min-w-[200px] flex flex-col rounded-lg p-2 border"
+      style="background-color: rgba(10, 16, 10, 0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-color: var(--color-border);"
+      aria-label="Navigation"
+    >
+      <div class="flex flex-col gap-1">
+        {pageNav.map(({ href, label, title }) => (
+          <a
+            href={href}
+            title={title}
+            class="block px-3 py-2 text-sm rounded transition-colors"
+            style="color: var(--color-muted);"
+            onmouseover="this.style.color='var(--color-leaf)'"
+            onmouseout="this.style.color='var(--color-muted)'"
+          >{label}</a>
+        ))}
+      </div>
+      <hr class="my-2 border-0 h-px" style="background-color: var(--color-border);" />
+      <div class="flex flex-col gap-1">
+        {sectionNav.map(({ href, label, title }) => (
+          <a
+            href={href}
+            title={title}
+            class="block px-3 py-2 text-sm rounded transition-colors"
+            style="color: var(--color-muted);"
+            onmouseover="this.style.color='var(--color-leaf)'"
+            onmouseout="this.style.color='var(--color-muted)'"
+          >{label}</a>
+        ))}
+      </div>
+    </nav>
+  </details>
+
+  <!-- External links -->
+  <div class="flex items-center gap-4">
+    <a
+      href="https://docs.odio.love"
+      target="_blank"
+      rel="noopener noreferrer"
+      title="Documentation"
+      class="flex items-center gap-1.5 text-sm transition-colors"
+      style="color: var(--color-muted);"
+      onmouseover="this.style.color='var(--color-leaf)'"
+      onmouseout="this.style.color='var(--color-muted)'"
+    >
+      <BookOpen width="16" height="16" aria-hidden="true" />
+      docs
+    </a>
+    <a
+      href="https://github.com/b0bbywan/odios/discussions"
+      target="_blank"
+      rel="noopener noreferrer"
+      title="Forum"
+      class="flex items-center gap-1.5 text-sm transition-colors"
+      style="color: var(--color-muted);"
+      onmouseover="this.style.color='var(--color-leaf)'"
+      onmouseout="this.style.color='var(--color-muted)'"
+    >
+      <MessageCircle width="16" height="16" aria-hidden="true" />
+      forum
+    </a>
+    <a
+      id="release-link"
+      href="https://github.com/b0bbywan/odios/releases/latest"
+      target="_blank"
+      rel="noopener noreferrer"
+      title="odio installer"
+      class="flex items-center gap-1.5 text-sm transition-colors"
+      style="color: var(--color-muted);"
+      onmouseover="this.style.color='var(--color-leaf)'"
+      onmouseout="this.style.color='var(--color-muted)'"
+    >
+      <GitHub width="16" height="16" aria-hidden="true" />
+      <span>odio<span id="release-tag"></span></span>
+    </a>
+    <a
+      href="https://my.home-assistant.io/redirect/hacs_repository/?owner=b0bbywan&repository=odio-ha&category=integration"
+      target="_blank"
+      rel="noopener noreferrer"
+      title="odio-ha for Home Assistant"
+      class="hidden sm:block"
+    >
+      <img
+        src="https://my.home-assistant.io/badges/hacs_repository.svg"
+        alt="Add odio-ha to HACS"
+        style="height: 20px; width: auto;"
+      />
+    </a>
+    <a
+      href="https://pwa.odio.love"
+      target="_blank"
+      rel="noopener noreferrer"
+      title="odio PWA"
+      class="hidden sm:flex items-center gap-1.5 text-sm transition-colors"
+      style="color: var(--color-muted);"
+      onmouseover="this.style.color='var(--color-leaf)'"
+      onmouseout="this.style.color='var(--color-muted)'"
+    >
+      <Smartphone width="16" height="16" aria-hidden="true" />
+      pwa
+    </a>
+  </div>
+</header>
+
+<!-- Release tag fetch -->
+<script>
+  const CACHE_KEY = 'odios_release';
+  const CACHE_TTL = 3600000;
+
+  function showTag(tag: string) {
+    const el = document.getElementById('release-tag');
+    if (el) el.textContent = ' ' + tag;
+  }
+
+  function fetchTag() {
+    const cached = localStorage.getItem(CACHE_KEY);
+    if (cached) {
+      const { tag, ts } = JSON.parse(cached);
+      if (Date.now() - ts < CACHE_TTL) { showTag(tag); return; }
+    }
+    fetch('https://api.github.com/repos/b0bbywan/odios/releases/latest')
+      .then(r => r.json())
+      .then(d => {
+        if (d.tag_name) {
+          localStorage.setItem(CACHE_KEY, JSON.stringify({ tag: d.tag_name, ts: Date.now() }));
+          showTag(d.tag_name);
+        }
+      })
+      .catch(() => {});
+  }
+
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(fetchTag);
+  } else {
+    setTimeout(fetchTag, 200);
+  }
+</script>
+
+<!-- Mobile menu close behavior -->
+<script>
+  const menu = document.getElementById('mobile-menu') as HTMLDetailsElement | null;
+  if (menu) {
+    menu.querySelectorAll('a').forEach((a) =>
+      a.addEventListener('click', () => { menu.open = false; })
+    );
+    document.addEventListener('click', (e) => {
+      if (menu.open && !menu.contains(e.target as Node)) menu.open = false;
+    });
+  }
+</script>

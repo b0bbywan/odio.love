@@ -4,6 +4,7 @@ import { features } from '../data/features.js';
 import { services } from '../data/streaming.js';
 import { repos } from '../data/repos.js';
 import pkg from '../../package.json';
+import Header from '../components/Header.astro';
 
 interface Props {
   title?: string;
@@ -152,6 +153,7 @@ const screenshots = [
   </head>
   <body>
     <a href="#main" class="skip-link">Skip to main content</a>
+    <Header />
     <slot />
   </body>
 </html>

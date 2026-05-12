@@ -1,108 +1,12 @@
 ---
 import { installCmd } from '../data/config.js';
-import { GitHub, Smartphone, BookOpen, MessageCircle, Copy, Check, ArrowDown } from '../icons';
-
-const sectionNav = [
-  { href: '#features', label: 'Features', title: 'Audio features and protocols' },
-  { href: '#streaming', label: 'Streaming', title: 'Spotify, Tidal, Qobuz, web radios' },
-  { href: '#comparison', label: 'Compare', title: 'odio vs Volumio vs commercial streamers' },
-  { href: '#get-started', label: 'Install', title: 'One-line install on your Pi' },
-  { href: '#faq', label: 'FAQ', title: 'Common questions about odio' },
-  { href: '#manifesto', label: 'Manifesto', title: 'The why behind no-telemetry, no-cloud, no-account' },
-];
+import { Copy, Check, ArrowDown } from '../icons';
 ---
 
 <section
   class="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden"
   style="background-color: var(--color-bg);"
 >
-  <!-- Internal section nav -->
-  <nav
-    class="absolute top-5 left-6 hidden md:flex items-center gap-4 z-20"
-    aria-label="Page sections"
-  >
-    {sectionNav.map(({ href, label, title }) => (
-      <a
-        href={href}
-        title={title}
-        class="text-xs transition-colors"
-        style="color: var(--color-muted);"
-        onmouseover="this.style.color='var(--color-leaf)'"
-        onmouseout="this.style.color='var(--color-muted)'"
-      >{label}</a>
-    ))}
-  </nav>
-
-  <!-- Header links -->
-  <div class="absolute top-5 right-6 flex items-center gap-4 z-20">
-    <a
-      href="https://docs.odio.love"
-      target="_blank"
-      rel="noopener noreferrer"
-      title="Documentation"
-      class="flex items-center gap-1.5 text-xs transition-colors"
-      style="color: var(--color-muted);"
-      onmouseover="this.style.color='var(--color-leaf)'"
-      onmouseout="this.style.color='var(--color-muted)'"
-    >
-      <BookOpen width="15" height="15" aria-hidden="true" />
-      docs
-    </a>
-    <a
-      href="https://github.com/b0bbywan/odios/discussions"
-      target="_blank"
-      rel="noopener noreferrer"
-      title="Forum"
-      class="flex items-center gap-1.5 text-xs transition-colors"
-      style="color: var(--color-muted);"
-      onmouseover="this.style.color='var(--color-leaf)'"
-      onmouseout="this.style.color='var(--color-muted)'"
-    >
-      <MessageCircle width="15" height="15" aria-hidden="true" />
-      forum
-    </a>
-    <a
-      id="release-link"
-      href="https://github.com/b0bbywan/odios/releases/latest"
-      target="_blank"
-      rel="noopener noreferrer"
-      title="odio — installer"
-      class="flex items-center gap-1.5 text-xs transition-colors"
-      style="color: var(--color-muted);"
-      onmouseover="this.style.color='var(--color-leaf)'"
-      onmouseout="this.style.color='var(--color-muted)'"
-    >
-      <GitHub width="15" height="15" aria-hidden="true" />
-      <span>odio<span id="release-tag"></span></span>
-    </a>
-    <a
-      href="https://my.home-assistant.io/redirect/hacs_repository/?owner=b0bbywan&repository=odio-ha&category=integration"
-      target="_blank"
-      rel="noopener noreferrer"
-      title="odio-ha — Home Assistant"
-      class="hidden sm:block"
-    >
-      <img
-        src="https://my.home-assistant.io/badges/hacs_repository.svg"
-        alt="Add odio-ha to HACS"
-        style="height: 20px; width: auto;"
-      />
-    </a>
-    <a
-      href="https://pwa.odio.love"
-      target="_blank"
-      rel="noopener noreferrer"
-      title="odio PWA"
-      class="hidden sm:flex items-center gap-1.5 text-xs transition-colors"
-      style="color: var(--color-muted);"
-      onmouseover="this.style.color='var(--color-leaf)'"
-      onmouseout="this.style.color='var(--color-muted)'"
-    >
-      <Smartphone width="15" height="15" aria-hidden="true" />
-      pwa
-    </a>
-  </div>
-
   <!-- SVG noise texture -->
   <svg class="absolute inset-0 w-full h-full opacity-[0.04] pointer-events-none" aria-hidden="true">
     <filter id="noise">
@@ -191,40 +95,6 @@ const sectionNav = [
       </a>
     </div>
   </div>
-
-  <!-- Release tag fetch -->
-  <script>
-    const CACHE_KEY = 'odios_release';
-    const CACHE_TTL = 3600000; // 1h
-
-    function showTag(tag: string) {
-      const el = document.getElementById('release-tag');
-      if (el) el.textContent = '\u2009' + tag;
-    }
-
-    function fetchTag() {
-      const cached = localStorage.getItem(CACHE_KEY);
-      if (cached) {
-        const { tag, ts } = JSON.parse(cached);
-        if (Date.now() - ts < CACHE_TTL) { showTag(tag); return; }
-      }
-      fetch('https://api.github.com/repos/b0bbywan/odios/releases/latest')
-        .then(r => r.json())
-        .then(d => {
-          if (d.tag_name) {
-            localStorage.setItem(CACHE_KEY, JSON.stringify({ tag: d.tag_name, ts: Date.now() }));
-            showTag(d.tag_name);
-          }
-        })
-        .catch(() => {});
-    }
-
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(fetchTag);
-    } else {
-      setTimeout(fetchTag, 200);
-    }
-  </script>
 
   <!-- Scroll indicator -->
   <div
