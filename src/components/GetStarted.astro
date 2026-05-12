@@ -37,7 +37,7 @@ const howToJsonLd = buildGetStartedSchema({ installCmd, imagerManifestUrl });
             id="gs-manifest-url"
           >{imagerManifestUrl}</span>
           <button
-            onclick="gsCopy(this, 'gs-manifest-url')"
+            data-copy-source="gs-manifest-url"
             class="shrink-0 p-1.5 mr-2 rounded cursor-pointer transition-colors text-muted hover:text-leaf"
             title="Copy"
           >
@@ -69,7 +69,7 @@ const howToJsonLd = buildGetStartedSchema({ installCmd, imagerManifestUrl });
             id="gs-install-cmd"
           >{installCmd}</span>
           <button
-            onclick="gsCopy(this, 'gs-install-cmd')"
+            data-copy-source="gs-install-cmd"
             class="shrink-0 p-1.5 mr-2 rounded cursor-pointer transition-colors text-muted hover:text-leaf"
             title="Copy"
           >
@@ -151,22 +151,5 @@ const howToJsonLd = buildGetStartedSchema({ installCmd, imagerManifestUrl });
     </div>
   </div>
 </section>
-
-<script is:inline>
-  function gsCopy(btn, sourceId) {
-    const src = document.getElementById(sourceId);
-    if (!src) return;
-    const svg = btn.querySelector('svg');
-    const check = btn.querySelector('.check');
-    navigator.clipboard.writeText(src.textContent || '').then(() => {
-      svg.style.display = 'none';
-      check.style.display = 'block';
-      setTimeout(() => {
-        svg.style.display = 'block';
-        check.style.display = 'none';
-      }, 2000);
-    });
-  }
-</script>
 
 <script type="application/ld+json" set:html={JSON.stringify(howToJsonLd)} />

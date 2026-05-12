@@ -72,5 +72,10 @@ const siteSchema = buildSiteSchema({ description, version: pkg.version });
     <a href="#main" class="skip-link">Skip to main content</a>
     <Header />
     <slot />
+
+    <script>
+      import { initCopyButtons } from '../scripts/copy.js';
+      initCopyButtons();
+    </script>
   </body>
 </html>
