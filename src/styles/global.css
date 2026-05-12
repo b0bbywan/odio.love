@@ -35,6 +35,11 @@
   --font-mono: 'JetBrains Mono', monospace;
 }
 
+@utility glass {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;

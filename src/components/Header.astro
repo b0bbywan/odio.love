@@ -6,8 +6,7 @@ const { pageNav, sectionNav } = getNav(Astro.url.pathname);
 ---
 
 <header
-  class="fixed top-0 left-0 right-0 z-40 px-6 py-3 flex items-center justify-between gap-4"
-  style="background-color: rgba(10, 16, 10, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(30, 58, 24, 0.3);"
+  class="fixed top-0 left-0 right-0 z-40 px-6 py-3 flex items-center justify-between gap-4 glass bg-bg/60 border-b border-border/30"
 >
   <!-- Page + section nav (desktop) -->
   <nav class="hidden md:flex items-center gap-4" aria-label="Navigation">
@@ -37,8 +36,7 @@ const { pageNav, sectionNav } = getNav(Astro.url.pathname);
       <Menu width="20" height="20" aria-hidden="true" />
     </summary>
     <nav
-      class="absolute top-full left-0 mt-2 min-w-[200px] flex flex-col rounded-lg p-2 border"
-      style="background-color: rgba(10, 16, 10, 0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-color: var(--color-border);"
+      class="absolute top-full left-0 mt-2 min-w-[200px] flex flex-col rounded-lg p-2 border glass bg-bg/[0.92] border-border"
       aria-label="Navigation"
     >
       <div class="flex flex-col gap-1">
