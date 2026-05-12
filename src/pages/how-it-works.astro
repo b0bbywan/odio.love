@@ -10,6 +10,10 @@ import { howItWorksJsonLd } from '../data/schemas/how-it-works.js';
   description="Inside odio: MPD, PulseAudio, Snapcast, Shairport Sync, upmpdcli running as user-session services. The go-odio-api orchestrator, Home Assistant integration, and the Ansible CI pipeline from apt packages to flashable Pi Imager images. The open-source Raspberry Pi audio stack, explained."
   ogType="article"
 >
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(howItWorksJsonLd)} />
+  </Fragment>
+
   <main id="main" aria-label="How odio works" class="pt-16">
     <div class="how-prose">
       <Content />
@@ -17,8 +21,6 @@ import { howItWorksJsonLd } from '../data/schemas/how-it-works.js';
   </main>
 
   <Footer />
-
-  <script type="application/ld+json" set:html={JSON.stringify(howItWorksJsonLd)} />
 </Base>
 
 <style>

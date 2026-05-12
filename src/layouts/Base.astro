@@ -61,6 +61,8 @@ const siteSchema = buildSiteSchema({ description, version: pkg.version });
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <script type="application/ld+json" set:html={JSON.stringify(siteSchema)} />
+
+    <slot name="head" />
   </head>
   <body>
     <a href="#main" class="skip-link">Skip to main content</a>
