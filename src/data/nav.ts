@@ -5,6 +5,7 @@ export interface NavItem {
 }
 
 export const homeSections: NavItem[] = [
+  { href: '/#what-is-odio', label: 'Overview', title: 'What odio is and what it runs on' },
   { href: '/#features', label: 'Features', title: 'Audio features and protocols' },
   { href: '/#streaming', label: 'Streaming', title: 'Spotify, Tidal, Qobuz, web radios' },
   { href: '/#comparison', label: 'Compare', title: 'odio vs Volumio vs commercial streamers' },
