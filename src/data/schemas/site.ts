@@ -12,14 +12,30 @@ export const DEFAULT_DESCRIPTION =
 
 export const OG_IMAGE = `${SITE_URL}/logo.png`;
 
-export const SOCIALS = [
+export const SOCIALS: string[] = [
   'https://www.linkedin.com/in/mrequillart/',
   'https://mathieu-requillart.medium.com/',
 ];
 
-export const ORG_REF = { '@id': `${SITE_URL}/#organization` };
-export const OS_REF = { '@id': `${SITE_URL}/#os` };
-export const AUTHOR_REF = {
+export interface SchemaIdRef {
+  '@id': string;
+}
+
+export interface SchemaPerson {
+  '@type': 'Person';
+  name: string;
+  url: string;
+  sameAs?: string[];
+}
+
+export interface BuildSiteSchemaArgs {
+  description: string;
+  version: string;
+}
+
+export const ORG_REF: SchemaIdRef = { '@id': `${SITE_URL}/#organization` };
+export const OS_REF: SchemaIdRef = { '@id': `${SITE_URL}/#os` };
+export const AUTHOR_REF: SchemaPerson = {
   '@type': 'Person',
   name: 'b0bbywan',
   url: 'https://github.com/b0bbywan',
@@ -72,7 +88,7 @@ const keywords = [
 
 const orgSameAs = ['https://github.com/b0bbywan', ...SOCIALS, 'https://docs.odio.love'];
 
-export function buildSiteSchema({ description, version }) {
+export function buildSiteSchema({ description, version }: BuildSiteSchemaArgs) {
   return {
     '@context': 'https://schema.org',
     '@graph': [

@@ -1,31 +1,8 @@
 ---
 import { GitHub, Smartphone, BookOpen, MessageCircle, Menu } from '../icons';
+import { getNav } from '../data/nav.js';
 
-const path = Astro.url.pathname;
-const isHowItWorks = path === '/how-it-works/' || path === '/how-it-works';
-
-const homeSections = [
-  { href: '/#features', label: 'Features', title: 'Audio features and protocols' },
-  { href: '/#streaming', label: 'Streaming', title: 'Spotify, Tidal, Qobuz, web radios' },
-  { href: '/#comparison', label: 'Compare', title: 'odio vs Volumio vs commercial streamers' },
-  { href: '/#get-started', label: 'Install', title: 'One-line install on your Pi' },
-  { href: '/#faq', label: 'FAQ', title: 'Common questions about odio' },
-  { href: '/#manifesto', label: 'Manifesto', title: 'The why behind no-telemetry, no-cloud, no-account' },
-];
-
-const howItWorksSections = [
-  { href: '/how-it-works/#the-stack', label: 'The stack', title: 'Services that make up odio' },
-  { href: '/how-it-works/#go-odio-api', label: 'go-odio-api', title: 'The orchestrator' },
-  { href: '/how-it-works/#odio-ha', label: 'odio-ha', title: 'Home Assistant integration' },
-  { href: '/how-it-works/#ecosystem', label: 'Ecosystem', title: 'Related odio repos' },
-  { href: '/how-it-works/#about-ai', label: 'About AI', title: 'How AI is used in odio' },
-];
-
-const pageNav = isHowItWorks
-  ? [{ href: '/', label: '← odio.love', title: 'Back to odio.love home' }]
-  : [{ href: '/how-it-works/', label: 'How it works', title: 'Inside odio: services, orchestration, CI pipeline' }];
-
-const sectionNav = isHowItWorks ? howItWorksSections : homeSections;
+const { pageNav, sectionNav } = getNav(Astro.url.pathname);
 ---
 
 <header
