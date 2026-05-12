@@ -1,10 +1,13 @@
 ---
 import '../styles/global.css';
-import { features } from '../data/features.js';
-import { services } from '../data/streaming.js';
-import { repos } from '../data/repos.js';
 import pkg from '../../package.json';
 import Header from '../components/Header.astro';
+import {
+  buildSiteSchema,
+  DEFAULT_TITLE,
+  DEFAULT_DESCRIPTION,
+  OG_IMAGE,
+} from '../data/schemas/site.js';
 
 interface Props {
   title?: string;
@@ -13,26 +16,14 @@ interface Props {
 }
 
 const {
-  title = 'odio: open-source Raspberry Pi audio streamer with AirPlay 2, Snapcast multi-room, Spotify Connect, and Home Assistant.',
-  description = 'Self-hosted Raspberry Pi audio streaming on Pi OS Lite: AirPlay 2, Bluetooth, Spotify Connect, Tidal, Qobuz, Snapcast multi-room, UPnP/DLNA, MPD, CD & USB auto-play with cover art, Home Assistant. One curl install. No flashing, no account, no telemetry. The free Volumio alternative.',
-  ogImage = 'https://odio.love/logo.png',
+  title = DEFAULT_TITLE,
+  description = DEFAULT_DESCRIPTION,
+  ogImage = OG_IMAGE,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const featureList = [
-  ...features.map((f) => `${f.name}: ${f.desc}`),
-  ...services.map((s) => `${s.name}: ${s.desc}`),
-];
-const installerRepo = repos.find((r) => r.name === 'odios')?.url ?? 'https://github.com/b0bbywan/odios';
-const screenshots = [
-  'audio-cd-playback.png',
-  'bt-playing.png',
-  'embedded-ui.png',
-  'odio-ha.png',
-  'pwa-instances.png',
-  'rpi-imager.png',
-].map((f) => `https://odio.love/screenshots/${f}`);
+const siteSchema = buildSiteSchema({ description, version: pkg.version });
 ---
 
 <!doctype html>
@@ -63,98 +54,7 @@ const screenshots = [
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Organization",
-          "@id": "https://odio.love/#organization",
-          "name": "odio",
-          "url": "https://odio.love",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://odio.love/logo.png"
-          },
-          "description": "Open-source Raspberry Pi audio streaming project: self-hosted, Home Assistant native, no telemetry.",
-          "founder": {
-            "@type": "Person",
-            "name": "b0bbywan",
-            "url": "https://github.com/b0bbywan"
-          },
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "contactType": "customer support",
-            "email": "contact@odio.love",
-            "url": "https://github.com/b0bbywan/odios/issues",
-            "availableLanguage": ["English", "French"]
-          },
-          "sameAs": [
-            "https://github.com/b0bbywan",
-            "https://docs.odio.love",
-            "https://www.linkedin.com/in/mrequillart/",
-            "https://mathieu-requillart.medium.com/"
-          ]
-        },
-        {
-          "@type": "WebSite",
-          "name": "odio",
-          "url": "https://odio.love",
-          "description": description,
-          "publisher": { "@id": "https://odio.love/#organization" }
-        },
-        {
-          "@type": "OperatingSystem",
-          "@id": "https://odio.love/#os",
-          "name": "odio",
-          "url": "https://odio.love",
-          "applicationCategory": "MultimediaApplication",
-          "applicationSubCategory": "Audio Streaming",
-          "operatingSystem": "Raspberry Pi OS Lite (Trixie), Debian 13",
-          "processorRequirements": "ARMv6, ARMv7, ARM64 (aarch64), x86-64",
-          "softwareRequirements": "Raspberry Pi OS Lite (Trixie) or Debian 13; bare-metal install via curl",
-          "softwareVersion": pkg.version,
-          "sameAs": [installerRepo],
-          "downloadUrl": "https://odio.love/install",
-          "installUrl": "https://odio.love/install",
-          "softwareHelp": {
-            "@type": "CreativeWork",
-            "url": "https://docs.odio.love"
-          },
-          "releaseNotes": "https://github.com/b0bbywan/odios/releases",
-          "license": "https://opensource.org/licenses/BSD-2-Clause",
-          "screenshot": screenshots,
-          "featureList": featureList,
-          "keywords": [
-            "Raspberry Pi audio streamer",
-            "self-hosted",
-            "open-source",
-            "Home Assistant",
-            "AirPlay 2",
-            "Bluetooth audio",
-            "Snapcast multi-room",
-            "UPnP DLNA",
-            "Spotify Connect",
-            "Tidal",
-            "Qobuz",
-            "MPD",
-            "CD auto-play",
-            "USB auto-play",
-            "GnuDB",
-            "MusicBrainz",
-            "cover art",
-            "no telemetry",
-            "Volumio alternative"
-          ],
-          "author": {
-            "@type": "Person",
-            "name": "b0bbywan",
-            "url": "https://github.com/b0bbywan"
-          },
-          "publisher": { "@id": "https://odio.love/#organization" },
-          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
-        }
-      ]
-    })} />
+    <script type="application/ld+json" set:html={JSON.stringify(siteSchema)} />
   </head>
   <body>
     <a href="#main" class="skip-link">Skip to main content</a>

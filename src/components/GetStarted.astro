@@ -1,6 +1,7 @@
 ---
 import { installCmd, compatibleHardware, verifiedPlatforms, verifiedOther, imagerManifestUrl } from '../data/config.js';
 import { Flag, Terminal, Copy, Check } from '../icons';
+import { SITE_URL } from '../data/schemas/site.js';
 
 const howToJsonLd = {
   '@context': 'https://schema.org',
@@ -22,14 +23,14 @@ const howToJsonLd = {
       position: 1,
       name: 'Path A - Flash a pre-built image',
       text: `Open Raspberry Pi Imager, go to Options App, set Content Repository to ${imagerManifestUrl}, configure hostname/SSH/WiFi, then flash. Available in armhf (32-bit) and arm64 (64-bit).`,
-      url: 'https://odio.love/#get-started',
+      url: `${SITE_URL}/#get-started`,
     },
     {
       '@type': 'HowToStep',
       position: 2,
       name: 'Path B - Install on existing Debian or Pi OS',
       text: `Boot into Raspberry Pi OS Lite (Trixie) or Debian 13 and run: ${installCmd}. The installer pulls about 800 MB and handles all dependencies and services.`,
-      url: 'https://odio.love/install',
+      url: `${SITE_URL}/install`,
     },
     {
       '@type': 'HowToStep',

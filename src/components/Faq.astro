@@ -1,4 +1,6 @@
 ---
+import { SITE_URL, ORG_REF, OS_REF } from '../data/schemas/site.js';
+
 type FaqModule = {
   frontmatter: { q: string; plainAnswer: string };
   Content: any;
@@ -9,16 +11,13 @@ const entries = Object.entries(faqModules)
   .sort(([a], [b]) => a.localeCompare(b))
   .map(([, m]) => m);
 
-const orgRef = { '@id': 'https://odio.love/#organization' };
-const softwareRef = { '@id': 'https://odio.love/#os' };
-
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  '@id': 'https://odio.love/#faq',
+  '@id': `${SITE_URL}/#faq`,
   inLanguage: 'en',
-  about: softwareRef,
-  publisher: orgRef,
+  about: OS_REF,
+  publisher: ORG_REF,
   mainEntity: entries.map(({ frontmatter }) => ({
     '@type': 'Question',
     name: frontmatter.q,
@@ -28,7 +27,7 @@ const jsonLd = {
       '@type': 'Answer',
       text: frontmatter.plainAnswer,
       inLanguage: 'en',
-      author: orgRef,
+      author: ORG_REF,
     },
   })),
 };
