@@ -9,7 +9,7 @@ const entries = Object.entries(faqModules)
   .sort(([a], [b]) => a.localeCompare(b))
   .map(([, m]) => m);
 
-const jsonLd = buildFaqSchema(entries);
+const jsonLd = buildFaqSchema({ entries });
 ---
 
 <section
