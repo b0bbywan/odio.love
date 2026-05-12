@@ -1,8 +1,19 @@
 import { repos } from './repos.js';
 
+export interface VerifiedPlatform {
+  arch: string;
+  examples: string[];
+  incoming: boolean;
+}
+
+export interface VerifiedOther {
+  label: string;
+  note: string;
+}
+
 export const installCmd = 'curl -fsSL https://odio.love/install | bash';
 
-export const compatibleHardware = [
+export const compatibleHardware: string[] = [
   'Raspberry Pi B, B+, Zero W - armv6l (800 MHz recommended)',
   'Raspberry Pi 2 - armv7',
   'Raspberry Pi 3, 4, 5, Zero 2 W - arm64',
@@ -10,7 +21,7 @@ export const compatibleHardware = [
   'Debian 13 (Trixie)',
 ];
 
-export const verifiedPlatforms = [
+export const verifiedPlatforms: VerifiedPlatform[] = [
   {
     arch: 'armv6l',
     examples: ['Raspberry Pi B', 'Raspberry Pi B+ - Raspberry Pi OS Lite (Trixie)'],
@@ -33,7 +44,7 @@ export const verifiedPlatforms = [
   },
 ];
 
-export const verifiedOther = [
+export const verifiedOther: VerifiedOther[] = [
   { label: 'Fedora 43 x86-64', note: 'API only/manual' },
 ];
 
@@ -45,7 +56,7 @@ const numberWords = [
   'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty',
 ];
 
-export const ecosystemCountLabel = (() => {
+export const ecosystemCountLabel: string = (() => {
   const n = repos.length;
   const w = numberWords[n] ?? String(n);
   return w.charAt(0).toUpperCase() + w.slice(1);
