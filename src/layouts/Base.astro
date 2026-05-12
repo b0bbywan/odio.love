@@ -8,6 +8,7 @@ import {
   DEFAULT_DESCRIPTION,
   OG_IMAGE,
 } from '../data/schemas/site.js';
+import cormorantLight from '@fontsource/cormorant-garamond/files/cormorant-garamond-latin-300-normal.woff2?url';
 
 interface Props {
   title?: string;
@@ -34,6 +35,9 @@ const siteSchema = buildSiteSchema({ description, version: pkg.version });
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="index, follow" />
+
+    <link rel="preload" href={cormorantLight} as="font" type="font/woff2" crossorigin />
+
     <link rel="canonical" href={canonicalURL} />
     <link rel="alternate" hreflang="en" href={canonicalURL} />
     <link rel="alternate" hreflang="x-default" href={canonicalURL} />
