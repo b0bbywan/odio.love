@@ -2,32 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Footer from '../components/Footer.astro';
 import { Content } from '../content/how-it-works.mdx';
-import { SITE_URL, OS_REF, AUTHOR_REF } from '../data/schemas/site.js';
-
-const pageUrl = `${SITE_URL}/how-it-works/`;
-
-const techArticleJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'TechArticle',
-  headline: 'How odio works',
-  description: 'Inside odio: MPD, PulseAudio, Snapcast, Shairport Sync, upmpdcli running as user-session services. The go-odio-api orchestrator, Home Assistant integration, and the Ansible CI pipeline from apt packages to flashable Raspberry Pi Imager images.',
-  url: pageUrl,
-  datePublished: '2026-03-25',
-  inLanguage: 'en',
-  isAccessibleForFree: true,
-  about: OS_REF,
-  author: AUTHOR_REF,
-  publisher: AUTHOR_REF,
-};
-
-const breadcrumbJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'odio', item: `${SITE_URL}/` },
-    { '@type': 'ListItem', position: 2, name: 'How it works', item: pageUrl },
-  ],
-};
+import { howItWorksJsonLd } from '../data/schemas/how-it-works.js';
 ---
 
 <Base
@@ -42,8 +17,7 @@ const breadcrumbJsonLd = {
 
   <Footer />
 
-  <script type="application/ld+json" set:html={JSON.stringify(techArticleJsonLd)} />
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(howItWorksJsonLd)} />
 </Base>
 
 <style>
