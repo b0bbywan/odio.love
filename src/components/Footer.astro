@@ -1,25 +1,10 @@
 ---
 import { Discord, GitHub, Heart } from '../icons';
 import pkg from '../../package.json';
+import { deps, hostedBy } from '../data/footer.js';
 
 const discordCode = import.meta.env.PUBLIC_DISCORD_INVITE ?? '';
 const version = `v${pkg.version}`;
-
-const deps = [
-  { name: 'Debian', url: 'https://www.debian.org/' },
-  { name: 'MPD', url: 'https://www.musicpd.org/' },
-  { name: 'PulseAudio', url: 'https://www.freedesktop.org/wiki/Software/PulseAudio/' },
-  { name: 'Shairport Sync', url: 'https://github.com/mikebrady/shairport-sync' },
-  { name: 'Snapcast', url: 'https://github.com/badaix/snapcast' },
-  { name: 'upmpdcli', url: 'https://www.lesbonscomptes.com/upmpdcli/' },
-  { name: 'Home Assistant', url: 'https://www.home-assistant.io/' },
-];
-
-const hostedBy = [
-  { name: 'GitHub', url: 'https://github.com/', label: 'CI' },
-  { name: 'Vercel', url: 'https://vercel.com/', label: 'hosting' },
-  { name: 'OVH', url: 'https://www.ovh.com/', label: 'DNS' },
-];
 ---
 
 <footer class="py-12 px-6 border-t bg-surface border-border">
