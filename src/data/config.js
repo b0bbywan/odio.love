@@ -1,4 +1,4 @@
-import { ecosystemProjects } from './ecosystem.js';
+import { repos } from './repos.js';
 
 export const installCmd = 'curl -fsSL https://odio.love/install | bash';
 
@@ -46,7 +46,7 @@ const numberWords = [
 ];
 
 export const ecosystemCountLabel = (() => {
-  const n = ecosystemProjects.length;
+  const n = repos.length;
   const w = numberWords[n] ?? String(n);
   return w.charAt(0).toUpperCase() + w.slice(1);
 })();

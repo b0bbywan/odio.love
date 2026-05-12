@@ -1,52 +1,52 @@
 ---
-import { ecosystemProjects } from '../data/ecosystem.js';
-import { ecosystemCountLabel } from '../data/config.js';
-import { GitHub } from '../icons';
+import { repos } from '../data/repos.js';
+import TechIcon from './icons/TechIcon.astro';
 ---
 
-<section class="py-24 px-6 bg-bg">
-  <div class="max-w-4xl mx-auto">
-    <h2 class="text-4xl md:text-5xl font-light mb-4 tracking-tight font-display text-text">
-      The ecosystem
-    </h2>
-    <p class="text-lg mb-12 text-muted">
-      {ecosystemCountLabel} repositories. One coherent stack.
-    </p>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {ecosystemProjects.map((project) => (
-        <div class="rounded-xl p-7 border flex flex-col gap-4 transition-colors hover:border-moss bg-surface border-border">
-          <div class="flex items-start justify-between gap-4">
-            <h3 class="text-xl font-medium tracking-tight font-mono text-text">{project.name}</h3>
-            <div class="flex items-center gap-2 shrink-0">
-              <a
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-xs px-3 py-1.5 rounded border transition-colors text-muted border-border"
-                aria-label={`View ${project.name} on GitHub`}
-              >
-                <GitHub width="14" height="14" class="inline mr-1" aria-hidden="true" />
-                GitHub
-              </a>
-              {project.live && (
-                <a
-                  href={project.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-xs px-3 py-1.5 rounded border transition-colors text-leaf border-moss"
-                  aria-label={`Visit ${project.name} live site`}
-                >
-                  Live ↗
-                </a>
-              )}
-            </div>
-          </div>
-          <p class="text-sm leading-relaxed text-muted">
-            {project.desc}
-          </p>
+<div class="grid mb-16 gap-4" style="grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));">
+  {repos.map((project) => (
+    <div class="relative flex flex-col">
+      <a
+        href={project.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="ecosystem-card flex-1 rounded-lg p-4 border flex flex-col gap-2 transition-colors no-underline bg-bg border-border"
+        aria-label={`View ${project.name} on GitHub`}
+      >
+        <span class="ecosystem-link-arrow absolute top-2 right-2" aria-hidden="true">↗</span>
+        <div class="flex items-center gap-2">
+          {project.tech && <TechIcon name={project.tech.label} color={project.tech.color} size={14} />}
+          <h3 class="font-mono text-sm font-medium text-text m-0">{project.name}</h3>
         </div>
-      ))}
+        <p class="text-xs leading-snug text-muted m-0">{project.desc}</p>
+      </a>
+      {project.live && (
+        <a
+          href={project.live}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="absolute top-2 right-7 text-[10px] px-1.5 py-0.5 rounded border border-moss text-leaf no-underline hover:bg-moss hover:text-text transition-colors"
+          aria-label={`Visit ${project.name} live site`}
+        >
+          Live
+        </a>
+      )}
     </div>
-  </div>
-</section>
+  ))}
+</div>
+
+<style>
+  .ecosystem-card:hover {
+    border-color: var(--color-leaf);
+  }
+  .ecosystem-link-arrow {
+    color: var(--color-subtle);
+    font-size: 0.875rem;
+    opacity: 0.5;
+    transition: opacity 0.2s, color 0.2s;
+  }
+  .ecosystem-card:hover .ecosystem-link-arrow {
+    color: var(--color-leaf);
+    opacity: 1;
+  }
+</style>
