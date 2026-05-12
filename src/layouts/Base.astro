@@ -13,12 +13,14 @@ interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
+  ogType?: 'website' | 'article';
 }
 
 const {
   title = DEFAULT_TITLE,
   description = DEFAULT_DESCRIPTION,
   ogImage = OG_IMAGE,
+  ogType = 'website',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -40,7 +42,7 @@ const siteSchema = buildSiteSchema({ description, version: pkg.version });
     <meta name="description" content={description} />
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
