@@ -10,7 +10,7 @@ import TechIcon from './icons/TechIcon.astro';
         href={project.url}
         target="_blank"
         rel="noopener noreferrer"
-        class="group flex-1 rounded-lg p-4 border border-border hover:border-leaf flex flex-col gap-2 transition-colors no-underline bg-bg"
+        class="ecosystem-card group flex-1 rounded-lg p-4 border border-border hover:border-leaf flex flex-col gap-2 transition-colors no-underline bg-bg"
         aria-label={`View ${project.name} on GitHub`}
       >
         <span
@@ -18,8 +18,8 @@ import TechIcon from './icons/TechIcon.astro';
           aria-hidden="true"
         >↗</span>
         <div class="flex items-center gap-2">
-          {project.tech && <TechIcon name={project.tech.label} color={project.tech.color} size={14} />}
-          <h3 class="font-mono text-sm font-medium text-text m-0">{project.name}</h3>
+          {project.tech && <TechIcon name={project.tech.label} color={project.tech.color} size={12} />}
+          <h3 class="font-mono text-base font-medium text-text m-0">{project.name}</h3>
         </div>
         <p class="text-xs leading-snug text-muted m-0">{project.desc}</p>
       </a>
@@ -37,4 +37,17 @@ import TechIcon from './icons/TechIcon.astro';
     </div>
   ))}
 </div>
+
+<style>
+  /* Escape .how-prose cascade (parent MDX page forces <p> to 1.125rem/justify/colored) */
+  .ecosystem-card p {
+    font-size: 0.9rem;
+    line-height: 1.45;
+    text-align: left;
+    margin: 0;
+  }
+  .ecosystem-card h3 {
+    margin: 0;
+  }
+</style>
 

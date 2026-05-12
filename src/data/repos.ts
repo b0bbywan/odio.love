@@ -14,7 +14,7 @@ export const repos: Repo[] = [
   {
     name: 'go-odio-api',
     label: 'Core REST API',
-    desc: 'The core. REST API + embedded web UI. Bridges systemd, PulseAudio, MPRIS, D-Bus and Bluetooth. The engine that makes everything else possible.',
+    desc: 'The brain. A REST + SSE control surface over the odio stack, with an embedded web UI.',
     url: 'https://github.com/b0bbywan/go-odio-api',
     live: null,
     tech: { label: 'Go', color: '#00ADD8' },
@@ -23,7 +23,7 @@ export const repos: Repo[] = [
   {
     name: 'odios',
     label: 'Installer',
-    desc: 'The installer and service orchestrator. One script, full stack — MPD, Snapcast, Shairport Sync, upmpdcli, and all glue between them.',
+    desc: 'Pre-built Pi images, one-line installer, in-place upgrades. The CI backbone behind every odio release.',
     url: 'https://github.com/b0bbywan/odios',
     live: null,
     tech: { label: 'Ansible', color: '#EE0000' },
@@ -59,7 +59,7 @@ export const repos: Repo[] = [
   {
     name: 'go-disc-cuer',
     label: 'CUE library',
-    desc: 'Go library for CUE sheet. The metadata backbone behind go-mpd-discplayer, via GnuDB and MusicBrainz.',
+    desc: 'Disc metadata fetcher behind CD auto-play.',
     url: 'https://github.com/b0bbywan/go-disc-cuer',
     live: null,
     tech: { label: 'Go', color: '#00ADD8' },
@@ -77,7 +77,7 @@ export const repos: Repo[] = [
   {
     name: 'snapclientmpris',
     label: 'MPRIS bridge',
-    desc: 'MPRIS2 D-Bus bridge for the local Snapcast client. Surfaces stream metadata and forwards playback controls (Play/Pause/Next/Previous) to the snapserver source.',
+    desc: 'Snapcast client metadata and playback controls, exposed to your audio remote.',
     url: 'https://github.com/b0bbywan/snapclientmpris',
     live: null,
     tech: { label: 'Python', color: '#3776AB' },
@@ -86,7 +86,7 @@ export const repos: Repo[] = [
   {
     name: 'odio-apt-repo',
     label: 'APT repository',
-    desc: 'The apt repository. Fully CI-maintained. Packages are built and published automatically on every release.',
+    desc: 'How every release ships as a Debian package. Fully CI-driven.',
     url: 'https://github.com/b0bbywan/odio-apt-repo',
     live: null,
     tech: { label: 'GitHub Actions', color: '#2088FF' },
@@ -95,7 +95,7 @@ export const repos: Repo[] = [
   {
     name: 'odio-mympd',
     label: 'myMPD packager',
-    desc: 'CI-only myMPD packager. A daily cron polls jcorporation/myMPD; new upstream releases trigger per-arch cross-compiles and publish .deb artifacts ingested by the apt repo.',
+    desc: 'myMPD packaged for the odio apt repo, kept in sync with upstream.',
     url: 'https://github.com/b0bbywan/odio-mympd',
     live: null,
     tech: { label: 'GitHub Actions', color: '#2088FF' },
@@ -113,7 +113,7 @@ export const repos: Repo[] = [
   {
     name: 'odio.love',
     label: 'Landing site',
-    desc: 'This site. Static Astro build, deployed to Vercel.',
+    desc: "This site you're looking at.",
     url: 'https://github.com/b0bbywan/odio.love',
     live: 'https://odio.love/',
     tech: { label: 'Astro', color: '#FF5D01' },
