@@ -91,3 +91,125 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ──────────────────────────────────────────────────────────────
+   MDX prose styling
+   These selectors target elements rendered by MDX content
+   inside .faq-answer / .manifesto-prose / .what-is-odio-prose
+   wrappers. Tailwind utilities can't reach into MDX-generated DOM,
+   so they live here as global rules.
+   ────────────────────────────────────────────────────────────── */
+
+/* FAQ answers */
+.faq-answer p {
+  margin: 0;
+}
+.faq-answer p + p {
+  margin-top: 0.75rem;
+}
+.faq-answer a {
+  color: var(--color-leaf);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.15s;
+}
+.faq-answer a:hover {
+  color: var(--color-amber);
+}
+.faq-answer code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  padding: 0.1em 0.35em;
+  border-radius: 0.25rem;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* Manifesto prose */
+.manifesto-prose h2 {
+  font-family: var(--font-display);
+  font-size: 2.75rem;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.01em;
+  color: var(--color-text);
+  margin-bottom: 2.5rem;
+}
+.manifesto-prose p {
+  margin-bottom: 1.75rem;
+  color: var(--color-text);
+  font-weight: 300;
+  text-align: justify;
+}
+.manifesto-prose hr {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 3.5rem 0;
+}
+.manifesto-prose strong {
+  color: var(--color-leaf);
+  font-weight: 500;
+}
+/* Opening line after each hr — slightly larger, acts as a pull quote */
+.manifesto-prose hr + p {
+  font-size: 1.35rem;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-text);
+}
+
+/* What is odio prose */
+.what-is-odio-prose h2 {
+  font-family: var(--font-display);
+  font-size: 2.75rem;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  margin-bottom: 2.5rem;
+}
+.what-is-odio-prose p {
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: var(--color-muted);
+  margin-bottom: 1.25rem;
+  text-align: justify;
+}
+.what-is-odio-prose abbr[title] {
+  text-decoration: underline dotted;
+  text-decoration-color: var(--color-moss);
+  text-underline-offset: 3px;
+  cursor: help;
+  color: var(--color-text);
+}
+.what-is-odio-prose dl {
+  margin: 0 0 1.25rem 0;
+}
+.what-is-odio-prose dl > div {
+  font-size: 1.125rem;
+  line-height: 1.75;
+  margin-bottom: 1.25rem;
+  text-align: justify;
+}
+.what-is-odio-prose dt {
+  display: inline;
+  font-weight: 600;
+  color: var(--color-text);
+}
+.what-is-odio-prose dt::after {
+  content: ' ';
+}
+.what-is-odio-prose dd {
+  display: inline;
+  margin: 0;
+  color: var(--color-muted);
+}
+
+/* Activity release rows (rendered dynamically by JS in Activity.astro) */
+.release-row {
+  border: 1px solid var(--color-border);
+  transition: border-color 0.15s, background-color 0.15s;
+}
+.release-row:hover {
+  border-color: var(--color-leaf);
+  background-color: var(--color-surface);
+}

@@ -44,29 +44,3 @@ const jsonLd = buildFaqSchema({ entries });
 </section>
 
 <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-
-<style>
-  .faq-answer :global(p) {
-    margin: 0;
-  }
-  .faq-answer :global(p + p) {
-    margin-top: 0.75rem;
-  }
-  .faq-answer :global(a) {
-    color: var(--color-leaf);
-    text-decoration: underline;
-    text-underline-offset: 2px;
-    transition: color 0.15s;
-  }
-  .faq-answer :global(a:hover) {
-    color: var(--color-amber);
-  }
-  .faq-answer :global(code) {
-    font-family: var(--font-mono);
-    font-size: 0.875em;
-    padding: 0.1em 0.35em;
-    border-radius: 0.25rem;
-    background-color: var(--color-bg);
-    color: var(--color-text);
-  }
-</style>
