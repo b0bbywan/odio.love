@@ -1,4 +1,16 @@
-export const comparisonRows = [
+export interface ComparisonCell {
+  value: string;
+  positive: boolean | null;
+}
+
+export interface ComparisonRow {
+  feature: string;
+  odio: ComparisonCell;
+  volumio: ComparisonCell;
+  commercial: ComparisonCell;
+}
+
+export const comparisonRows: ComparisonRow[] = [
   {
     feature: 'License',
     odio: { value: '100% open source', positive: true },

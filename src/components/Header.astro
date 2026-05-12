@@ -1,0 +1,127 @@
+---
+import { GitHub, Smartphone, BookOpen, MessageCircle, Menu } from '../icons';
+import { getNav } from '../data/nav.js';
+
+const { pageNav, sectionNav } = getNav(Astro.url.pathname);
+---
+
+<header
+  class="fixed top-0 left-0 right-0 z-40 px-6 py-3 flex items-center justify-between gap-4 glass bg-bg/60 border-b border-border/30"
+>
+  <!-- Page + section nav (desktop) -->
+  <nav class="hidden md:flex items-center gap-4" aria-label="Navigation">
+    {pageNav.map(({ href, label, title }) => (
+      <a
+        href={href}
+        title={title}
+        class="text-sm transition-colors text-muted hover:text-leaf"
+      >{label}</a>
+    ))}
+    <span aria-hidden="true" class="h-4 w-px bg-border"></span>
+    {sectionNav.map(({ href, label, title }) => (
+      <a
+        href={href}
+        title={title}
+        class="text-sm transition-colors text-muted hover:text-leaf"
+      >{label}</a>
+    ))}
+  </nav>
+
+  <!-- Mobile menu (burger) -->
+  <details class="md:hidden relative" id="mobile-menu">
+    <summary
+      class="list-none cursor-pointer flex items-center p-1 rounded text-muted"
+      aria-label="Open page sections menu"
+    >
+      <Menu width="20" height="20" aria-hidden="true" />
+    </summary>
+    <nav
+      class="absolute top-full left-0 mt-2 min-w-[200px] flex flex-col rounded-lg p-2 border glass bg-bg/[0.92] border-border"
+      aria-label="Navigation"
+    >
+      <div class="flex flex-col gap-1">
+        {pageNav.map(({ href, label, title }) => (
+          <a
+            href={href}
+            title={title}
+            class="block px-3 py-2 text-sm rounded transition-colors text-muted hover:text-leaf"
+          >{label}</a>
+        ))}
+      </div>
+      <hr class="my-2 border-0 h-px bg-border" />
+      <div class="flex flex-col gap-1">
+        {sectionNav.map(({ href, label, title }) => (
+          <a
+            href={href}
+            title={title}
+            class="block px-3 py-2 text-sm rounded transition-colors text-muted hover:text-leaf"
+          >{label}</a>
+        ))}
+      </div>
+    </nav>
+  </details>
+
+  <!-- External links -->
+  <div class="flex items-center gap-4">
+    <a
+      href="https://docs.odio.love"
+      target="_blank"
+      rel="noopener noreferrer"
+      title="Documentation"
+      class="flex items-center gap-1.5 text-sm transition-colors text-muted hover:text-leaf"
+    >
+      <BookOpen width="16" height="16" aria-hidden="true" />
+      docs
+    </a>
+    <a
+      href="https://github.com/b0bbywan/odios/discussions"
+      target="_blank"
+      rel="noopener noreferrer"
+      title="Forum"
+      class="flex items-center gap-1.5 text-sm transition-colors text-muted hover:text-leaf"
+    >
+      <MessageCircle width="16" height="16" aria-hidden="true" />
+      forum
+    </a>
+    <a
+      id="release-link"
+      href="https://github.com/b0bbywan/odios/releases/latest"
+      target="_blank"
+      rel="noopener noreferrer"
+      title="odio installer"
+      class="flex items-center gap-1.5 text-sm transition-colors text-muted hover:text-leaf"
+    >
+      <GitHub width="16" height="16" aria-hidden="true" />
+      <span>odio<span id="release-tag"></span></span>
+    </a>
+    <a
+      href="https://my.home-assistant.io/redirect/hacs_repository/?owner=b0bbywan&repository=odio-ha&category=integration"
+      target="_blank"
+      rel="noopener noreferrer"
+      title="odio-ha for Home Assistant"
+      class="hidden sm:block"
+    >
+      <img
+        src="https://my.home-assistant.io/badges/hacs_repository.svg"
+        alt="Add odio-ha to HACS"
+        style="height: 20px; width: auto;"
+      />
+    </a>
+    <a
+      href="https://pwa.odio.love"
+      target="_blank"
+      rel="noopener noreferrer"
+      title="odio PWA"
+      class="hidden sm:flex items-center gap-1.5 text-sm transition-colors text-muted hover:text-leaf"
+    >
+      <Smartphone width="16" height="16" aria-hidden="true" />
+      pwa
+    </a>
+  </div>
+</header>
+
+<script>
+  import { initReleaseTag, initMobileMenu } from '../scripts/header.js';
+  initReleaseTag();
+  initMobileMenu();
+</script>

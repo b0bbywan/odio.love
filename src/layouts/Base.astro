@@ -1,34 +1,32 @@
 ---
 import '../styles/global.css';
-import { features } from '../data/features.js';
-import { services } from '../data/streaming.js';
-import { repos } from '../data/repos.js';
 import pkg from '../../package.json';
+import Header from '../components/Header.astro';
+import {
+  buildSiteSchema,
+  DEFAULT_TITLE,
+  DEFAULT_DESCRIPTION,
+  OG_IMAGE,
+} from '../data/schemas/site.js';
+import cormorantLight from '@fontsource/cormorant-garamond/files/cormorant-garamond-latin-300-normal.woff2?url';
 
 interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
+  ogType?: 'website' | 'article';
 }
 
 const {
-  title = 'odio — Open-source Raspberry Pi audio streamer. Self-hosted, Home Assistant native.',
-  description = 'odio turns any Raspberry Pi into a free self-hosted audio streamer. AirPlay, Bluetooth, Spotify, Tidal, multi-room, Home Assistant. One curl command on your existing Pi OS. No flashing, no account, no telemetry. The Volumio alternative that stays free.',
-  ogImage = 'https://odio.love/logo.png',
+  title = DEFAULT_TITLE,
+  description = DEFAULT_DESCRIPTION,
+  ogImage = OG_IMAGE,
+  ogType = 'website',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const featureList = [...features.map((f) => f.name), ...services.map((s) => s.name)];
-const installerRepo = repos.find((r) => r.name === 'odios')?.url ?? 'https://github.com/b0bbywan/odios';
-const screenshots = [
-  'audio-cd-playback.png',
-  'bt-playing.png',
-  'embedded-ui.png',
-  'odio-ha.png',
-  'pwa-instances.png',
-  'rpi-imager.png',
-].map((f) => `https://odio.love/screenshots/${f}`);
+const siteSchema = buildSiteSchema({ description, version: pkg.version });
 ---
 
 <!doctype html>
@@ -37,60 +35,47 @@ const screenshots = [
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="index, follow" />
+
+    <link rel="preload" href={cormorantLight} as="font" type="font/woff2" crossorigin />
+
     <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang="en" href={canonicalURL} />
+    <link rel="alternate" hreflang="x-default" href={canonicalURL} />
 
     <title>{title}</title>
     <meta name="description" content={description} />
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="odio dashboard: AirPlay 2, Spotify, Snapcast, Bluetooth services on a Raspberry Pi" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content="odio dashboard: AirPlay 2, Spotify, Snapcast, Bluetooth services on a Raspberry Pi" />
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "WebSite",
-          "name": "odio",
-          "url": "https://odio.love",
-          "description": description
-        },
-        {
-          "@type": "SoftwareApplication",
-          "name": "odio",
-          "url": "https://odio.love",
-          "applicationCategory": "MultimediaApplication",
-          "applicationSubCategory": "Audio Streaming",
-          "operatingSystem": "Raspberry Pi OS, Debian",
-          "softwareVersion": pkg.version,
-          "codeRepository": installerRepo,
-          "downloadUrl": "https://odio.love/install",
-          "license": "https://opensource.org/licenses/BSD-2-Clause",
-          "screenshot": screenshots,
-          "featureList": featureList,
-          "author": {
-            "@type": "Person",
-            "name": "b0bbywan",
-            "url": "https://github.com/b0bbywan"
-          },
-          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
-        }
-      ]
-    })} />
+    <script type="application/ld+json" set:html={JSON.stringify(siteSchema)} />
+
+    <slot name="head" />
   </head>
   <body>
     <a href="#main" class="skip-link">Skip to main content</a>
+    <Header />
     <slot />
+
+    <script>
+      import { initCopyButtons } from '../scripts/copy.js';
+      initCopyButtons();
+    </script>
   </body>
 </html>

@@ -20,5 +20,13 @@
       "destination": "https://github.com/b0bbywan/odios/releases/latest/download/odio-upgrade.py",
       "permanent": false
     }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Link", "value": "</sitemap-index.xml>; rel=\"sitemap\"" }
+      ]
+    }
   ]
 }

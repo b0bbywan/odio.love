@@ -1,11 +1,13 @@
 {
   "name": "odio-love",
   "type": "module",
-  "version": "2026.5.0",
+  "version": "2026.5.1",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "check": "astro check",
     "diagrams": "node scripts/generate-diagram.mjs",
+    "og": "node scripts/generate-og.mjs",
     "preview": "astro preview"
   },
   "dependencies": {
@@ -22,6 +24,8 @@
     "tailwindcss": "^4.2.4"
   },
   "devDependencies": {
-    "simple-icons": "^16.19.0"
+    "@astrojs/check": "^0.9.2",
+    "simple-icons": "^16.19.0",
+    "typescript": "^5.7.0"
   }
 }

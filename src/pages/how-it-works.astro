@@ -2,61 +2,27 @@
 import Base from '../layouts/Base.astro';
 import Footer from '../components/Footer.astro';
 import { Content } from '../content/how-it-works.mdx';
+import { buildHowItWorksSchema } from '../data/schemas/how-it-works.js';
 
-const techArticleJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'TechArticle',
-  headline: 'How odio works',
-  description: 'Architecture of odio: user session, go-odio-api, Home Assistant integration, and the CI pipeline from apt packages to flashable image.',
-  url: 'https://odio.love/how-it-works/',
-  datePublished: '2026-03-25',
-  inLanguage: 'en',
-  isAccessibleForFree: true,
-  about: { '@type': 'SoftwareApplication', name: 'odio', url: 'https://odio.love' },
-  author: { '@type': 'Person', name: 'b0bbywan', url: 'https://github.com/b0bbywan' },
-  publisher: { '@type': 'Person', name: 'b0bbywan', url: 'https://github.com/b0bbywan' },
-};
-
-const breadcrumbJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'odio', item: 'https://odio.love/' },
-    { '@type': 'ListItem', position: 2, name: 'How it works', item: 'https://odio.love/how-it-works/' },
-  ],
-};
+const howItWorksJsonLd = buildHowItWorksSchema();
 ---
 
 <Base
-  title="How odio works — Architecture & design"
-  description="odio is a platform, not an appliance. User session, go-odio-api, Home Assistant, and a full CI pipeline from apt packages to flashable image. The open-source Raspberry Pi audio stack, explained."
+  title="How odio works: architecture of the open-source Raspberry Pi audio stack (MPD, Snapcast, Shairport Sync, Home Assistant)"
+  description="Inside odio: MPD, PulseAudio, Snapcast, Shairport Sync, upmpdcli running as user-session services. The go-odio-api orchestrator, Home Assistant integration, and the Ansible CI pipeline from apt packages to flashable Pi Imager images. The open-source Raspberry Pi audio stack, explained."
+  ogType="article"
 >
-  <main id="main" aria-label="How odio works">
-    <!-- Back link -->
-    <div class="px-6 pt-8 max-w-4xl mx-auto">
-      <a
-        href="/"
-        aria-label="Back to odio.love"
-        class="text-sm transition-colors"
-        style="color: var(--color-muted);"
-        onmouseover="this.style.color='var(--color-leaf)'"
-        onmouseout="this.style.color='var(--color-muted)'"
-        onfocus="this.style.color='var(--color-leaf)'"
-        onblur="this.style.color='var(--color-muted)'"
-      >
-        ← odio.love
-      </a>
-    </div>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(howItWorksJsonLd)} />
+  </Fragment>
 
+  <main id="main" aria-label="How odio works" class="pt-16">
     <div class="how-prose">
       <Content />
     </div>
   </main>
 
   <Footer />
-
-  <script type="application/ld+json" set:html={JSON.stringify(techArticleJsonLd)} />
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
 </Base>
 
 <style>

@@ -1,48 +1,27 @@
 ---
 import { Discord, GitHub, Heart } from '../icons';
 import pkg from '../../package.json';
+import { deps, hostedBy } from '../data/footer.js';
 
 const discordCode = import.meta.env.PUBLIC_DISCORD_INVITE ?? '';
 const version = `v${pkg.version}`;
-
-const deps = [
-  { name: 'Debian', url: 'https://www.debian.org/' },
-  { name: 'MPD', url: 'https://www.musicpd.org/' },
-  { name: 'PulseAudio', url: 'https://www.freedesktop.org/wiki/Software/PulseAudio/' },
-  { name: 'Shairport Sync', url: 'https://github.com/mikebrady/shairport-sync' },
-  { name: 'Snapcast', url: 'https://github.com/badaix/snapcast' },
-  { name: 'upmpdcli', url: 'https://www.lesbonscomptes.com/upmpdcli/' },
-  { name: 'Home Assistant', url: 'https://www.home-assistant.io/' },
-];
-
-const hostedBy = [
-  { name: 'GitHub', url: 'https://github.com/', label: 'CI' },
-  { name: 'Vercel', url: 'https://vercel.com/', label: 'hosting' },
-  { name: 'OVH', url: 'https://www.ovh.com/', label: 'DNS' },
-];
 ---
 
-<footer
-  class="py-12 px-6 border-t"
-  style="background-color: var(--color-surface); border-color: var(--color-border);"
->
+<footer class="py-12 px-6 border-t bg-surface border-border">
   <div class="max-w-5xl mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-center gap-8">
       <!-- Left: license + attribution -->
       <div class="space-y-3">
-        <p class="text-sm" style="color: var(--color-muted);">
+        <p class="text-sm text-muted">
           odio.love is released under the
           <a
             href="https://github.com/b0bbywan/odios/blob/main/LICENSE"
             target="_blank"
             rel="noopener noreferrer"
-            class="underline underline-offset-2 transition-colors"
-            style="color: var(--color-muted);"
-            onmouseover="this.style.color='var(--color-leaf)'"
-            onmouseout="this.style.color='var(--color-muted)'"
+            class="underline underline-offset-2 transition-colors text-muted hover:text-leaf"
           >BSD 2-Clause License</a>.
         </p>
-        <p class="text-sm" style="color: var(--color-subtle);">
+        <p class="text-sm text-subtle">
           Built on the shoulders of:
           {deps.map((dep, i) => (
             <>
@@ -50,15 +29,12 @@ const hostedBy = [
                 href={dep.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="transition-colors underline underline-offset-2"
-                style="color: var(--color-subtle);"
-                onmouseover="this.style.color='var(--color-muted)'"
-                onmouseout="this.style.color='var(--color-subtle)'"
+                class="transition-colors underline underline-offset-2 text-subtle hover:text-muted"
               >{dep.name}</a>{i < deps.length - 1 ? ', ' : '.'}
             </>
           ))}
         </p>
-        <p class="text-sm" style="color: var(--color-subtle);">
+        <p class="text-sm text-subtle">
           Hosted by:
           {hostedBy.map((svc, i) => (
             <>
@@ -67,10 +43,7 @@ const hostedBy = [
                 target="_blank"
                 rel="noopener noreferrer"
                 title={svc.label}
-                class="transition-colors underline underline-offset-2"
-                style="color: var(--color-subtle);"
-                onmouseover="this.style.color='var(--color-muted)'"
-                onmouseout="this.style.color='var(--color-subtle)'"
+                class="transition-colors underline underline-offset-2 text-subtle hover:text-muted"
               >{svc.name}</a>{i < hostedBy.length - 1 ? ', ' : '.'}
             </>
           ))}
@@ -79,11 +52,8 @@ const hostedBy = [
 
       <!-- Center: logo easter egg -->
       <div class="group flex flex-col items-center justify-center">
-        <img src="/logo.png" alt="odio" width="96" height="96" class="opacity-60 group-hover:opacity-100 transition-opacity" />
-        <span
-          class="mt-2 text-xs italic opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-700"
-          style="color: var(--color-amber);"
-        >the most sustainable device is the one already manufactured</span>
+        <img src="/logo.png" alt="odio" width="96" height="96" loading="lazy" decoding="async" class="opacity-60 group-hover:opacity-100 transition-opacity" />
+        <span class="mt-2 text-xs italic opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-700 text-amber">the most sustainable device is the one already manufactured</span>
       </div>
 
       <!-- Right: links -->
@@ -92,10 +62,7 @@ const hostedBy = [
           href="https://github.com/b0bbywan"
           target="_blank"
           rel="noopener noreferrer"
-          class="flex items-center gap-2 text-sm transition-colors"
-          style="color: var(--color-subtle);"
-          onmouseover="this.style.color='var(--color-muted)'"
-          onmouseout="this.style.color='var(--color-subtle)'"
+          class="flex items-center gap-2 text-sm transition-colors text-subtle hover:text-muted"
           aria-label="b0bbywan on GitHub"
         >
           <GitHub width="16" height="16" aria-hidden="true" />
@@ -105,12 +72,7 @@ const hostedBy = [
           href="#"
           data-d={discordCode}
           onclick="window.open('https://disc'+'ord.gg/'+this.dataset.d,'_blank','noopener');return false"
-          class="flex items-center gap-2 text-sm transition-colors cursor-pointer"
-          style="color: var(--color-subtle);"
-          onmouseover="this.style.color='var(--color-muted)'"
-          onmouseout="this.style.color='var(--color-subtle)'"
-          onfocus="this.style.color='var(--color-muted)'"
-          onblur="this.style.color='var(--color-subtle)'"
+          class="flex items-center gap-2 text-sm transition-colors cursor-pointer text-subtle hover:text-muted focus:text-muted"
           aria-label="odio Discord"
         >
           <Discord width="16" height="16" aria-hidden="true" />
@@ -120,10 +82,7 @@ const hostedBy = [
           href="https://github.com/sponsors/b0bbywan"
           target="_blank"
           rel="noopener noreferrer"
-          class="flex items-center gap-1.5 text-sm transition-colors"
-          style="color: var(--color-subtle);"
-          onmouseover="this.style.color='var(--color-amber)'"
-          onmouseout="this.style.color='var(--color-subtle)'"
+          class="flex items-center gap-1.5 text-sm transition-colors text-subtle hover:text-amber"
         >
           <Heart width="14" height="14" aria-hidden="true" />
           Support odio development
@@ -131,11 +90,11 @@ const hostedBy = [
       </div>
     </div>
 
-    <div class="mt-8 pt-6 border-t flex flex-col items-center" style="border-color: var(--color-border);">
-      <p class="text-xs text-center" style="color: var(--color-subtle);">
+    <div class="mt-8 pt-6 border-t flex flex-col items-center border-border">
+      <p class="text-xs text-center text-subtle">
         odio·love — Your Pi. Your music. No expiry date.
       </p>
-      <p class="text-xs text-center font-mono mt-1" style="color: var(--color-subtle);">{version}</p>
+      <p class="text-xs text-center font-mono mt-1 text-subtle">{version}</p>
     </div>
   </div>
 </footer>

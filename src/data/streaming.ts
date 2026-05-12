@@ -1,4 +1,18 @@
-export const services = [
+import { siSpotify, siTidal } from 'simple-icons';
+
+export const iconMap = { siSpotify, siTidal } as const;
+export type IconKey = keyof typeof iconMap;
+
+export interface Service {
+  name: string;
+  desc: string;
+  icon: IconKey | null;
+  iconImg?: string;
+  iconColor: string | null;
+  docs: string;
+}
+
+export const services: Service[] = [
   {
     name: 'Web radios',
     desc: 'Thousands of stations. Via myMPD (WebradioDB) or UPnP (Radio Browser…).',

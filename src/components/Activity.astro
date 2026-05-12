@@ -3,15 +3,13 @@
 
 <section
   id="activity"
-  class="py-20 px-6"
-  style="background-color: var(--color-bg);"
+  class="py-20 px-6 bg-bg"
   data-activity
   hidden
 >
   <div class="max-w-4xl mx-auto text-center">
     <p
-      class="text-sm mb-4"
-      style="color: var(--color-subtle); font-family: var(--font-mono);"
+      class="text-sm mb-4 text-subtle font-mono"
       data-since
     >
     </p>
@@ -19,35 +17,18 @@
     </div>
 
     <div class="mb-10 max-w-md mx-auto" data-releases hidden>
-      <p
-        class="text-xs uppercase tracking-wider mb-3"
-        style="font-family: var(--font-mono); color: var(--color-subtle);"
-      >Latest releases</p>
+      <p class="text-xs uppercase tracking-wider mb-3 font-mono text-subtle">Latest releases</p>
       <ul class="flex flex-col gap-2 text-left" data-releases-list></ul>
     </div>
 
     <a
       href="https://docs.odio.love/community/activity/"
-      class="inline-block px-5 py-2.5 rounded-lg text-sm transition-colors"
-      style="border: 1px solid var(--color-moss); color: var(--color-leaf);"
-      onmouseover="this.style.backgroundColor='var(--color-moss)';this.style.color='var(--color-text)'"
-      onmouseout="this.style.backgroundColor='transparent';this.style.color='var(--color-leaf)'"
+      class="inline-block px-5 py-2.5 rounded-lg text-sm transition-colors border border-moss text-leaf hover:bg-moss hover:text-text"
     >
       See full activity on docs →
     </a>
   </div>
 </section>
-
-<style>
-  .release-row {
-    border: 1px solid var(--color-border);
-    transition: border-color 0.15s, background-color 0.15s;
-  }
-  .release-row:hover {
-    border-color: var(--color-leaf);
-    background-color: var(--color-surface);
-  }
-</style>
 
 <script>
   const section = document.querySelector<HTMLElement>('[data-activity]');
@@ -88,33 +69,29 @@
         ];
 
         const singleCls =
-          'text-4xl md:text-5xl font-medium tabular-nums leading-none';
+          'text-4xl md:text-5xl font-medium tabular-nums leading-none font-mono text-leaf';
         const pairCls =
-          'text-2xl md:text-3xl font-medium tabular-nums leading-tight';
-        const monoStyle = 'font-family: var(--font-mono);';
-        const leafStyle = `${monoStyle} color: var(--color-leaf);`;
-        const subtleStyle = `${monoStyle} color: var(--color-subtle);`;
-        const labelCls = 'text-xs mt-2 uppercase tracking-wider';
-        const labelStyle = `${monoStyle} color: var(--color-muted);`;
+          'text-2xl md:text-3xl font-medium tabular-nums leading-tight font-mono';
+        const labelCls = 'text-xs mt-2 uppercase tracking-wider font-mono text-muted';
 
         const renderKpi = (k: Kpi) => {
           const value =
             'primary' in k
               ? `
                   <div class="flex-1 flex flex-col items-end justify-center ${pairCls}">
-                    <span style="${leafStyle}">${k.primary}</span>
-                    <span style="${subtleStyle}">${k.secondary}</span>
+                    <span class="text-leaf">${k.primary}</span>
+                    <span class="text-subtle">${k.secondary}</span>
                   </div>
                 `
               : `
-                  <div class="flex-1 flex items-center justify-center ${singleCls}" style="${leafStyle}">
+                  <div class="flex-1 flex items-center justify-center ${singleCls}">
                     ${k.value}
                   </div>
                 `;
           return `
             <div class="flex flex-col items-center">
               ${value}
-              <div class="${labelCls}" style="${labelStyle}">${k.label}</div>
+              <div class="${labelCls}">${k.label}</div>
             </div>
           `;
         };
@@ -182,14 +159,13 @@
                 href="${r.html_url}"
                 target="_blank"
                 rel="noopener"
-                class="release-row flex flex-col gap-1 px-4 py-3 rounded-lg"
-                style="font-family: var(--font-mono); text-decoration: none;"
+                class="release-row flex flex-col gap-1 px-4 py-3 rounded-lg font-mono no-underline"
               >
                 <div class="flex justify-between items-baseline gap-4">
-                  <span style="color: var(--color-leaf);">${title}</span>
-                  <span class="text-xs" style="color: var(--color-subtle);">${date}</span>
+                  <span class="text-leaf">${title}</span>
+                  <span class="text-xs text-subtle">${date}</span>
                 </div>
-                ${highlights ? `<div class="text-xs text-left" style="color: var(--color-muted);">${highlights}</div>` : ''}
+                ${highlights ? `<div class="text-xs text-left text-muted">${highlights}</div>` : ''}
               </a>
             </li>
           `;

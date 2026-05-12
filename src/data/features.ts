@@ -1,6 +1,16 @@
 import { Bluetooth, Airplay, Speaker, Share2, Disc, Wifi, House, Smartphone } from '../icons';
 
-export const features = [
+export type IconComponent = (props: Record<string, unknown>) => unknown;
+
+export interface Feature {
+  id: string;
+  name: string;
+  desc: string;
+  icon: IconComponent;
+  docs: string;
+}
+
+export const features: Feature[] = [
   {
     id: 'bluetooth',
     name: 'Bluetooth Audio',
