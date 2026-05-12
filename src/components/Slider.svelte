@@ -40,7 +40,7 @@
         onclick={() => { lightbox = true; clearInterval(timer); }}
         aria-label="View {slide.alt}"
       >
-        <img src={slide.src} alt={slide.alt} class="slide-img" />
+        <img src={slide.src} alt={slide.alt} loading="lazy" decoding="async" class="slide-img" />
       </button>
     {/each}
   </div>
@@ -71,7 +71,7 @@
     <button class="lb-close" onclick={() => { lightbox = false; resetTimer(); }} aria-label="Close">&times;</button>
     <button class="lb-nav lb-prev" onclick={() => go(current - 1)} aria-label="Previous">&#8249;</button>
     <button class="lb-nav lb-next" onclick={() => go(current + 1)} aria-label="Next">&#8250;</button>
-    <img src={slides[current].src} alt={slides[current].alt} class="lb-img" />
+    <img src={slides[current].src} alt={slides[current].alt} decoding="async" class="lb-img" />
     <div class="lb-caption">{slides[current].alt}</div>
   </div>
 {/if}

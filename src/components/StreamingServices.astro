@@ -30,7 +30,7 @@ import { services, iconMap } from '../data/streaming.js';
               </svg>
             )}
             {s.iconImg && (
-              <img src={s.iconImg} alt="" width="22" height="22" aria-hidden="true" class="shrink-0" />
+              <img src={s.iconImg} alt="" width="22" height="22" loading="lazy" decoding="async" aria-hidden="true" class="shrink-0" />
             )}
             <h3 class="font-medium text-text">{s.name}</h3>
           </div>
