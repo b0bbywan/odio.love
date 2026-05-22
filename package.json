@@ -17,7 +17,7 @@
     "@fontsource/cormorant-garamond": "^5.2.11",
     "@fontsource/dm-sans": "^5.2.8",
     "@fontsource/jetbrains-mono": "^5.2.8",
-    "@lucide/astro": "^1.14.0",
+    "@lucide/astro": "^1.16.0",
     "@tailwindcss/vite": "^4.2.4",
     "astro": "^6.3.3",
     "svelte": "^5.55.5",
