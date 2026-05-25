@@ -20,7 +20,7 @@
     "@lucide/astro": "^1.16.0",
     "@tailwindcss/vite": "^4.2.4",
     "astro": "^6.3.3",
-    "svelte": "^5.55.5",
+    "svelte": "^5.55.9",
     "tailwindcss": "^4.3.0"
   },
   "devDependencies": {
