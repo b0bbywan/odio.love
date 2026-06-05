@@ -12,7 +12,7 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "@astrojs/mdx": "^6.0.1",
+    "@astrojs/mdx": "^6.0.2",
     "@astrojs/sitemap": "^3.7.2",
     "@astrojs/svelte": "^8.1.2",
     "@fontsource/cormorant-garamond": "^5.2.11",
