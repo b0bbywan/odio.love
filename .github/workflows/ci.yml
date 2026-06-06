@@ -52,6 +52,7 @@ jobs:
             --exclude 'https://pwa.odio.love/.*'
             --exclude 'https://(.*\.)?linkedin\.com/.*'
             --exclude 'https://(.*\.)?medium\.com/.*'
+            --exclude 'http://(.*\.)?bluez\.org/.*'
             --exclude 'https://gnudb\.org/.*'
             --exclude 'https://pipewire\.org/.*'
             --accept 200,403,418
