@@ -1,5 +1,5 @@
 ---
-import { Discord, GitHub, Heart } from '../icons';
+import { Discord, GitHub, Heart, Rss } from '../icons';
 import pkg from '../../package.json';
 import { deps, hostedBy } from '../data/footer.js';
 
@@ -77,6 +77,14 @@ const version = `v${pkg.version}`;
         >
           <Discord width="16" height="16" aria-hidden="true" />
           Discord
+        </a>
+        <a
+          href="/releases.xml"
+          class="flex items-center gap-2 text-sm transition-colors text-subtle hover:text-muted"
+          aria-label="odio releases feed (Atom)"
+        >
+          <Rss width="16" height="16" aria-hidden="true" />
+          Releases feed
         </a>
         <a
           href="https://github.com/sponsors/b0bbywan"
