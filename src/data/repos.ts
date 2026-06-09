@@ -8,6 +8,8 @@ export interface Repo {
   live: string | null;
   tech: { label: string; color: string };
   tier: Tier;
+  /** Include this repo's GitHub releases in the aggregated /releases.xml feed. */
+  feed?: boolean;
 }
 
 export const repos: Repo[] = [
@@ -19,6 +21,7 @@ export const repos: Repo[] = [
     live: null,
     tech: { label: 'Go', color: '#00ADD8' },
     tier: 'core',
+    feed: true,
   },
   {
     name: 'odios',
@@ -28,6 +31,7 @@ export const repos: Repo[] = [
     live: null,
     tech: { label: 'Ansible', color: '#EE0000' },
     tier: 'core',
+    feed: true,
   },
   {
     name: 'odio-pwa',
@@ -37,6 +41,7 @@ export const repos: Repo[] = [
     live: 'https://pwa.odio.love/',
     tech: { label: 'Svelte', color: '#FF3E00' },
     tier: 'core',
+    feed: true,
   },
   {
     name: 'odio-ha',
@@ -46,6 +51,7 @@ export const repos: Repo[] = [
     live: null,
     tech: { label: 'Python', color: '#3776AB' },
     tier: 'core',
+    feed: true,
   },
   {
     name: 'go-mpd-discplayer',
@@ -55,6 +61,7 @@ export const repos: Repo[] = [
     live: null,
     tech: { label: 'Go', color: '#00ADD8' },
     tier: 'core',
+    feed: true,
   },
   {
     name: 'go-disc-cuer',
@@ -82,6 +89,17 @@ export const repos: Repo[] = [
     live: null,
     tech: { label: 'Python', color: '#3776AB' },
     tier: 'internal',
+    feed: true,
+  },
+  {
+    name: 'mpDris2',
+    label: 'MPD MPRIS bridge',
+    desc: 'MPRIS 2.1 bridge for MPD. Metadata, playback controls and CD cover art on your remote.',
+    url: 'https://github.com/b0bbywan/mpDris2',
+    live: null,
+    tech: { label: 'Python', color: '#3776AB' },
+    tier: 'internal',
+    feed: true,
   },
   {
     name: 'odio-apt-repo',
