@@ -44,10 +44,12 @@ jobs:
         uses: lycheeverse/lychee-action@v2
         with:
           # odio.love/* are vercel redirects (not files in dist); checked by the redirects job.
+          # /releases.xml is an on-demand function route, not a static file in dist.
           # The rest are bot-hostile hosts that return junk status codes.
           args: >-
-            --root-dir ./dist
+            --root-dir ./dist/client
             --exclude 'https://odio.love/.*'
+            --exclude 'releases\.xml'
             --exclude 'https://docs.odio.love/.*'
             --exclude 'https://pwa.odio.love/.*'
             --exclude 'https://(.*\.)?linkedin\.com/.*'
@@ -57,7 +59,7 @@ jobs:
             --exclude 'https://pipewire\.org/.*'
             --accept 200,403,418
             --insecure
-            ./dist
+            ./dist/client
           fail: true
 
   redirects:
