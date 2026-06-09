@@ -2,6 +2,8 @@
 // endpoint (src/pages/releases.xml.ts) owns the network I/O and wiring; this
 // module owns everything testable: parsing, filtering, and rendering.
 
+import { marked } from 'marked';
+
 export interface GhRelease {
   tag_name: string;
   name: string | null;
@@ -46,6 +48,15 @@ export function escapeXml(s: string): string {
 /** Parse `owner/repo` out of a github.com URL. */
 export function ownerRepo(url: string): string {
   return new URL(url).pathname.replace(/^\/+|\/+$/g, '');
+}
+
+/**
+ * Render Markdown release notes to HTML so feed readers show formatted notes
+ * instead of raw `##`/`**`/`-` markup. Bodies come only from the project's own
+ * GitHub releases (a trusted author), so the output is not further sanitized.
+ */
+export function renderMarkdown(md: string): string {
+  return md ? marked.parse(md, { gfm: true, async: false }) : '';
 }
 
 /**
@@ -157,7 +168,7 @@ ${entries
     <updated>${e.published}</updated>
     <author><name>${escapeXml(e.repo)}</name></author>
     <category term="${escapeXml(e.repo)}"/>
-    <content type="html">${escapeXml(e.body)}</content>
+    <content type="html">${escapeXml(renderMarkdown(e.body))}</content>
   </entry>`,
   )
   .join('\n')}

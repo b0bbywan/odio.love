@@ -6,6 +6,7 @@ import {
   ownerRepo,
   releasesToEntries,
   renderAtom,
+  renderMarkdown,
   resolveSelection,
   selectEntries,
   type Entry,
@@ -214,6 +215,19 @@ describe('buildSelfUrl', () => {
   });
 });
 
+describe('renderMarkdown', () => {
+  it('renders common Markdown to HTML', () => {
+    expect(renderMarkdown('**bold**')).toContain('<strong>bold</strong>');
+    expect(renderMarkdown('## Title')).toContain('<h2');
+    expect(renderMarkdown('- a\n- b')).toContain('<li>a</li>');
+    expect(renderMarkdown('[x](https://e.test)')).toContain('href="https://e.test"');
+  });
+
+  it('returns an empty string for an empty body', () => {
+    expect(renderMarkdown('')).toBe('');
+  });
+});
+
 describe('renderAtom', () => {
   const xml = renderAtom({
     site: 'https://odio.love',
@@ -222,7 +236,7 @@ describe('renderAtom', () => {
     scope: 'stable',
     updated: '2026-01-01T00:00:00Z',
     entries: [
-      entry({ repo: 'odios', title: 'odios v1', body: 'fixes <b>&</b>' }),
+      entry({ repo: 'odios', title: 'odios v1', body: 'Fixes **bold** and a [link](https://x.test).' }),
       entry({ repo: 'mpDris2', title: 'mpDris2 v0.11.0', prerelease: true }),
     ],
   });
@@ -233,8 +247,11 @@ describe('renderAtom', () => {
     expect(xml.match(/<entry>/g)).toHaveLength(2);
   });
 
-  it('escapes entry content', () => {
-    expect(xml).toContain('fixes &lt;b&gt;&amp;&lt;/b&gt;');
+  it('renders Markdown bodies to HTML, escaped for transport in type="html"', () => {
+    // Markdown is rendered to HTML, then the HTML is entity-escaped so the
+    // reader decodes it once and renders it (no raw ** or ## leaking through).
+    expect(xml).toContain('&lt;strong&gt;bold&lt;/strong&gt;');
+    expect(xml).not.toContain('**bold**');
   });
 
   it('flags pre-release entries in the title', () => {
