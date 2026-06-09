@@ -32,7 +32,7 @@
   <div class="viewport">
     <button class="nav prev" onclick={() => go(current - 1)} aria-label="Previous">&#8249;</button>
     <button class="nav next" onclick={() => go(current + 1)} aria-label="Next">&#8250;</button>
-    {#each slides as slide, i}
+    {#each slides as slide, i (slide.src)}
       <button
         type="button"
         class="slide-btn"
@@ -46,7 +46,7 @@
   </div>
   <div class="caption">{slides[current].alt}</div>
   <div class="dots">
-    {#each slides as _, i}
+    {#each slides as slide, i (slide.src)}
       <button
         class="dot"
         class:active={i === current}
