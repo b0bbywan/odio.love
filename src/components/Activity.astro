@@ -191,7 +191,9 @@
             renderReleases(data);
             return;
           }
-        } catch {}
+        } catch {
+          /* stale or malformed cache: fall through to a fresh fetch */
+        }
       }
       fetch('https://api.github.com/repos/b0bbywan/odios/releases?per_page=20')
         .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
