@@ -7,6 +7,8 @@
     "build": "astro build",
     "check": "astro check",
     "check:redirects": "node scripts/check-redirects.mjs",
+    "lint": "eslint .",
+    "test": "vitest run",
     "diagrams": "node scripts/generate-diagram.mjs",
     "og": "node scripts/generate-og.mjs",
     "preview": "astro preview"
@@ -28,8 +30,15 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.4.1",
+    "eslint-plugin-astro": "^1.7.0",
+    "eslint-plugin-svelte": "^3.19.0",
+    "globals": "^17.6.0",
     "simple-icons": "^16.22.0",
-    "typescript": "^5.7.0"
+    "typescript": "^5.7.0",
+    "typescript-eslint": "^8.61.0",
+    "vitest": "^4.1.8"
   },
   "overrides": {
     "path-to-regexp": "6.3.0",
