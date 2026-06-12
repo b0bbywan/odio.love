@@ -22,7 +22,7 @@
     "@fontsource/dm-sans": "^5.2.8",
     "@fontsource/jetbrains-mono": "^5.2.8",
     "@lucide/astro": "^1.17.0",
-    "@tailwindcss/vite": "^4.3.0",
+    "@tailwindcss/vite": "^4.3.1",
     "@vercel/analytics": "^2.0.1",
     "astro": "^6.4.4",
     "marked": "^18.0.5",
