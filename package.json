@@ -43,6 +43,7 @@
   },
   "overrides": {
     "path-to-regexp": "6.3.0",
-    "yaml": "^2.9.0"
+    "yaml": "^2.9.0",
+    "esbuild": "^0.28.1"
   }
 }
