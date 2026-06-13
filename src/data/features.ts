@@ -1,4 +1,4 @@
-import { Bluetooth, Airplay, Speaker, Share2, Disc, Wifi, House, Smartphone } from '../icons';
+import { Bluetooth, Headphones, Airplay, Speaker, Share2, Disc, Wifi, House, Smartphone } from '../icons';
 
 export type IconComponent = (props: Record<string, unknown>) => unknown;
 
@@ -17,6 +17,13 @@ export const features: Feature[] = [
     desc: 'Works like any commercial speaker. Control power and pairing from the UI, PWA or Home Assistant.',
     icon: Bluetooth,
     docs: '/guides/bluetooth/',
+  },
+  {
+    id: 'bluetooth-out',
+    name: 'Bluetooth Output',
+    desc: 'Route any source (Spotify, AirPlay, CD, MPD) to a Bluetooth speaker or headphones. Scan, pair, select it as output, with volume sync over AVRCP.',
+    icon: Headphones,
+    docs: '/guides/bluetooth-output/',
   },
   {
     id: 'airplay',
