@@ -15,7 +15,7 @@ export interface Service {
 export const services: Service[] = [
   {
     name: 'Web radios',
-    desc: 'Thousands of stations. Via myMPD (WebradioDB) or UPnP (Radio Browser…).',
+    desc: 'Thousands of stations via myMPD (WebradioDB) or UPnP (Radio Browser…), with automatic cover art.',
     icon: null,
     iconImg: '/icon_webradio.svg',
     iconColor: null,

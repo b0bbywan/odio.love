@@ -3,6 +3,8 @@
     { src: '/screenshots/embedded-ui.png', alt: 'Embedded web UI — full dashboard (RIP Dooz Kawa)' },
     { src: '/screenshots/audio-cd-playback.png', alt: 'Audio CD playback with metadata' },
     { src: '/screenshots/bt-playing.png', alt: 'Bluetooth streaming via PWA' },
+    { src: '/screenshots/bt-output.png', alt: 'Bluetooth output to a JBL Go 3 speaker, playing a web radio with live track metadata and cover art' },
+    { src: '/screenshots/webradio-cover.png', alt: 'Web radio with cover art' },
     { src: '/screenshots/pwa-instances.png', alt: 'PWA — multi-node management' },
     { src: '/screenshots/odio-ha.png', alt: 'Home Assistant — odio-ha integration' },
     { src: '/screenshots/rpi-imager.png', alt: 'Raspberry Pi Imager — flash odio' },
