@@ -34,7 +34,7 @@
   const section = document.querySelector<HTMLElement>('[data-activity]');
   if (section) {
     const fmt = new Intl.NumberFormat('en-US');
-    fetch('https://docs.odio.love/stats.json')
+    fetch('https://stats.odio.love/repos.json')
       .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
       .then((stats) => {
         const since = new Date(stats.since).toLocaleDateString('en-US', {
