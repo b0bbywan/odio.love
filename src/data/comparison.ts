@@ -48,10 +48,16 @@ export const comparisonRows: ComparisonRow[] = [
     commercial: { value: 'Built-in (locked ecosystem)', positive: null },
   },
   {
-    feature: 'Bluetooth A2DP',
+    feature: 'Bluetooth input (A2DP)',
     odio: { value: '✅ Included', positive: true },
     volumio: { value: '💰 Premium only', positive: false },
     commercial: { value: '✅ Included', positive: null },
+  },
+  {
+    feature: 'Bluetooth output (to speaker / headphones)',
+    odio: { value: '✅ Included', positive: true },
+    volumio: { value: 'Unofficial community plugin', positive: false },
+    commercial: { value: 'Varies', positive: null },
   },
   {
     feature: 'AirPlay',
