@@ -53,6 +53,8 @@ const installerRepo =
 const screenshots = [
   'audio-cd-playback.png',
   'bt-playing.png',
+  'bt-output.png',
+  'webradio-cover.png',
   'embedded-ui.png',
   'odio-ha.png',
   'pwa-instances.png',
