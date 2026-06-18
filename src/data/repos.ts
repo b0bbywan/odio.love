@@ -92,10 +92,10 @@ export const repos: Repo[] = [
     feed: true,
   },
   {
-    name: 'mpDris2',
+    name: 'mpd2mpris',
     label: 'MPD MPRIS bridge',
-    desc: 'MPRIS 2.1 bridge for MPD. Metadata, playback controls and CD cover art on your remote.',
-    url: 'https://github.com/b0bbywan/mpDris2',
+    desc: 'MPRIS 2.1 bridge for MPD. Metadata, playback controls and cover art (tracks, CD, web radio) on your remote.',
+    url: 'https://github.com/b0bbywan/mpd2mpris',
     live: null,
     tech: { label: 'Python', color: '#3776AB' },
     tier: 'internal',

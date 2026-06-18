@@ -17,10 +17,8 @@ export const prerender = false;
 
 const SITE = 'https://odio.love';
 const FEED_URL = `${SITE}/releases.xml`;
-// Releases pulled per repo before filtering. Kept generous so a burst of
-// pre-releases can't push the latest stable out of the fetch window and make a
-// repo vanish from the default feed (e.g. mpDris2 stacking many v0.11.0 betas
-// on top of its last stable).
+// Per-repo fetch cap before filtering; generous so a pre-release burst can't
+// bury the latest stable.
 const PER_REPO = 30;
 const MAX_ENTRIES = 40; // cap on the merged feed
 const CACHE_SECONDS = 12 * 60 * 60; // 12h shared CDN cache: GitHub is hit once per window

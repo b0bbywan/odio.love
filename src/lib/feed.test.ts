@@ -19,7 +19,7 @@ const KNOWN = [
   { name: 'odios' },
   { name: 'odio-ha' },
   { name: 'snapclientmpris' },
-  { name: 'mpDris2' },
+  { name: 'mpd2mpris' },
   { name: 'odio-docs' },
 ];
 
@@ -91,8 +91,8 @@ describe('resolveSelection', () => {
   });
 
   it('matches case-insensitively to the canonical name', () => {
-    expect(resolveSelection('mpdris2', KNOWN)).toEqual(['mpDris2']);
-    expect(resolveSelection('MPDRIS2', KNOWN)).toEqual(['mpDris2']);
+    expect(resolveSelection('MPD2MPRIS', KNOWN)).toEqual(['mpd2mpris']);
+    expect(resolveSelection('Mpd2Mpris', KNOWN)).toEqual(['mpd2mpris']);
   });
 
   it('tolerates surrounding whitespace', () => {
@@ -237,7 +237,7 @@ describe('renderAtom', () => {
     updated: '2026-01-01T00:00:00Z',
     entries: [
       entry({ repo: 'odios', title: 'odios v1', body: 'Fixes **bold** and a [link](https://x.test).' }),
-      entry({ repo: 'mpDris2', title: 'mpDris2 v0.11.0', prerelease: true }),
+      entry({ repo: 'mpd2mpris', title: 'mpd2mpris v0.12.0', prerelease: true }),
     ],
   });
 
@@ -255,7 +255,7 @@ describe('renderAtom', () => {
   });
 
   it('flags pre-release entries in the title', () => {
-    expect(xml).toContain('<title>mpDris2 v0.11.0 (pre-release)</title>');
-    expect(xml).toContain('<category term="mpDris2"/>');
+    expect(xml).toContain('<title>mpd2mpris v0.12.0 (pre-release)</title>');
+    expect(xml).toContain('<category term="mpd2mpris"/>');
   });
 });
