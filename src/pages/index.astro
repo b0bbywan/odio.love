@@ -28,3 +28,19 @@ import Footer from '../components/Footer.astro';
   </main>
   <Footer />
 </Base>
+
+<style>
+  /* Alternating section backgrounds — automatic, positional, mirrors how-it-works.
+     No section hardcodes its own background, so the cadence can never drift.
+     nth-of-type (not nth-child): components emit sibling <script type="ld+json">
+     nodes inside <main>, which would otherwise shift the count and break parity. */
+  #main :global(section:nth-of-type(odd)) {
+    background-color: var(--color-bg);
+  }
+  #main :global(section:nth-of-type(even)) {
+    background-color: var(--color-surface);
+  }
+  #main :global(section:not(:first-of-type)) {
+    border-top: 1px solid var(--color-border);
+  }
+</style>
