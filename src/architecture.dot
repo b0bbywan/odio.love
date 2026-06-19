@@ -111,6 +111,7 @@ digraph odio {
   mpd        -> mpris
   shairport  -> mpris
   spotifyd   -> mpris
+  snapcast   -> mpris
 
   /* ============================================================
      Layout hints
