@@ -44,6 +44,13 @@
         const sinceEl = section.querySelector<HTMLElement>('[data-since]');
         if (sinceEl) sinceEl.textContent = `SINCE ${since.toUpperCase()}`;
 
+        const stableReleases = (stats.repos ?? []).reduce(
+          (sum: number, repo: { releases?: { prerelease?: boolean }[] }) =>
+            sum +
+            (repo.releases ?? []).filter((rel) => !rel.prerelease).length,
+          0
+        );
+
         type Kpi =
           | { value: string; label: string }
           | { primary: string; secondary: string; label: string };
@@ -63,8 +70,9 @@
             },
           ],
           [
-            { value: fmt.format(stats.totals.releases), label: 'releases' },
+            { value: fmt.format(stableReleases), label: 'releases' },
             { value: `${fmt.format(stats.totals.stars)}★`, label: 'stars' },
+            { value: fmt.format(stats.totals.contributors), label: 'contributors' },
           ],
         ];
 
