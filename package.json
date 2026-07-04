@@ -34,7 +34,7 @@
     "@eslint/js": "^10.0.1",
     "eslint": "^10.5.0",
     "eslint-plugin-astro": "^2.1.1",
-    "eslint-plugin-svelte": "^3.19.0",
+    "eslint-plugin-svelte": "^3.20.0",
     "globals": "^17.6.0",
     "simple-icons": "^16.23.0",
     "typescript": "^5.7.0",
