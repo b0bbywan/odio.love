@@ -77,7 +77,7 @@ Every odio node becomes observable and controllable from anywhere on your networ
 
 If this sounds like [KDE Connect](https://kdeconnect.kde.org/), it's the same space, with different trade-offs. KDE Connect assumes a desktop, a GUI, a paired client. go-odio-api assumes a network and a user session. Nothing else. It runs headless, exposes a REST surface, and does less, on purpose.
 
-The binary ships with an embedded web UI. No separate deployment, no build step, no CDN dependency. The API and the interface are the same process, started by the same service. But the API is the product. The embedded UI is one client among many possible ones. Build yours.
+The binary ships with an embedded web UI. No separate deployment, no build step, no CDN dependency. The API and the interface are the same process, started by the same service. It even updates itself: the whole odio stack upgrades over the air, straight from the UI, no SSH. But the API is the product. The embedded UI is one client among many possible ones. Build yours.
 
 go-odio-api is fully configurable and exposes only what you enable. It needs nothing more than a Linux user session, which means it runs anywhere the session model does. Beyond the Pi: an HTPC on Debian, a NAS on OpenMediaVault, a workstation on Fedora. Same binary, different configuration, same control surface. Desktop compatibility wasn't a design goal. It's a consequence of building on the right abstraction.
 
@@ -114,6 +114,8 @@ It speaks directly to go-odio-api and receives real-time updates over SSE. Every
 **Bluetooth**: the node becomes an API-controllable BT speaker, exposed as a media player in HA. Power, pairing mode, connected device, all as native entities. Try finding a Bluetooth speaker you can turn on from a Home Assistant automation.
 
 **System**: systemd user services as start/stop switches. Remote reboot and power-off buttons. All whitelist-based, nothing exposed unless explicitly listed. System units are strictly read-only.
+
+**Updates**: the whole odio stack upgrades over the air, exposed as a native HA update entity. One tap pulls the latest release across every node. No SSH, no reflash.
 
 odio-ha doesn't replace existing HA integrations. MPD, [spotifyd](https://github.com/Spotifyd/spotifyd), upmpdcli, Snapcast all have their own dedicated HA integrations for rich playback and control. In the configuration, any managed entity (service, MPRIS player, or remote audio client) can be mapped to an existing HA media player so HA treats them as one.
 

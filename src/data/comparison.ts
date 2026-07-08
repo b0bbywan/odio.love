@@ -139,7 +139,7 @@ export const comparisonRows: ComparisonRow[] = [
   },
   {
     feature: 'Upgrade',
-    odio: { value: 'In-place via odio-upgrade; OTA UI/HA upcoming', positive: true },
+    odio: { value: 'In-place OTA from the web UI or Home Assistant', positive: true },
     volumio: { value: 'OTA / reflash between major versions', positive: false },
     commercial: { value: 'Vendor-controlled OTA', positive: false },
   },
