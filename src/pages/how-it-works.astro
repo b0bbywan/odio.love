@@ -8,7 +8,7 @@ const howItWorksJsonLd = buildHowItWorksSchema();
 ---
 
 <Base
-  title="How odio works: architecture of the open-source Raspberry Pi audio stack (MPD, Snapcast, Shairport Sync, Home Assistant)"
+  title="How odio works: architecture of the Raspberry Pi audio stack"
   description="Inside odio: MPD, PulseAudio, Snapcast, Shairport Sync, upmpdcli running as user-session services. The go-odio-api orchestrator, Home Assistant integration, and the Ansible CI pipeline from apt packages to flashable Pi Imager images. The open-source Raspberry Pi audio stack, explained."
   ogType="article"
 >
@@ -50,6 +50,7 @@ const howItWorksJsonLd = buildHowItWorksSchema();
     margin-bottom: 3rem !important;
   }
 
+  .how-prose :global(h1),
   .how-prose :global(h2) {
     font-family: var(--font-display);
     font-size: 2.75rem;
