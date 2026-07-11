@@ -12,7 +12,13 @@ interface Props {
 const { title, description, heading, updated } = Astro.props;
 ---
 
-<Base title={title} description={description} ogType="article">
+<Base
+  title={title}
+  description={description}
+  ogType="article"
+  robots="noindex, follow"
+  includeSiteSchema={false}
+>
   <main id="main" aria-label={heading} class="pt-24 pb-24 px-6">
     <article class="legal-prose max-w-3xl mx-auto">
       <h1>{heading}</h1>
