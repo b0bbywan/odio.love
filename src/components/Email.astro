@@ -1,0 +1,33 @@
+---
+/**
+ * Renders a spam-resistant email link. The address is never written as a
+ * harvestable `user@domain` string in the static HTML: it is split across
+ * data attributes and reassembled client-side. Without JS, a readable
+ * "user [at] domain" fallback is shown (no scrapable pattern).
+ */
+interface Props {
+  user: string;
+  domain: string;
+  class?: string;
+}
+
+const { user, domain, class: className = '' } = Astro.props;
+---
+
+<a class:list={['js-email', className]} href="#" data-u={user} data-d={domain} rel="nofollow"
+  >{user} [at] {domain}</a
+>
+
+<script>
+  document.querySelectorAll<HTMLAnchorElement>('a.js-email').forEach((a) => {
+    const u = a.dataset.u;
+    const d = a.dataset.d;
+    if (!u || !d) return;
+    const addr = `${u}@${d}`;
+    a.href = `mailto:${addr}`;
+    a.textContent = addr;
+    a.removeAttribute('data-u');
+    a.removeAttribute('data-d');
+    a.removeAttribute('rel');
+  });
+</script>
