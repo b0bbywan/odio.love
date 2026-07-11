@@ -8,6 +8,8 @@ export interface Repo {
   live: string | null;
   tech: { label: string; color: string };
   tier: Tier;
+  /** SPDX identifier of the repo's license (source: its GitHub LICENSE). */
+  license: string;
   /** Include this repo's GitHub releases in the aggregated /releases.xml feed. */
   feed?: boolean;
 }
@@ -21,6 +23,7 @@ export const repos: Repo[] = [
     live: null,
     tech: { label: 'Go', color: '#00ADD8' },
     tier: 'core',
+    license: 'BSD-2-Clause',
     feed: true,
   },
   {
@@ -31,6 +34,7 @@ export const repos: Repo[] = [
     live: null,
     tech: { label: 'Ansible', color: '#EE0000' },
     tier: 'core',
+    license: 'BSD-2-Clause',
     feed: true,
   },
   {
@@ -41,6 +45,7 @@ export const repos: Repo[] = [
     live: 'https://pwa.odio.love/',
     tech: { label: 'Svelte', color: '#FF3E00' },
     tier: 'core',
+    license: 'BSD-2-Clause',
     feed: true,
   },
   {
@@ -51,6 +56,7 @@ export const repos: Repo[] = [
     live: null,
     tech: { label: 'Python', color: '#3776AB' },
     tier: 'core',
+    license: 'MIT',
     feed: true,
   },
   {
@@ -61,6 +67,7 @@ export const repos: Repo[] = [
     live: null,
     tech: { label: 'Go', color: '#00ADD8' },
     tier: 'core',
+    license: 'MIT',
     feed: true,
   },
   {
@@ -71,6 +78,7 @@ export const repos: Repo[] = [
     live: null,
     tech: { label: 'Go', color: '#00ADD8' },
     tier: 'internal',
+    license: 'MIT',
   },
   {
     name: 'go-odio-notify',
@@ -80,6 +88,7 @@ export const repos: Repo[] = [
     live: null,
     tech: { label: 'Go', color: '#00ADD8' },
     tier: 'internal',
+    license: 'BSD-2-Clause',
   },
   {
     name: 'snapclientmpris',
@@ -89,6 +98,7 @@ export const repos: Repo[] = [
     live: null,
     tech: { label: 'Python', color: '#3776AB' },
     tier: 'internal',
+    license: 'MIT',
     feed: true,
   },
   {
@@ -99,6 +109,7 @@ export const repos: Repo[] = [
     live: null,
     tech: { label: 'Python', color: '#3776AB' },
     tier: 'internal',
+    license: 'GPL-3.0',
     feed: true,
   },
   {
@@ -109,6 +120,7 @@ export const repos: Repo[] = [
     live: null,
     tech: { label: 'GitHub Actions', color: '#2088FF' },
     tier: 'internal',
+    license: 'BSD-2-Clause',
   },
   {
     name: 'odio-mympd',
@@ -118,6 +130,7 @@ export const repos: Repo[] = [
     live: null,
     tech: { label: 'GitHub Actions', color: '#2088FF' },
     tier: 'internal',
+    license: 'MIT',
   },
   {
     name: 'odio-docs',
@@ -127,6 +140,7 @@ export const repos: Repo[] = [
     live: 'https://docs.odio.love/',
     tech: { label: 'Astro', color: '#FF5D01' },
     tier: 'core',
+    license: 'BSD-2-Clause',
   },
   {
     name: 'odio.love',
@@ -136,5 +150,6 @@ export const repos: Repo[] = [
     live: 'https://odio.love/',
     tech: { label: 'Astro', color: '#FF5D01' },
     tier: 'internal',
+    license: 'BSD-2-Clause',
   },
 ];

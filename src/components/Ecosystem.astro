@@ -22,6 +22,7 @@ import TechIcon from './icons/TechIcon.astro';
           <h3 class="font-mono text-base font-medium text-text m-0">{project.name}</h3>
         </div>
         <p class="text-xs leading-snug text-muted m-0">{project.desc}</p>
+        <span class="mt-auto self-end pt-1 text-[10px] font-mono text-subtle group-hover:text-leaf transition-colors">{project.license}</span>
       </a>
       {project.live && (
         <a
