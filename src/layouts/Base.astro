@@ -16,6 +16,8 @@ interface Props {
   description?: string;
   ogImage?: string;
   ogType?: 'website' | 'article';
+  robots?: string;
+  includeSiteSchema?: boolean;
 }
 
 const {
@@ -23,11 +25,15 @@ const {
   description = DEFAULT_DESCRIPTION,
   ogImage = OG_IMAGE,
   ogType = 'website',
+  robots = 'index, follow',
+  includeSiteSchema = true,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const siteSchema = buildSiteSchema({ description, version: pkg.version });
+const siteSchema = includeSiteSchema
+  ? buildSiteSchema({ description, version: pkg.version })
+  : null;
 ---
 
 <!doctype html>
@@ -35,7 +41,7 @@ const siteSchema = buildSiteSchema({ description, version: pkg.version });
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={robots} />
 
     <link rel="preload" href={cormorantLight} as="font" type="font/woff2" crossorigin />
 
@@ -72,7 +78,7 @@ const siteSchema = buildSiteSchema({ description, version: pkg.version });
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <script type="application/ld+json" set:html={JSON.stringify(siteSchema)} />
+    {siteSchema && <script type="application/ld+json" set:html={JSON.stringify(siteSchema)} />}
 
     <slot name="head" />
   </head>
