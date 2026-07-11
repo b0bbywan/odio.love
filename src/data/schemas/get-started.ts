@@ -52,7 +52,7 @@ export function buildGetStartedSchema({
         '@type': 'HowToStep',
         position: 3,
         name: 'Wait for installation to complete',
-        text: 'Roughly 5 minutes on x86, under 15 minutes on a Pi 3B+, up to 1h20 on a Pi B+ at 800 MHz.',
+        text: 'Around 5 minutes on x86, under 15 minutes on a Pi 3B+, up to 2h on a Pi B+ at 800 MHz.',
       },
     ],
   };
