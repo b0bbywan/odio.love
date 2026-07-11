@@ -29,7 +29,7 @@ export const verifiedPlatforms: VerifiedPlatform[] = [
   },
   {
     arch: 'armv7',
-    examples: ['Raspberry Pi 3B+ - Raspberry Pi OS Lite (Trixie 13.4)'],
+    examples: ['Raspberry Pi 2B - Raspberry Pi OS Lite', 'Raspberry Pi 3B+ - Raspberry Pi OS Lite (Trixie 13.4)'],
     incoming: false,
   },
   {
