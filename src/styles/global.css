@@ -213,3 +213,77 @@
   border-color: var(--color-leaf);
   background-color: var(--color-surface);
 }
+
+/* ---------------------------------------------------------------------------
+ * Presentation classes replacing inline style="" attributes.
+ * CSP hashes never cover style attributes, so a strict style-src (see
+ * `security.csp` in astro.config.mjs) blocks them. Keep new styles here.
+ * ------------------------------------------------------------------------- */
+
+/* Header: external badge images (HACS, etc.) */
+.badge-img {
+  height: 20px;
+  width: auto;
+}
+
+/* Hero: subtle radial glow behind the fold */
+.hero-glow {
+  background: radial-gradient(
+    ellipse 70% 60% at 50% 50%,
+    rgba(74, 124, 89, 0.08) 0%,
+    transparent 70%
+  );
+}
+
+/* Copy buttons: check icon is hidden until a copy succeeds.
+   copy.js then toggles it via element.style.display (CSSOM, not CSP-blocked). */
+.check {
+  display: none;
+}
+
+/* Manifesto: oversized display prose */
+.manifesto-lead {
+  font-size: 1.25rem;
+  line-height: 1.9;
+}
+
+/* Ecosystem: responsive auto-filling repo grid */
+.ecosystem-grid {
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+/* GetStarted: cards share row tracks with the parent grid */
+.subgrid-rows {
+  grid-template-rows: subgrid;
+}
+
+/* how-it-works.mdx column + figure rhythm */
+.hiw-col {
+  max-width: 65ch;
+  margin: 0 auto;
+}
+.hiw-col-wide {
+  max-width: 72rem;
+  margin: 0 auto;
+}
+.hiw-lead {
+  font-size: 1.125rem;
+  line-height: 1.75;
+}
+.hiw-figure {
+  display: block;
+  width: 100%;
+  max-width: 56rem;
+  margin: 2rem auto;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+}
+.hiw-figure-end {
+  margin: 0 auto 2rem;
+}
+.hiw-logo {
+  display: block;
+  height: 40px;
+  width: auto;
+  margin: 0.5rem auto 1.5rem;
+}

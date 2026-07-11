@@ -3,7 +3,7 @@ import { repos } from '../data/repos.js';
 import TechIcon from './icons/TechIcon.astro';
 ---
 
-<div class="grid mb-16 gap-4" style="grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));">
+<div class="grid mb-16 gap-4 ecosystem-grid">
   {repos.map((project) => (
     <div class="relative flex flex-col">
       <a

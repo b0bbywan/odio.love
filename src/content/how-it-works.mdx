@@ -2,7 +2,7 @@ import Ecosystem from '../components/Ecosystem.astro';
 import { ecosystemCountLabel } from '../data/config.js';
 
 <section id="how-it-works">
-<div style="max-width: 65ch; margin: 0 auto;">
+<div class="hiw-col">
 
 # How odio works
 
@@ -14,7 +14,7 @@ odio is not an appliance. You can flash an image or run the installer and get a 
 </section>
 
 <section id="the-stack">
-<div style="max-width: 65ch; margin: 0 auto;">
+<div class="hiw-col">
 
 ### The stack is not a matter of taste.
 
@@ -25,7 +25,7 @@ odio is not an appliance. You can flash an image or run the installer and get a 
   alt="odio network diagram: Mac/PC, Phone/Tablet and NAS connect to odios services (Shairport Sync, spotifyd, BlueZ, upmpdcli, Snapcast, MPD) and go-odio-api via AirPlay, Spotify Connect, Bluetooth, UPnP, Snapcast, PulseAudio TCP, odio-pwa, and Home Assistant"
   loading="lazy"
   decoding="async"
-  style="width: 100%; max-width: 56rem; display: block; margin: 2rem auto; border-radius: 0.5rem; border: 1px solid var(--color-border);"
+  class="hiw-figure"
 />
 
 [PipeWire](https://pipewire.org/) is the future of Linux audio, and odio knows it. It will arrive as an experimental backend. For now, six years of PulseAudio TCP sink in production earns it its place.
@@ -36,7 +36,7 @@ Regarding **MPD**, odio takes a different approach than other audio distribution
 </section>
 
 <section id="user-session">
-<div style="max-width: 65ch; margin: 0 auto;">
+<div class="hiw-col">
 
 ### One decision shapes everything.
 
@@ -54,7 +54,7 @@ And it is precisely this that makes [**go-odio-api**](https://github.com/b0bbywa
 </section>
 
 <section id="go-odio-api">
-<div style="max-width: 65ch; margin: 0 auto;">
+<div class="hiw-col">
 
 ### go-odio-api
 
@@ -63,7 +63,7 @@ And it is precisely this that makes [**go-odio-api**](https://github.com/b0bbywa
   alt="odio architecture diagram: clients (odio-pwa, odio-ha, custom) connect via HTTP and SSE to go-odio-api, which controls MPD, Shairport Sync, Snapcast, upmpdcli, spotifyd, and BlueZ via systemctl within a systemd user session"
   loading="lazy"
   decoding="async"
-  style="width: 100%; max-width: 56rem; display: block; margin: 0 auto 2rem; border-radius: 0.5rem; border: 1px solid var(--color-border);"
+  class="hiw-figure hiw-figure-end"
 />
 
 [**go-odio-api**](https://github.com/b0bbywan/go-odio-api) is what makes the stack programmable.
@@ -85,7 +85,7 @@ go-odio-api is fully configurable and exposes only what you enable. It needs not
 </section>
 
 <section id="odio-ha">
-<div style="max-width: 65ch; margin: 0 auto;">
+<div class="hiw-col">
 
 ### odio-ha
 
@@ -101,7 +101,7 @@ go-odio-api is fully configurable and exposes only what you enable. It needs not
     alt="Add odio-ha to HACS"
     loading="lazy"
     decoding="async"
-    style="height: 40px; width: auto; display: block; margin: 0.5rem auto 1.5rem;"
+    class="hiw-logo"
   />
 </a>
 
@@ -127,19 +127,19 @@ What's still missing is a dashboard that does the integration justice. If you bu
 </section>
 
 <section id="ecosystem" class="ecosystem">
-<div style="max-width: 65ch; margin: 0 auto;">
+<div class="hiw-col">
 
 ## The ecosystem
 
 <p class="ecosystem-sub">{ecosystemCountLabel} repositories. One coherent stack.</p>
 
 </div>
-<div style="max-width: 72rem; margin: 0 auto;">
+<div class="hiw-col-wide">
 
 <Ecosystem />
 
 </div>
-<div style="max-width: 65ch; margin: 0 auto; font-size: 1.125rem; line-height: 1.75;">
+<div class="hiw-col hiw-lead">
 
 The foundation is six years old.
 
@@ -161,7 +161,7 @@ Bash scripts become binaries. Binaries become packages. Packages get a repo. A r
 </section>
 
 <section id="about-ai">
-<div style="max-width: 65ch; margin: 0 auto;">
+<div class="hiw-col">
 
 ## About AI usage
 

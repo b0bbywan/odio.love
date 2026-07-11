@@ -18,11 +18,10 @@ const howToJsonLd = buildGetStartedSchema({ installCmd, imagerManifestUrl });
       Two paths. Same destination.
     </p>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6" style="grid-template-rows: subgrid;">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 subgrid-rows">
       <!-- Flash an image -->
       <div
-        class="rounded-xl p-8 border grid grid-cols-1 gap-4 row-span-4 min-w-0 overflow-hidden bg-bg border-moss"
-        style="grid-template-rows: subgrid;"
+        class="rounded-xl p-8 border grid grid-cols-1 gap-4 row-span-4 min-w-0 overflow-hidden bg-bg border-moss subgrid-rows"
       >
         <div class="flex items-center gap-3">
           <Flag width="24" height="24" class="text-moss" aria-hidden="true" />
@@ -42,7 +41,7 @@ const howToJsonLd = buildGetStartedSchema({ installCmd, imagerManifestUrl });
             title="Copy"
           >
             <Copy width="14" height="14" />
-            <Check class="check" width="14" height="14" style="display:none" />
+            <Check class="check" width="14" height="14" />
           </button>
         </div>
         <ul class="flex flex-col gap-1.5 text-xs text-subtle">
@@ -53,8 +52,7 @@ const howToJsonLd = buildGetStartedSchema({ installCmd, imagerManifestUrl });
 
       <!-- Install on Debian -->
       <div
-        class="rounded-xl p-8 border grid grid-cols-1 gap-4 row-span-4 min-w-0 overflow-hidden bg-bg border-moss"
-        style="grid-template-rows: subgrid;"
+        class="rounded-xl p-8 border grid grid-cols-1 gap-4 row-span-4 min-w-0 overflow-hidden bg-bg border-moss subgrid-rows"
       >
         <div class="flex items-center gap-3">
           <Terminal width="24" height="24" class="text-leaf" aria-hidden="true" />
@@ -74,7 +72,7 @@ const howToJsonLd = buildGetStartedSchema({ installCmd, imagerManifestUrl });
             title="Copy"
           >
             <Copy width="14" height="14" />
-            <Check class="check" width="14" height="14" style="display:none" />
+            <Check class="check" width="14" height="14" />
           </button>
         </div>
         <ul class="flex flex-col gap-1.5 text-xs text-subtle">
