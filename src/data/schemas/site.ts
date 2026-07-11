@@ -106,6 +106,7 @@ export function buildSiteSchema({ description, version }: BuildSiteSchemaArgs) {
         description:
           'Open-source Raspberry Pi audio streaming project: self-hosted, Home Assistant native, no telemetry.',
         founder: AUTHOR_REF,
+        termsOfService: `${SITE_URL}/terms`,
         contactPoint: {
           '@type': 'ContactPoint',
           contactType: 'customer support',

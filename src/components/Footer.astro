@@ -102,7 +102,14 @@ const version = `v${pkg.version}`;
       <p class="text-xs text-center text-subtle">
         odio·love — Your Pi. Your music. No expiry date.
       </p>
-      <p class="text-xs text-center font-mono mt-1 text-subtle">{version}</p>
+      <nav class="mt-3 flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 text-xs" aria-label="Legal">
+        <a href="/legal-notice" class="transition-colors text-subtle hover:text-leaf">Legal notice</a>
+        <span aria-hidden="true" class="text-subtle">·</span>
+        <a href="/privacy" class="transition-colors text-subtle hover:text-leaf">Privacy</a>
+        <span aria-hidden="true" class="text-subtle">·</span>
+        <a href="/terms" class="transition-colors text-subtle hover:text-leaf">Terms</a>
+      </nav>
+      <p class="text-xs text-center font-mono mt-3 text-subtle">{version}</p>
     </div>
   </div>
 </footer>

@@ -1,0 +1,98 @@
+---
+import Base from './Base.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  heading: string;
+  updated: string;
+}
+
+const { title, description, heading, updated } = Astro.props;
+---
+
+<Base title={title} description={description} ogType="article">
+  <main id="main" aria-label={heading} class="pt-24 pb-24 px-6">
+    <article class="legal-prose max-w-3xl mx-auto">
+      <h1>{heading}</h1>
+      <p class="updated">Last updated: {updated}</p>
+      <slot />
+    </article>
+  </main>
+
+  <Footer />
+</Base>
+
+<style>
+  .legal-prose :global(h1) {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+  }
+
+  .legal-prose :global(h2) {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .legal-prose :global(.updated) {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--color-subtle);
+    margin-bottom: 2.5rem;
+  }
+
+  .legal-prose :global(p) {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--color-muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .legal-prose :global(ul) {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .legal-prose :global(li) {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--color-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .legal-prose :global(strong) {
+    color: var(--color-leaf);
+    font-weight: 500;
+  }
+
+  .legal-prose :global(a) {
+    color: var(--color-leaf);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.15s;
+  }
+
+  .legal-prose :global(a:hover) {
+    color: var(--color-amber);
+  }
+
+  .legal-prose :global(code) {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    color: var(--color-amber);
+    background-color: var(--color-surface);
+    padding: 0.1em 0.4em;
+    border-radius: 3px;
+  }
+</style>
