@@ -7,6 +7,8 @@
     "build": "astro build",
     "check": "astro check",
     "check:redirects": "node scripts/check-redirects.mjs",
+    "csp:sync": "node scripts/csp.mjs",
+    "csp:check": "node scripts/csp.mjs --check",
     "lint": "eslint .",
     "test": "vitest run",
     "diagrams": "node scripts/generate-diagram.mjs",
