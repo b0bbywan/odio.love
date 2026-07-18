@@ -41,7 +41,7 @@
     "globals": "^17.7.0",
     "simple-icons": "^16.25.0",
     "typescript": "^5.7.0",
-    "typescript-eslint": "^8.63.0",
+    "typescript-eslint": "^8.64.0",
     "vitest": "^4.1.9"
   },
   "overrides": {
