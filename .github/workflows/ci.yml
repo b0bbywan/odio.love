@@ -29,6 +29,8 @@ jobs:
 
       - run: npm run build
 
+      - run: npm run csp:check
+
       - name: Upload dist
         uses: actions/upload-artifact@v7
         with:
