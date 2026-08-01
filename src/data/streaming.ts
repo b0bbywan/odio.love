@@ -30,7 +30,7 @@ export const services: Service[] = [
   },
   {
     name: 'Qobuz',
-    desc: 'Full catalog via upmpdcli. Hi-res included.',
+    desc: 'Full catalog via upmpdcli. Qobuz Connect on the way',
     icon: null,
     iconImg: '/logo_qobuz.svg',
     iconColor: null,
@@ -38,7 +38,7 @@ export const services: Service[] = [
   },
   {
     name: 'Tidal',
-    desc: 'Full catalog via via upmpdcli. MQA and lossless.',
+    desc: 'Full catalog via upmpdcli.',
     icon: 'siTidal',
     iconColor: '#ffffff',
     docs: '/guides/tidal-qobuz/',
