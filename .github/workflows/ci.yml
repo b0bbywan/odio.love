@@ -31,6 +31,8 @@ jobs:
 
       - run: npm run csp:check
 
+      - run: npm run check:obfuscation
+
       - name: Upload dist
         uses: actions/upload-artifact@v7
         with:

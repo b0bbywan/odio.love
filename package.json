@@ -7,6 +7,7 @@
     "build": "astro build",
     "check": "astro check",
     "check:redirects": "node scripts/check-redirects.mjs",
+    "check:obfuscation": "node scripts/check-obfuscation.mjs",
     "csp:sync": "node scripts/csp.mjs",
     "csp:check": "node scripts/csp.mjs --check",
     "lint": "eslint .",
