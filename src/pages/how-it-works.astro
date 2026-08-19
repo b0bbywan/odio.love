@@ -83,12 +83,24 @@ const howItWorksJsonLd = buildHowItWorksSchema();
   }
 
   /* Zoomable diagrams */
+  .how-prose :global(.zoom-trigger) {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: zoom-in;
+  }
   .how-prose :global(img.zoomable) {
     cursor: zoom-in;
     transition: opacity 0.15s;
   }
-  .how-prose :global(img.zoomable:hover) {
+  .how-prose :global(.zoom-trigger:hover img.zoomable) {
     opacity: 0.85;
+  }
+
+  #img-lightbox:focus {
+    outline: none;
   }
 
   #img-lightbox {
@@ -130,8 +142,8 @@ const howItWorksJsonLd = buildHowItWorksSchema();
   }
 </style>
 
-<div id="img-lightbox" role="dialog" aria-modal="true" aria-label="Image agrandie">
-  <button id="img-lightbox-close" aria-label="Fermer">✕</button>
+<div id="img-lightbox" role="dialog" aria-modal="true" aria-label="Enlarged diagram" tabindex="-1">
+  <button id="img-lightbox-close" type="button" aria-label="Close the enlarged diagram">✕</button>
   <img src="" alt="" />
 </div>
 
@@ -139,27 +151,41 @@ const howItWorksJsonLd = buildHowItWorksSchema();
   const lightbox = document.getElementById('img-lightbox') as HTMLElement;
   const lightboxImg = lightbox.querySelector('img') as HTMLImageElement;
   const closeBtn = document.getElementById('img-lightbox-close') as HTMLButtonElement;
+  let lastTrigger: HTMLElement | null = null;
 
-  // Target standalone imgs (not inside <a>) in how-prose
-  const prose = document.querySelector('.how-prose');
-  if (prose) {
-    prose.querySelectorAll<HTMLImageElement>('img').forEach((img) => {
-      if (!img.closest('a')) {
-        img.classList.add('zoomable');
-        img.addEventListener('click', () => {
-          lightboxImg.src = img.src;
-          lightboxImg.alt = img.alt;
-          lightbox.classList.add('open');
-          document.body.style.overflow = 'hidden';
-        });
-      }
-    });
+  function openLightbox(img: HTMLImageElement, trigger: HTMLElement) {
+    lastTrigger = trigger;
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
   }
 
   function closeLightbox() {
+    if (!lightbox.classList.contains('open')) return;
     lightbox.classList.remove('open');
     document.body.style.overflow = '';
     lightboxImg.src = '';
+    lastTrigger?.focus();
+    lastTrigger = null;
+  }
+
+  // Target standalone imgs (not inside <a>) in how-prose. Each one gets a real
+  // button wrapper: a click handler on a bare <img> is mouse-only (WCAG 2.1.1).
+  const prose = document.querySelector('.how-prose');
+  if (prose) {
+    prose.querySelectorAll<HTMLImageElement>('img').forEach((img) => {
+      if (img.closest('a')) return;
+      img.classList.add('zoomable');
+      const trigger = document.createElement('button');
+      trigger.type = 'button';
+      trigger.className = 'zoom-trigger';
+      trigger.setAttribute('aria-label', `Enlarge diagram: ${img.alt}`);
+      img.replaceWith(trigger);
+      trigger.appendChild(img);
+      trigger.addEventListener('click', () => openLightbox(img, trigger));
+    });
   }
 
   lightbox.addEventListener('click', (e) => {
@@ -167,6 +193,12 @@ const howItWorksJsonLd = buildHowItWorksSchema();
   });
   closeBtn.addEventListener('click', closeLightbox);
   document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('open')) return;
     if (e.key === 'Escape') closeLightbox();
+    // Close is the only control in the dialog, so the trap is: keep it focused.
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      closeBtn.focus();
+    }
   });
 </script>
