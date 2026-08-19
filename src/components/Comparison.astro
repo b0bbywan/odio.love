@@ -14,20 +14,26 @@ import { comparisonRows } from '../data/comparison.js';
       The same features. Very different terms.
     </p>
 
-    <div class="overflow-x-auto rounded-xl border border-border">
+    <!-- tabindex: a scrollable region must be reachable by keyboard (WCAG 2.1.1) -->
+    <div
+      class="overflow-x-auto rounded-xl border border-border"
+      tabindex="0"
+      role="region"
+      aria-label="odio compared to Volumio and commercial streamers"
+    >
       <table class="w-full text-sm border-collapse">
         <thead>
           <tr class="bg-bg">
-            <th class="text-left px-5 py-4 font-medium border-b text-muted border-border">Feature</th>
-            <th class="text-center px-5 py-4 font-medium border-b border-l text-amber border-border border-l-amber">odio</th>
-            <th class="text-center px-5 py-4 font-medium border-b border-l text-muted border-border">Volumio (free)</th>
-            <th class="text-center px-5 py-4 font-medium border-b border-l text-muted border-border">Commercial</th>
+            <th scope="col" class="text-left px-5 py-4 font-medium border-b text-muted border-border">Feature</th>
+            <th scope="col" class="text-center px-5 py-4 font-medium border-b border-l text-amber border-border border-l-amber">odio</th>
+            <th scope="col" class="text-center px-5 py-4 font-medium border-b border-l text-muted border-border">Volumio (free)</th>
+            <th scope="col" class="text-center px-5 py-4 font-medium border-b border-l text-muted border-border">Commercial</th>
           </tr>
         </thead>
         <tbody>
           {comparisonRows.map((row, i) => (
             <tr class={i % 2 === 0 ? 'bg-surface' : 'bg-bg'}>
-              <td class="px-5 py-3.5 border-b text-text border-border">{row.feature}</td>
+              <th scope="row" class="px-5 py-3.5 border-b text-left font-normal text-text border-border">{row.feature}</th>
               <td class={`px-5 py-3.5 border-b border-l text-center font-medium border-border border-l-2 border-l-amber ${row.odio.positive ? 'text-leaf' : 'text-muted'}`}>{row.odio.value}</td>
               <td class={`px-5 py-3.5 border-b border-l text-center border-border ${row.volumio.positive ? 'text-leaf' : 'text-muted'}`}>{row.volumio.value}</td>
               <td class={`px-5 py-3.5 border-b border-l text-center border-border ${row.commercial.positive ? 'text-leaf' : 'text-muted'}`}>{row.commercial.value}</td>
