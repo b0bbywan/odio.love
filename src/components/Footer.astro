@@ -71,8 +71,7 @@ const version = `v${pkg.version}`;
         <a
           href="#"
           data-d={discordCode}
-          onclick="window.open('https://disc'+'ord.gg/'+this.dataset.d,'_blank','noopener');return false"
-          class="flex items-center gap-2 text-sm transition-colors cursor-pointer text-subtle hover:text-muted focus:text-muted"
+          class="js-discord flex items-center gap-2 text-sm transition-colors cursor-pointer text-subtle hover:text-muted focus:text-muted"
           aria-label="odio Discord"
         >
           <Discord width="16" height="16" aria-hidden="true" />
@@ -113,3 +112,22 @@ const version = `v${pkg.version}`;
     </div>
   </div>
 </footer>
+
+<script>
+  /**
+   * The invite URL is assembled client-side so it is not a harvestable string in
+   * the static HTML. It used to live in an inline `onclick`, which the site's CSP
+   * blocks (no 'unsafe-hashes'), leaving the link dead — and a plain href is
+   * better anyway: it works with the keyboard, middle-click and "open in new tab".
+   */
+  document.querySelectorAll<HTMLAnchorElement>('a.js-discord').forEach((a) => {
+    const code = a.dataset.d;
+    if (!code) return;
+    // .join() survives minification; a `'disc' + 'ord'` concatenation gets folded
+    // straight back into a literal, which is what the split was there to avoid.
+    a.href = `https://${['disc', 'ord', '.gg'].join('')}/${code}`;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.removeAttribute('data-d');
+  });
+</script>
