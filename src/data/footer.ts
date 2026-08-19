@@ -20,5 +20,5 @@ export const deps: FooterLink[] = [
 export const hostedBy: HostingLink[] = [
   { name: 'GitHub', url: 'https://github.com/', label: 'CI' },
   { name: 'Vercel', url: 'https://vercel.com/', label: 'hosting' },
-  { name: 'OVH', url: 'https://www.ovh.com/', label: 'DNS' },
+  { name: 'OVHcloud', url: 'https://www.ovhcloud.com/', label: 'DNS' },
 ];
