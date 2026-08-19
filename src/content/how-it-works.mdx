@@ -16,7 +16,7 @@ odio is not an appliance. You can flash an image or run the installer and get a 
 <section id="the-stack">
 <div class="hiw-col">
 
-### The stack is not a matter of taste.
+## The stack is not a matter of taste.
 
 [**MPD**](https://www.musicpd.org/) for local playback. [**Shairport Sync**](https://github.com/mikebrady/shairport-sync) for AirPlay. [**Snapcast**](https://github.com/badaix/snapcast) for synchronized multi-room audio. [**upmpdcli**](https://www.lesbonscomptes.com/upmpdcli/) for UPnP/DLNA, Qobuz, and Tidal Connect. [**BlueZ**](http://www.bluez.org/) for Bluetooth A2DP. [**PulseAudio**](https://www.freedesktop.org/wiki/Software/PulseAudio/) as the audio routing backbone. These aren't choices made for convenience. They are the reference implementations, the ones the open-source audio community has converged on over years. There is simply no better option for any of them.
 
@@ -38,7 +38,7 @@ Regarding **MPD**, odio takes a different approach than other audio distribution
 <section id="user-session">
 <div class="hiw-col">
 
-### One decision shapes everything.
+## One decision shapes everything.
 
 odio runs in your **systemd user session**. Not as root. go-odio-api actually refuses to run as root. This is not an implementation detail: it's the architectural foundation. odio's a guest, not a landlord.
 
@@ -56,7 +56,7 @@ And it is precisely this that makes [**go-odio-api**](https://github.com/b0bbywa
 <section id="go-odio-api">
 <div class="hiw-col">
 
-<h3>go-odio-api</h3>
+<h2>go-odio-api</h2>
 
 <img
   src="/architecture.svg"
@@ -87,7 +87,7 @@ go-odio-api is fully configurable and exposes only what you enable. It needs not
 <section id="odio-ha">
 <div class="hiw-col">
 
-<h3>odio-ha</h3>
+<h2>odio-ha</h2>
 
 [**odio-ha**](https://github.com/b0bbywan/odio-ha) is a native [Home Assistant](https://www.home-assistant.io/) integration, installable via [HACS](https://hacs.xyz/).
 
