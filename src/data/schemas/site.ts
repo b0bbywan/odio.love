@@ -107,10 +107,12 @@ export function buildSiteSchema({ description, version }: BuildSiteSchemaArgs) {
           'Open-source Raspberry Pi audio streaming project: self-hosted, Home Assistant native, no telemetry.',
         founder: AUTHOR_REF,
         termsOfService: `${SITE_URL}/terms`,
+        // No `email` here on purpose: it would publish in plain text, on every
+        // page, the address Email.astro goes out of its way to keep out of the
+        // markup. The issues URL is the contact route we actually want indexed.
         contactPoint: {
           '@type': 'ContactPoint',
           contactType: 'customer support',
-          email: 'contact@odio.love',
           url: 'https://github.com/b0bbywan/odios/issues',
           availableLanguage: ['English', 'French'],
         },
