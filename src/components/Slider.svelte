@@ -10,69 +10,139 @@
     { src: '/screenshots/rpi-imager.png', alt: 'Raspberry Pi Imager — flash odio' },
   ];
 
+  // WCAG 2.2.2: auto-rotating content needs a pause control, and it must not
+  // start rotating at all for someone who asked for reduced motion.
+  const prefersReducedMotion =
+    typeof window !== 'undefined' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   let current = $state(0);
   let lightbox = $state(false);
+  let playing = $state(!prefersReducedMotion);
+  let lightboxEl = $state(null);
+  let lastTrigger = null;
   let timer;
+
+  function stopTimer() {
+    clearInterval(timer);
+    timer = undefined;
+  }
+
+  function startTimer() {
+    stopTimer();
+    if (!playing || lightbox) return;
+    timer = setInterval(() => (current = (current + 1) % slides.length), 5000);
+  }
 
   function go(i) {
     current = ((i % slides.length) + slides.length) % slides.length;
-    resetTimer();
+    startTimer();
   }
 
-  function resetTimer() {
-    clearInterval(timer);
-    timer = setInterval(() => current = (current + 1) % slides.length, 5000);
+  function openLightbox(event) {
+    lastTrigger = event.currentTarget;
+    lightbox = true;
+  }
+
+  function closeLightbox() {
+    lightbox = false;
+    lastTrigger?.focus();
+    lastTrigger = null;
+  }
+
+  // Keep focus inside the dialog: aria-modal only tells assistive tech, it does
+  // not stop Tab from walking into the page behind.
+  function trapFocus(event) {
+    if (event.key !== 'Tab' || !lightboxEl) return;
+    const focusable = lightboxEl.querySelectorAll('button');
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    const active = document.activeElement;
+    if (event.shiftKey && (active === first || active === lightboxEl)) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && active === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
+
+  function onWindowKeydown(event) {
+    if (!lightbox) return;
+    if (event.key === 'Escape') closeLightbox();
+    else if (event.key === 'ArrowLeft') go(current - 1);
+    else if (event.key === 'ArrowRight') go(current + 1);
+    else trapFocus(event);
   }
 
   $effect(() => {
-    resetTimer();
-    return () => clearInterval(timer);
+    // reading both keeps the timer in sync with playback and lightbox state
+    if (playing && !lightbox) startTimer();
+    else stopTimer();
+    return stopTimer;
+  });
+
+  $effect(() => {
+    if (lightbox) lightboxEl?.focus();
   });
 </script>
 
-<div class="slider">
+<svelte:window onkeydown={onWindowKeydown} />
+
+<div class="slider" role="group" aria-roledescription="carousel" aria-label="odio screenshots">
   <div class="viewport">
-    <button class="nav prev" onclick={() => go(current - 1)} aria-label="Previous">&#8249;</button>
-    <button class="nav next" onclick={() => go(current + 1)} aria-label="Next">&#8250;</button>
+    <button class="nav prev" onclick={() => go(current - 1)} aria-label="Previous screenshot">&#8249;</button>
+    <button class="nav next" onclick={() => go(current + 1)} aria-label="Next screenshot">&#8250;</button>
     {#each slides as slide, i (slide.src)}
+      <!-- inert: the off-screen slides stay in the DOM for the crossfade, but
+           they must not be tabbable or announced -->
       <button
         type="button"
         class="slide-btn"
         class:active={i === current}
-        onclick={() => { lightbox = true; clearInterval(timer); }}
-        aria-label="View {slide.alt}"
+        inert={i !== current}
+        onclick={openLightbox}
+        aria-label="Enlarge screenshot: {slide.alt}"
       >
         <img src={slide.src} alt={slide.alt} loading="lazy" decoding="async" class="slide-img" />
       </button>
     {/each}
   </div>
-  <div class="caption">{slides[current].alt}</div>
+  <div class="caption" aria-live={playing ? 'off' : 'polite'}>{slides[current].alt}</div>
   <div class="dots">
+    <button
+      type="button"
+      class="playpause"
+      onclick={() => (playing = !playing)}
+      aria-label={playing ? 'Pause the screenshot slideshow' : 'Play the screenshot slideshow'}
+    >{playing ? '❚❚' : '▶'}</button>
     {#each slides as slide, i (slide.src)}
       <button
+        type="button"
         class="dot"
         class:active={i === current}
         onclick={() => go(i)}
-        aria-label="Go to slide {i + 1}"
+        aria-label="Go to slide {i + 1} of {slides.length}"
+        aria-current={i === current ? 'true' : undefined}
       ></button>
     {/each}
   </div>
 </div>
 
 {#if lightbox}
-  <!-- svelte-ignore a11y_no_static_element_interactions -->
   <div
     class="lightbox"
-    onclick={(e) => { if (e.target === e.currentTarget) { lightbox = false; resetTimer(); } }}
-    onkeydown={(e) => {
-      if (e.key === 'Escape') { lightbox = false; resetTimer(); }
-      if (e.key === 'ArrowLeft') go(current - 1);
-      if (e.key === 'ArrowRight') go(current + 1);
-    }}
+    bind:this={lightboxEl}
+    role="dialog"
+    aria-modal="true"
+    aria-label="Screenshot viewer"
+    tabindex="-1"
+    onclick={(e) => { if (e.target === e.currentTarget) closeLightbox(); }}
   >
-    <button class="lb-close" onclick={() => { lightbox = false; resetTimer(); }} aria-label="Close">&times;</button>
-    <button class="lb-nav lb-prev" onclick={() => go(current - 1)} aria-label="Previous">&#8249;</button>
-    <button class="lb-nav lb-next" onclick={() => go(current + 1)} aria-label="Next">&#8250;</button>
+    <button type="button" class="lb-close" onclick={closeLightbox} aria-label="Close the screenshot viewer">&times;</button>
+    <button type="button" class="lb-nav lb-prev" onclick={() => go(current - 1)} aria-label="Previous screenshot">&#8249;</button>
+    <button type="button" class="lb-nav lb-next" onclick={() => go(current + 1)} aria-label="Next screenshot">&#8250;</button>
     <img src={slides[current].src} alt={slides[current].alt} decoding="async" class="lb-img" />
     <div class="lb-caption">{slides[current].alt}</div>
   </div>
@@ -150,9 +220,26 @@
 
   .dots {
     display: flex;
+    align-items: center;
     justify-content: center;
     gap: 8px;
     margin-top: 0.75rem;
+  }
+
+  .playpause {
+    background: none;
+    border: none;
+    padding: 0;
+    margin-right: 4px;
+    font-size: 0.7rem;
+    line-height: 8px;
+    color: var(--color-muted);
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .playpause:hover {
+    color: var(--color-leaf);
   }
 
   .dot {
@@ -176,6 +263,7 @@
 
   .lightbox {
     position: fixed;
+    outline: none;
     inset: 0;
     z-index: 999;
     background: rgba(0, 0, 0, 0.9);
