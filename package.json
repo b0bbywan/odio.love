@@ -29,7 +29,7 @@
     "@tailwindcss/vite": "^4.3.3",
     "@vercel/analytics": "^2.0.1",
     "astro": "^7.2.4",
-    "marked": "^18.0.9",
+    "marked": "^18.0.11",
     "svelte": "^5.56.9",
     "tailwindcss": "^4.3.0"
   },
