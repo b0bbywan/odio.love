@@ -14,11 +14,6 @@
       "source": "/manifest.json",
       "destination": "https://github.com/b0bbywan/odios/releases/latest/download/manifest.json",
       "permanent": false
-    },
-    {
-      "source": "/upgrade",
-      "destination": "https://github.com/b0bbywan/odios/releases/latest/download/odio_upgrade.py",
-      "permanent": false
     }
   ],
   "headers": [
