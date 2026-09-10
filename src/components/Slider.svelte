@@ -8,6 +8,7 @@
     { src: '/screenshots/pwa-instances.png', alt: 'PWA — multi-node management' },
     { src: '/screenshots/odio-ha.png', alt: 'Home Assistant — odio-ha integration' },
     { src: '/screenshots/rpi-imager.png', alt: 'Raspberry Pi Imager — flash odio' },
+    { src: '/screenshots/settings-dac-picker.webp', alt: 'Settings page: picking the DAC overlay from the supported boards' },
   ];
 
   // WCAG 2.2.2: auto-rotating content needs a pause control, and it must not
