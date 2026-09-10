@@ -131,6 +131,10 @@
 </div>
 
 {#if lightbox}
+  <!-- Clicking the backdrop closes, but that is the mouse shortcut, not the
+       only way out: Escape is handled on window, the close button is a real
+       button, and focus stays trapped in the dialog. -->
+  <!-- svelte-ignore a11y_click_events_have_key_events -->
   <div
     class="lightbox"
     bind:this={lightboxEl}
