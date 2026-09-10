@@ -20,6 +20,8 @@ odio is not an appliance. You can flash an image or run the installer and get a 
 
 [**MPD**](https://www.musicpd.org/) for local playback. [**Shairport Sync**](https://github.com/mikebrady/shairport-sync) for AirPlay. [**Snapcast**](https://github.com/badaix/snapcast) for synchronized multi-room audio. [**upmpdcli**](https://www.lesbonscomptes.com/upmpdcli/) for UPnP/DLNA, Qobuz, and Tidal Connect. [**BlueZ**](http://www.bluez.org/) for Bluetooth A2DP. [**PulseAudio**](https://www.freedesktop.org/wiki/Software/PulseAudio/) as the audio routing backbone. These aren't choices made for convenience. They are the reference implementations, the ones the open-source audio community has converged on over years. There is simply no better option for any of them.
 
+Qobuz Connect hasn't had those years yet. [**qbzd**](https://github.com/vicrodh/qbz), the headless daemon of the QBZ player, is where that work is happening, and it moves fast. odio packages it and leaves it off until you ask for it.
+
 <img
   src="/architecture-network.svg"
   alt="odio network diagram: Mac/PC, Phone/Tablet and NAS connect to odios services (Shairport Sync, spotifyd, BlueZ, upmpdcli, Snapcast, MPD) and go-odio-api via AirPlay, Spotify Connect, Bluetooth, UPnP, Snapcast, PulseAudio TCP, odio-pwa, and Home Assistant"
@@ -78,6 +80,8 @@ Every odio node becomes observable and controllable from anywhere on your networ
 If this sounds like [KDE Connect](https://kdeconnect.kde.org/), it's the same space, with different trade-offs. KDE Connect assumes a desktop, a GUI, a paired client. go-odio-api assumes a network and a user session. Nothing else. It runs headless, exposes a REST surface, and does less, on purpose.
 
 The binary ships with an embedded web UI. No separate deployment, no build step, no CDN dependency. The API and the interface are the same process, started by the same service. It even updates itself: the whole odio stack upgrades over the air, straight from the UI, no SSH. But the API is the product. The embedded UI is one client among many possible ones. Build yours.
+
+Not everything should need a shell. The gear in the UI header opens the node's settings page, served by [**odioctl**](https://github.com/b0bbywan/odioctl) on port 8021: apply an upgrade, choose which components the node runs, pick the DAC overlay for your board and reboot into it, sign in to Qobuz or Tidal by opening a link. No SSH, no config file to edit, and the page follows the node live as things happen. Every one of those is also an `odioctl` command, so neither way is the fallback of the other. What belongs on the page and what stays on the command line is still being decided, in the [discussions](https://github.com/b0bbywan/odios/discussions).
 
 go-odio-api is fully configurable and exposes only what you enable. It needs nothing more than a Linux user session, which means it runs anywhere the session model does. Beyond the Pi: an HTPC on Debian, a NAS on OpenMediaVault, a workstation on Fedora. Same binary, different configuration, same control surface. Desktop compatibility wasn't a design goal. It's a consequence of building on the right abstraction.
 
