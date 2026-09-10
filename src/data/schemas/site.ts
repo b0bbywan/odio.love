@@ -59,6 +59,7 @@ const screenshots = [
   'odio-ha.png',
   'pwa-instances.png',
   'rpi-imager.png',
+  'settings-dac-picker.webp',
 ].map((f) => `${SITE_URL}/screenshots/${f}`);
 
 const keywords = [
