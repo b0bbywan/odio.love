@@ -73,12 +73,12 @@ export const comparisonRows: ComparisonRow[] = [
   },
   {
     feature: 'Qobuz',
-    odio: { value: '✅ Included (via upmpdcli)', positive: true },
+    odio: { value: '✅ Included (Qobuz Connect + upmpdcli)', positive: true },
     volumio: { value: '💰 Premium only', positive: false },
     commercial: { value: 'Varies', positive: null },
   },
   {
-    feature: 'Tidal / Tidal Connect',
+    feature: 'Tidal',
     odio: { value: '✅ Included (via upmpdcli)', positive: true },
     volumio: { value: '💰 Premium only', positive: false },
     commercial: { value: 'Varies', positive: null },
@@ -138,8 +138,20 @@ export const comparisonRows: ComparisonRow[] = [
     commercial: { value: 'Plug and play', positive: null },
   },
   {
+    feature: 'Configuration',
+    odio: { value: 'Settings page, and plain config files to go further', positive: true },
+    volumio: { value: 'Web UI settings', positive: null },
+    commercial: { value: 'Vendor app only', positive: false },
+  },
+  {
+    feature: 'Optional components',
+    odio: { value: 'Enable or disable services after install', positive: true },
+    volumio: { value: 'Plugins, several Premium only', positive: false },
+    commercial: { value: 'Fixed feature set', positive: false },
+  },
+  {
     feature: 'Upgrade',
-    odio: { value: 'In-place OTA from the web UI or Home Assistant', positive: true },
+    odio: { value: 'In-place OTA from the web UI, the settings page or Home Assistant', positive: true },
     volumio: { value: 'OTA / reflash between major versions', positive: false },
     commercial: { value: 'Vendor-controlled OTA', positive: false },
   },
