@@ -6,9 +6,9 @@ odio runs on Pi B/Zero W through Pi 5 (armv6l/armv7/arm64) and on x86-64 Debian 
 
 ## What sets it apart
 - Audio protocols: AirPlay 2, Bluetooth audio, Snapcast multi-room, UPnP/DLNA, PulseAudio TCP sink, web radios, CD & USB auto-play with metadata
-- Streaming services: Qobuz, Tidal, Spotify Connect, YouTube, SoundCloud
+- Streaming services: Qobuz (incl. Qobuz Connect), Tidal, Spotify Connect
 - Native Home Assistant integration (services, outputs, Bluetooth, power)
-- Pre-built Pi flash images + `odio-upgrade` for in-place updates
+- Pre-built Pi flash images + `odioctl` for in-place updates and node settings (upgrades, optional components, DAC overlay, streaming sign-ins)
 
 ## Key pages
 - [Landing page](https://odio.love/): features, comparison, install command
