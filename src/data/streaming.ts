@@ -30,15 +30,15 @@ export const services: Service[] = [
   },
   {
     name: 'Qobuz',
-    desc: 'Full catalog via upmpdcli. Qobuz Connect on the way',
+    desc: 'Full catalog via upmpdcli. Qobuz Connect (Optional): your pi appears in the Qobuz app.',
     icon: null,
     iconImg: '/logo_qobuz.svg',
     iconColor: null,
-    docs: '/guides/tidal-qobuz/',
+    docs: '/guides/qobuz-connect/',
   },
   {
     name: 'Tidal',
-    desc: 'Full catalog via upmpdcli.',
+    desc: 'Full catalog via upmpdcli. Sign in from the settings page.',
     icon: 'siTidal',
     iconColor: '#ffffff',
     docs: '/guides/tidal-qobuz/',
