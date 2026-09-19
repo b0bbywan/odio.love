@@ -146,7 +146,7 @@ export const repos: Repo[] = [
   {
     name: 'odio-qbz',
     label: 'Qobuz Connect packager',
-    desc: 'qbzd packaged for the odio apt repo, armhf build included, kept in sync with upstream.',
+    desc: 'qbzd packaged for the odio apt repo, armhf build included.',
     url: 'https://github.com/b0bbywan/odio-qbz',
     live: null,
     tech: { label: 'GitHub Actions', color: '#2088FF' },
