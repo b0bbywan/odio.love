@@ -28,7 +28,7 @@
     "@lucide/astro": "^1.46.0",
     "@tailwindcss/vite": "^4.3.3",
     "@vercel/analytics": "^2.0.1",
-    "astro": "^7.3.2",
+    "astro": "^7.3.4",
     "marked": "^18.0.13",
     "svelte": "^5.57.0",
     "tailwindcss": "^4.3.0"
