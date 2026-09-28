@@ -1,0 +1,6 @@
+---
+q: "Can odio show its interface on a screen wired to the Pi?"
+plainAnswer: "Yes, with the optional display component. odio-kiosk draws the embedded web UI straight onto the framebuffer, so nothing else has to be installed alongside it. It needs an arm64 or x86-64 node, it is off by default, and it is still experimental."
+---
+
+Yes, with the optional display component. [odio-kiosk](https://github.com/b0bbywan/odio-framebuffer-ui) draws the embedded web UI straight onto the framebuffer, so a panel attached to the node shows what is playing without a desktop alongside it. It needs an arm64 or x86-64 node, since Raspberry Pi OS armhf ships no QtWebEngine, it is off by default, and it is still experimental: the [local screen guide](https://docs.odio.love/control/local-screen/) covers enabling it, screen sizing and hiding the console cursor.
