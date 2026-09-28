@@ -8,7 +8,7 @@ export interface Repo {
   live: string | null;
   tech: { label: string; color: string };
   tier: Tier;
-  /** SPDX identifier of the repo's license (source: its GitHub LICENSE). */
+  /** SPDX identifier(s), slash-separated when the repo ships more than one license. */
   license: string;
   /** Include this repo's GitHub releases in the aggregated /releases.xml feed. */
   feed?: boolean;
@@ -121,6 +121,18 @@ export const repos: Repo[] = [
     tech: { label: 'Python', color: '#3776AB' },
     tier: 'internal',
     license: 'GPL-3.0',
+    feed: true,
+  },
+  {
+    name: 'odio-framebuffer-ui',
+    label: 'Local screen browser',
+    desc: 'odio-kiosk, the browser behind the local screen. A Qt 6 WebEngine window drawn straight onto the framebuffer.',
+    url: 'https://github.com/b0bbywan/odio-framebuffer-ui',
+    live: null,
+    tech: { label: 'C++', color: '#00599C' },
+    tier: 'internal',
+    // src/ and the packages built from it are LGPL-3.0; packaging and unit are MIT.
+    license: 'LGPL-3.0 / MIT',
     feed: true,
   },
   {
