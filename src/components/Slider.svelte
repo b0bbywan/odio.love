@@ -5,7 +5,7 @@
     { src: '/screenshots/bt-playing.png', alt: 'Bluetooth streaming via PWA' },
     { src: '/screenshots/bt-output.png', alt: 'Bluetooth output to a JBL Go 3 speaker, playing a web radio with live track metadata and cover art' },
     { src: '/screenshots/webradio-cover.png', alt: 'Web radio with cover art' },
-    { src: '/screenshots/pwa-instances.png', alt: 'PWA — multi-node management' },
+    { src: '/screenshots/pwa-instances.png', alt: 'PWA: every node on one screen, with what each one plays' },
     { src: '/screenshots/odio-ha.png', alt: 'Home Assistant — odio-ha integration' },
     { src: '/screenshots/rpi-imager.png', alt: 'Raspberry Pi Imager — flash odio' },
     { src: '/screenshots/settings-dac-picker.webp', alt: 'Settings page: picking the DAC overlay from the supported boards' },

@@ -15,7 +15,7 @@ odio runs on Pi B/Zero W through Pi 5 (armv6l/armv7/arm64) and on x86-64 Debian 
 - [Documentation](https://docs.odio.love/): guides, configuration, community activity
 - [GitHub odios](https://github.com/b0bbywan/odios): installer, releases, discussions/forum
 - [GitHub go-odio-api](https://github.com/b0bbywan/go-odio-api): core REST API + embedded web UI (Go), the engine behind the stack
-- [PWA](https://pwa.odio.love/): web control app
+- [PWA](https://pwa.odio.love/): installable web app that finds the nodes on your network, shows and controls what each one plays, and opens their UI
 - [Install script](https://odio.love/install): `curl -fsSL https://odio.love/install | bash`
 
 ## Maintainer
