@@ -51,7 +51,7 @@ export const repos: Repo[] = [
   {
     name: 'odio-pwa',
     label: 'Web app',
-    desc: 'Progressive Web App. Install from your browser, manage all your odio nodes from one place.',
+    desc: 'Installable web app. Finds your nodes on the network, shows and controls what each one plays.',
     url: 'https://github.com/b0bbywan/odio-pwa',
     live: 'https://pwa.odio.love/',
     tech: { label: 'Svelte', color: '#FF3E00' },

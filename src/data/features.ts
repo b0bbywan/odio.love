@@ -70,7 +70,7 @@ export const features: Feature[] = [
   {
     id: 'pwa',
     name: 'PWA Interface',
-    desc: 'Install the web app on any device for a native-feeling control experience.',
+    desc: 'One installable web app for every node: it finds them on your network, shows what each one plays, and controls playback or opens its full UI.',
     icon: Smartphone,
     docs: '/guides/pwa/',
   },
