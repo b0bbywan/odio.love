@@ -16,6 +16,7 @@ export { default as MessageCircle } from '@lucide/astro/icons/message-circle';
 export { default as Heart } from '@lucide/astro/icons/heart';
 export { default as House } from '@lucide/astro/icons/house';
 export { default as Rss } from '@lucide/astro/icons/rss';
+export { default as Settings } from '@lucide/astro/icons/settings';
 export { default as Share2 } from '@lucide/astro/icons/share-2';
 export { default as Smartphone } from '@lucide/astro/icons/smartphone';
 export { default as Speaker } from '@lucide/astro/icons/speaker';

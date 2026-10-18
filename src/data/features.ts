@@ -1,4 +1,4 @@
-import { Bluetooth, Headphones, Airplay, Speaker, Share2, Disc, Wifi, House, Smartphone, Remote, MonitorPlay } from '../icons';
+import { Bluetooth, Headphones, Airplay, Speaker, Share2, Disc, Wifi, House, Smartphone, Remote, MonitorPlay, Settings } from '../icons';
 
 export type IconComponent = (props: Record<string, unknown>) => unknown;
 
@@ -87,5 +87,12 @@ export const features: Feature[] = [
     desc: 'Plug a screen or a touchscreen into the node and the web UI shows up on it. Experimental, arm64 and x86-64.',
     icon: MonitorPlay,
     docs: '/control/local-screen/',
+  },
+  {
+    id: 'settings',
+    name: 'Settings Page',
+    desc: 'Upgrades, Audio HAT, streaming sign-ins and optional components, from the web UI.',
+    icon: Settings,
+    docs: '/operations/settings/',
   },
 ];
