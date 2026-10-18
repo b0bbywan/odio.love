@@ -40,7 +40,7 @@ export const repos: Repo[] = [
   {
     name: 'odioctl',
     label: 'Node settings',
-    desc: 'Settings page and CLI on every node: upgrades, optional components, DAC overlay, streaming sign-ins.',
+    desc: 'Settings page and CLI on every node: upgrades, optional components, Audio HAT, streaming sign-ins.',
     url: 'https://github.com/b0bbywan/odioctl',
     live: null,
     tech: { label: 'Go', color: '#00ADD8' },
