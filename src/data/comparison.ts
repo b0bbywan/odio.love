@@ -126,6 +126,12 @@ export const comparisonRows: ComparisonRow[] = [
     commercial: { value: 'Varies', positive: null },
   },
   {
+    feature: 'Physical remote',
+    odio: { value: '✅ TV remote (HDMI-CEC), IR, GPIO buttons, Bluetooth / USB', positive: true },
+    volumio: { value: 'IR via community plugin', positive: false },
+    commercial: { value: 'Usually bundled', positive: null },
+  },
+  {
     feature: 'Voice assistant / AI',
     odio: { value: '✅ Via Home Assistant (Piper, Whisper)', positive: true },
     volumio: { value: '💰 CORRD (Premium)', positive: false },
@@ -145,7 +151,7 @@ export const comparisonRows: ComparisonRow[] = [
   },
   {
     feature: 'Optional components',
-    odio: { value: 'Enable or disable services after install', positive: true },
+    odio: { value: 'Turn services off after install: stopped, undone, config kept', positive: true },
     volumio: { value: 'Plugins, several Premium only', positive: false },
     commercial: { value: 'Fixed feature set', positive: false },
   },
