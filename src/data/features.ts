@@ -1,4 +1,4 @@
-import { Bluetooth, Headphones, Airplay, Speaker, Share2, Disc, Wifi, House, Smartphone, Remote } from '../icons';
+import { Bluetooth, Headphones, Airplay, Speaker, Share2, Disc, Wifi, House, Smartphone, Remote, MonitorPlay } from '../icons';
 
 export type IconComponent = (props: Record<string, unknown>) => unknown;
 
@@ -80,5 +80,12 @@ export const features: Feature[] = [
     desc: 'Play/pause, skip and volume from your TV remote over HDMI-CEC, an IR receiver, GPIO buttons or a Bluetooth / USB remote.',
     icon: Remote,
     docs: '/control/remote/',
+  },
+  {
+    id: 'local-screen',
+    name: 'Local Screen',
+    desc: 'Plug a screen or a touchscreen into the node and the web UI shows up on it. Experimental, arm64 and x86-64.',
+    icon: MonitorPlay,
+    docs: '/control/local-screen/',
   },
 ];
