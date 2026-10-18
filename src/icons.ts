@@ -11,6 +11,7 @@ export { default as Disc } from '@lucide/astro/icons/disc';
 export { default as Flag } from '@lucide/astro/icons/flag';
 export { default as Headphones } from '@lucide/astro/icons/headphones';
 export { default as Menu } from '@lucide/astro/icons/menu';
+export { default as MonitorPlay } from '@lucide/astro/icons/monitor-play';
 export { default as MessageCircle } from '@lucide/astro/icons/message-circle';
 export { default as Heart } from '@lucide/astro/icons/heart';
 export { default as House } from '@lucide/astro/icons/house';
