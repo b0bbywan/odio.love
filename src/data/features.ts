@@ -1,4 +1,4 @@
-import { Bluetooth, Headphones, Airplay, Speaker, Share2, Disc, Wifi, House, Smartphone } from '../icons';
+import { Bluetooth, Headphones, Airplay, Speaker, Share2, Disc, Wifi, House, Smartphone, Remote } from '../icons';
 
 export type IconComponent = (props: Record<string, unknown>) => unknown;
 
@@ -73,5 +73,12 @@ export const features: Feature[] = [
     desc: 'One installable web app for every node: it finds them on your network, shows what each one plays, and controls playback or opens its full UI.',
     icon: Smartphone,
     docs: '/guides/pwa/',
+  },
+  {
+    id: 'remote',
+    name: 'Remote Controls',
+    desc: 'Play/pause, skip and volume from your TV remote over HDMI-CEC, an IR receiver, GPIO buttons or a Bluetooth / USB remote.',
+    icon: Remote,
+    docs: '/control/remote/',
   },
 ];
