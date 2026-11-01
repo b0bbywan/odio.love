@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig, passthroughImageService } from 'astro/config';
 import svelte from '@astrojs/svelte';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
@@ -10,6 +10,9 @@ export default defineConfig({
   integrations: [svelte(), mdx(), sitemap()],
   output: 'static',
   adapter: vercel(),
+  // No astro:assets images on this site: skip sharp so it isn't bundled (~37 MB)
+  // into the releases feed function.
+  image: { service: passthroughImageService() },
   // Emit scripts and stylesheets as external files instead of inlining them, so
   // the CSP header in vercel.json can stay `script-src 'self'` / `style-src 'self'`.
   // Astro still inlines its island hydration runtime; those few hashes are pinned
