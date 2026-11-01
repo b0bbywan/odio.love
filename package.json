@@ -52,7 +52,6 @@
     "zod": "^4.6.6"
   },
   "allowScripts": {
-    "esbuild@0.28.1": true,
-    "sharp@0.34.5": true
+    "esbuild@0.28.1": true
   }
 }
