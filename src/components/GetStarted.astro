@@ -142,7 +142,15 @@ const howToJsonLd = buildGetStartedSchema({ installCmd, imagerManifestUrl });
               <span class={`text-xs font-mono shrink-0 w-14 ${p.incoming ? 'text-subtle' : 'text-amber'}`}>{p.arch}</span>
               {p.incoming
                 ? <span class="text-xs italic text-subtle">incoming…</span>
-                : <span class="text-sm text-muted">{p.examples.join(', ')}</span>
+                : <span class="text-sm text-muted">
+                    {p.examples.map((ex, i) => (
+                      <Fragment>
+                        {i > 0 && ', '}
+                        {ex.label}
+                        {ex.communityReport && <> <CommunityReport href={ex.communityReport} label={ex.label} /></>}
+                      </Fragment>
+                    ))}
+                  </span>
               }
             </div>
           ))}
