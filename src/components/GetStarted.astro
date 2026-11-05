@@ -1,6 +1,7 @@
 ---
 import { installCmd, compatibleHardware, verifiedPlatforms, verifiedOther, imagerManifestUrl } from '../data/config.js';
 import { Flag, Terminal, Copy, Check } from '../icons';
+import CommunityReport from './CommunityReport.astro';
 import { buildGetStartedSchema } from '../data/schemas/get-started.js';
 
 const howToJsonLd = buildGetStartedSchema({ installCmd, imagerManifestUrl });
@@ -107,7 +108,8 @@ const howToJsonLd = buildGetStartedSchema({ installCmd, imagerManifestUrl });
         {compatibleHardware.map((hw) => (
           <li class="flex items-center gap-2.5 text-sm text-muted">
             <Check width="14" height="14" class="text-moss shrink-0" aria-hidden="true" />
-            {hw}
+            {hw.label}
+            {hw.communityReport && <CommunityReport href={hw.communityReport} label={hw.label} />}
           </li>
         ))}
       </ul>

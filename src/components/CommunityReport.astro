@@ -1,0 +1,24 @@
+---
+import { Users } from '../icons';
+
+interface Props {
+  href: string;
+  label: string;
+}
+
+const { href, label } = Astro.props;
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={`${label}: community report`}
+  class="group relative inline-flex align-middle text-subtle hover:text-leaf focus-visible:text-leaf transition-colors"
+>
+  <Users width="14" height="14" aria-hidden="true" />
+  <span
+    role="tooltip"
+    class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 whitespace-nowrap rounded-md border border-border bg-surface px-2 py-1 text-xs text-text opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity"
+  >Community report</span>
+</a>
