@@ -1,8 +1,14 @@
 import { repos } from './repos.js';
 
+export interface VerifiedExample {
+  label: string;
+  // Link to the community report, for setups tested by users rather than the maintainer
+  communityReport?: string;
+}
+
 export interface VerifiedPlatform {
   arch: string;
-  examples: string[];
+  examples: VerifiedExample[];
   incoming: boolean;
 }
 
@@ -31,22 +37,25 @@ export const compatibleHardware: CompatibleHardware[] = [
 export const verifiedPlatforms: VerifiedPlatform[] = [
   {
     arch: 'armv6l',
-    examples: ['Raspberry Pi B', 'Raspberry Pi B+ - Raspberry Pi OS Lite (Trixie)'],
+    examples: [{ label: 'Raspberry Pi B' }, { label: 'Raspberry Pi B+ - Raspberry Pi OS Lite (Trixie)' }],
     incoming: false,
   },
   {
     arch: 'armv7',
-    examples: ['Raspberry Pi 2B - Raspberry Pi OS Lite', 'Raspberry Pi 3B+ - Raspberry Pi OS Lite (Trixie 13.4)'],
+    examples: [{ label: 'Raspberry Pi 2B - Raspberry Pi OS Lite' }, { label: 'Raspberry Pi 3B+ - Raspberry Pi OS Lite (Trixie 13.4)' }],
     incoming: false,
   },
   {
     arch: 'arm64',
-    examples: ['Raspberry Pi 3B+ - Raspberry Pi OS Lite (Trixie)'],
+    examples: [
+      { label: 'Raspberry Pi 3B+ - Raspberry Pi OS Lite (Trixie)' },
+      { label: 'Radxa Zero 3W - Debian 13 (Trixie)', communityReport: 'https://github.com/b0bbywan/odios/issues/105' },
+    ],
     incoming: false,
   },
   {
     arch: 'x86-64',
-    examples: ['Desktop - Debian 13 Gnome', 'NAS - OpenMediaVault 8'],
+    examples: [{ label: 'Desktop - Debian 13 Gnome' }, { label: 'NAS - OpenMediaVault 8' }],
     incoming: false,
   },
 ];
