@@ -6,6 +6,12 @@ export interface VerifiedPlatform {
   incoming: boolean;
 }
 
+export interface CompatibleHardware {
+  label: string;
+  // Link to the community report, for boards tested by users rather than the maintainer
+  communityReport?: string;
+}
+
 export interface VerifiedOther {
   label: string;
   note: string;
@@ -13,12 +19,13 @@ export interface VerifiedOther {
 
 export const installCmd = 'curl -fsSL https://odio.love/install | bash';
 
-export const compatibleHardware: string[] = [
-  'Raspberry Pi B, B+, Zero W - armv6l (800 MHz recommended)',
-  'Raspberry Pi 2 - armv7',
-  'Raspberry Pi 3, 4, 5, Zero 2 W - arm64',
-  'Desktop, NAS - x86-64',
-  'Debian 13 (Trixie)',
+export const compatibleHardware: CompatibleHardware[] = [
+  { label: 'Raspberry Pi B, B+, Zero W - armv6l (800 MHz recommended)' },
+  { label: 'Raspberry Pi 2 - armv7' },
+  { label: 'Raspberry Pi 3, 4, 5, Zero 2 W - arm64' },
+  { label: 'Radxa Zero 3W - arm64', communityReport: 'https://github.com/b0bbywan/odios/issues/105' },
+  { label: 'Desktop, NAS - x86-64' },
+  { label: 'Debian 13 (Trixie)' },
 ];
 
 export const verifiedPlatforms: VerifiedPlatform[] = [

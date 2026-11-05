@@ -20,5 +20,6 @@ export { default as Settings } from '@lucide/astro/icons/settings';
 export { default as Share2 } from '@lucide/astro/icons/share-2';
 export { default as Smartphone } from '@lucide/astro/icons/smartphone';
 export { default as Speaker } from '@lucide/astro/icons/speaker';
+export { default as Users } from '@lucide/astro/icons/users';
 export { default as Terminal } from '@lucide/astro/icons/terminal';
 export { default as Wifi } from '@lucide/astro/icons/wifi';
