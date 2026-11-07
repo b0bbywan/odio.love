@@ -6,11 +6,12 @@
  * (Email.astro) and the Discord invite (Footer.astro). Both are reassembled at
  * runtime so a crawler reading the shipped files finds nothing to harvest.
  *
- * That is easy to break without noticing. A `'disc' + 'ord'` concatenation gets
- * folded back into a single literal by the minifier, so the source still looks
- * split while the bundle no longer is. And a public repo is scraped just like a
- * public site, so the tracked sources are checked as well — including this file,
- * which is why the needles below are assembled rather than written out.
+ * That is easy to break without noticing. A constant split (`'a' + 'b'`, and
+ * `['a', 'b'].join('')` as of Astro 7.4.5) gets folded back into a single
+ * literal by the minifier, so the source still looks split while the bundle no
+ * longer is. And a public repo is scraped just like a public site, so the
+ * tracked sources are checked as well — including this file, which is why the
+ * needles below are assembled rather than written out.
  *
  *   npm run check:obfuscation
  */
@@ -73,8 +74,9 @@ const leaks = scan(built, 'the build') + scan(tracked, 'the tracked sources');
 
 if (leaks) {
   console.error(
-    '\n[obfuscation] Assemble the string at runtime in a way the minifier cannot ' +
-      "fold back (e.g. ['a', 'b'].join('')).",
+    '\n[obfuscation] Assemble the string from runtime values the minifier cannot ' +
+      'see (e.g. data-* attributes, as Email.astro does). Constant splits like ' +
+      "'a' + 'b' or ['a', 'b'].join('') get folded back into a literal.",
   );
   process.exit(1);
 }

@@ -70,6 +70,7 @@ const version = `v${pkg.version}`;
         </a>
         <a
           href="#"
+          data-h="discord"
           data-d={discordCode}
           class="js-discord flex items-center gap-2 text-sm transition-colors cursor-pointer text-subtle hover:text-muted focus:text-muted"
           aria-label="odio Discord"
@@ -121,13 +122,16 @@ const version = `v${pkg.version}`;
    * better anyway: it works with the keyboard, middle-click and "open in new tab".
    */
   document.querySelectorAll<HTMLAnchorElement>('a.js-discord').forEach((a) => {
+    const host = a.dataset.h;
     const code = a.dataset.d;
-    if (!code) return;
-    // .join() survives minification; a `'disc' + 'ord'` concatenation gets folded
-    // straight back into a literal, which is what the split was there to avoid.
-    a.href = `https://${['disc', 'ord', '.gg'].join('')}/${code}`;
+    if (!host || !code) return;
+    // The host comes from the markup, not from a constant: the minifier folds
+    // any split it can evaluate (`'a' + 'b'`, and `['a', 'b'].join('')` since
+    // Astro 7.4.5) back into a literal, but it cannot see a runtime value.
+    a.href = `https://${host}.gg/${code}`;
     a.target = '_blank';
     a.rel = 'noopener noreferrer';
+    a.removeAttribute('data-h');
     a.removeAttribute('data-d');
   });
 </script>
