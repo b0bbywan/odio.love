@@ -20,7 +20,7 @@
     "@astrojs/markdown-satteri": "^0.4.4",
     "@astrojs/mdx": "^8.1.1",
     "@astrojs/sitemap": "^3.7.4",
-    "@astrojs/svelte": "^9.1.0",
+    "@astrojs/svelte": "^9.1.2",
     "@astrojs/vercel": "^11.0.18",
     "@fontsource/cormorant-garamond": "^5.3.0",
     "@fontsource/dm-sans": "^5.3.0",
