@@ -5,10 +5,10 @@ import { repos } from '../repos.js';
 export const SITE_URL = 'https://odio.love';
 
 export const DEFAULT_TITLE =
-  'odio: revive any Raspberry Pi as an open-source audio streamer';
+  'odio streamer: turn any Raspberry Pi into an open-source audio streamer';
 
 export const DEFAULT_DESCRIPTION =
-  'Revive any Raspberry Pi as a self-hosted audio streamer. AirPlay 2, Spotify, Snapcast multiroom, Home Assistant. One curl install. Free Volumio alternative.';
+  'Turn any Raspberry Pi into a self-hosted audio streamer. AirPlay 2, Spotify, Snapcast multiroom, Home Assistant. One curl install. Free Volumio alternative.';
 
 export const OG_IMAGE = `${SITE_URL}/og-cover.png`;
 
@@ -122,6 +122,7 @@ export function buildSiteSchema({ description, version }: BuildSiteSchemaArgs) {
       {
         '@type': 'WebSite',
         name: 'odio',
+        alternateName: 'odio streamer',
         url: SITE_URL,
         description,
         publisher: ORG_REF,
@@ -130,6 +131,7 @@ export function buildSiteSchema({ description, version }: BuildSiteSchemaArgs) {
         '@type': 'OperatingSystem',
         '@id': `${SITE_URL}/#os`,
         name: 'odio',
+        alternateName: 'odio streamer',
         url: SITE_URL,
         applicationCategory: 'MultimediaApplication',
         applicationSubCategory: 'Audio Streaming',
