@@ -6,9 +6,9 @@ import { ecosystemCountLabel } from '../data/config.js';
 
 # How odio works
 
-odio is not an appliance. You can flash an image or run the installer and get a working system in minutes, but what you get is still Raspberry Pi OS / Debian: a platform you fully own, not a black box hiding behind a heavily customized OS. It's a coherent set of software components, each doing one thing well, assembled into a working whole. The entire stack runs in your user session. System footprint is minimal: packages, /etc/bluetooth/main.conf, user units and config files, one modified udev rule, two polkit rules. That's it.
+odio is not an appliance. Flash the image or run the installer and you get a working system in minutes, but it is still plain Raspberry Pi OS / Debian, not a black box. [**odios**](https://github.com/b0bbywan/odios) assembles a set of components, each doing one thing well, and every one of them is a standalone project you can use on its own.
 
-[**odios**](https://github.com/b0bbywan/odios) is a complete vision: flash an image or run the installer and an entire stack comes up, configured, wired, ready. But the model doesn't stop there. Every piece is a standalone project. Take what you need. Replace what you don't want. Build something nobody has thought of yet. The platform is the proposal. Your setup is the answer.
+The whole stack runs in your user session. The system footprint is short enough to list: the odio apt repository, packages, `/etc/bluetooth/main.conf`, user units and config files, one udev rule, two polkit rules, and a sudoers fragment that only allows upgrades and Audio HAT selection. Flashed images also get unattended-upgrades, extended to the Raspberry Pi archive (kernel, firmware).
 
 </div>
 </section>
@@ -18,7 +18,7 @@ odio is not an appliance. You can flash an image or run the installer and get a 
 
 ## The stack is not a matter of taste.
 
-[**MPD**](https://www.musicpd.org/) for local playback. [**Shairport Sync**](https://github.com/mikebrady/shairport-sync) for AirPlay. [**Snapcast**](https://github.com/badaix/snapcast) for synchronized multi-room audio. [**upmpdcli**](https://www.lesbonscomptes.com/upmpdcli/) for UPnP/DLNA, Qobuz, and Tidal Connect. [**BlueZ**](http://www.bluez.org/) for Bluetooth A2DP. [**PulseAudio**](https://www.freedesktop.org/wiki/Software/PulseAudio/) as the audio routing backbone. These aren't choices made for convenience. They are the reference implementations, the ones the open-source audio community has converged on over years. There is simply no better option for any of them.
+[**MPD**](https://www.musicpd.org/) for local playback. [**Shairport Sync**](https://github.com/mikebrady/shairport-sync) for AirPlay. [**Snapcast**](https://github.com/badaix/snapcast) for synchronized multi-room audio. [**upmpdcli**](https://www.lesbonscomptes.com/upmpdcli/) for UPnP/DLNA, Qobuz, and Tidal Connect. [**BlueZ**](http://www.bluez.org/) for Bluetooth A2DP. [**PulseAudio**](https://www.freedesktop.org/wiki/Software/PulseAudio/) to route the audio. These are the reference implementations the open-source audio community has converged on over the years.
 
 <img
   src="/architecture-network.svg"
@@ -28,9 +28,9 @@ odio is not an appliance. You can flash an image or run the installer and get a 
   class="hiw-figure"
 />
 
-[PipeWire](https://pipewire.org/) is the future of Linux audio, and odio knows it. It is now available as an experimental backend, picked at install time. PulseAudio stays the default: six years of PulseAudio TCP sink in production earns it its place.
+[PipeWire](https://pipewire.org/) is available as an experimental backend, picked at install time. PulseAudio stays the default: its TCP sink has been in production here for six years.
 
-Regarding **MPD**, odio takes a different approach than other audio distributions. Rather than forcing library management, which doesn't work on a Pi B+ and a large database, odio uses **MPD** mainly for CD/USB and DLNA. Its UPnP renderer and network audio support let you stream directly from your NAS without indexing anything locally. However odio doesn't prevent you from mounting your library as an nfs folder in /media/USB/\<nfs\>.
+odio uses **MPD** mainly for CDs, USB drives and DLNA, not for library management, which doesn't hold up on a Pi B+ with a large database. Its UPnP renderer and network audio support stream straight from your NAS without indexing anything locally. You can still mount your library over NFS in `/media/USB/<nfs>`.
 
 </div>
 </section>
@@ -40,15 +40,13 @@ Regarding **MPD**, odio takes a different approach than other audio distribution
 
 ## One decision shapes everything.
 
-odio runs in your **systemd user session**. Not as root. go-odio-api actually refuses to run as root. This is not an implementation detail: it's the architectural foundation. odio's a guest, not a landlord.
+odio runs in your **systemd user session**, not as root. go-odio-api refuses to run as root.
 
-Systemd user sessions have been the recommended model for over a decade, since systemd 200. Most audio appliances never adopted it. They stayed on the system model, with ALSA, and the constraints that come with it: one process owning the audio device at a time, exclusive access, a crackle on every source transition. PulseAudio, running in the user session, solves this at the root. There is no source switching in odio because there is no exclusive lock. MPD, Shairport Sync, Snapcast... all live in the same PulseAudio mixer at once. You don't select a source. You just play.
+User sessions have been the recommended model since systemd 200, over a decade ago, yet most audio appliances stayed on the system model with ALSA: one process owns the audio device, and every source change means a crackle. With PulseAudio in the user session, MPD, Shairport Sync and Snapcast share the same mixer at once. There is no source to select: whatever plays is heard.
 
-The second consequence is access. Because odio lives in your user session, it has natural, legitimate reach into the entire multimedia stack: the **D-Bus session bus**, **PulseAudio**, [**MPRIS**](https://specifications.freedesktop.org/mpris-spec/latest/), **logind**, **BlueZ** user-level profiles. No privilege escalation. No setuid tricks. No daemon holding capabilities it shouldn't need. The security model is the UNIX model: nothing invented, nothing bypassed.
+The user session also gives odio legitimate access to the multimedia stack: the **D-Bus session bus**, **PulseAudio**, [**MPRIS**](https://specifications.freedesktop.org/mpris-spec/latest/), **logind**, **BlueZ** user-level profiles. No privilege escalation, no setuid: the plain UNIX permission model.
 
-And this is where **MPRIS** earns its place. Neither the UI nor go-odio-api ever talks to a player directly. They talk to MPRIS — a freedesktop standard where any Linux media app (MPD, mpv, Firefox, Spotify, VLC) advertises its state and transport controls over session D-Bus. odio reads that bus and controls whatever it finds there. Adding a new player means nothing on odio's side: start it, and it appears in the API and the UI the moment it plays its first note.
-
-And it is precisely this that makes [**go-odio-api**](https://github.com/b0bbywan/go-odio-api) possible.
+MPRIS is the freedesktop standard through which Linux media apps (MPD, mpv, Firefox, Spotify, VLC) publish their state and transport controls on the session bus. Neither the UI nor go-odio-api talks to a player directly: they go through MPRIS. Start a new player and it shows up in the API and the UI as soon as it plays.
 
 </div>
 </section>
@@ -66,26 +64,19 @@ And it is precisely this that makes [**go-odio-api**](https://github.com/b0bbywa
   class="hiw-figure hiw-figure-end"
 />
 
-[**go-odio-api**](https://github.com/b0bbywan/go-odio-api) is what makes the stack programmable.
+[**go-odio-api**](https://github.com/b0bbywan/go-odio-api) is a REST API written in Go that makes the stack programmable. Playback, volume, sources, Bluetooth pairing, power, output routing and every systemd user unit managed by odios are exposed over HTTP, with SSE for real-time updates. Each node can be driven from a browser, a phone, a script or a Home Assistant automation.
 
-A REST API, written in Go, that bridges every component into a single coherent interface. Playback, volume, source switching, Bluetooth pairing, power management, output routing: all exposed as clean HTTP endpoints, with SSE for real-time updates.
+It is event-driven: it listens to D-Bus signals, MPRIS events and PulseAudio state changes and keeps a cache, instead of polling. On a Pi B+, idle cost stays near zero.
 
-The architecture is almost entirely event-driven. No polling, no busy loops. A living cache to prevent direct system access. On a Pi B+, you don't have CPU cycles to waste. go-odio-api listens to D-Bus signals, MPRIS events, PulseAudio state changes, and reacts. Idle cost is near zero.
+It sits in the same space as [KDE Connect](https://kdeconnect.kde.org/), with other trade-offs: KDE Connect assumes a desktop and a paired client, go-odio-api only a network and a user session. It runs headless and does less, on purpose. That is also why it runs beyond the Pi: an HTPC on Debian, a NAS on OpenMediaVault, a workstation on Fedora. It exposes only what you enable.
 
-Every systemd user unit managed by odios is controllable through the API. No SSH, no reboot. Anything can be wrapped as a systemd unit, which makes the API a natural surface for automation.
-Every odio node becomes observable and controllable from anywhere on your network: a browser, a phone, a script, a Home Assistant automation.
+The binary embeds a web UI, served by the same process. It is one client among others: the API is the product.
 
-If this sounds like [KDE Connect](https://kdeconnect.kde.org/), it's the same space, with different trade-offs. KDE Connect assumes a desktop, a GUI, a paired client. go-odio-api assumes a network and a user session. Nothing else. It runs headless, exposes a REST surface, and does less, on purpose.
+**Settings**: the gear in the UI header opens the node's settings page, served by [**odioctl**](https://github.com/b0bbywan/odioctl) behind go-odio-api's reverse proxy. Upgrade the whole stack, choose which components run, pick your Audio HAT, sign in to Qobuz or Tidal. Turning a component off undoes its changes and keeps its config. Everything on the page is also an `odioctl` command; what goes where is discussed in the [discussions](https://github.com/b0bbywan/odios/discussions).
 
-The binary ships with an embedded web UI. No separate deployment, no build step, no CDN dependency. The API and the interface are the same process, started by the same service. It even updates itself: the whole odio stack upgrades over the air, straight from the UI, no SSH. But the API is the product. The embedded UI is one client among many possible ones. Build yours.
+**Local screen**: the optional [**odio-kiosk**](https://github.com/b0bbywan/odio-framebuffer-ui) shows the UI full screen on `/dev/fb0` through Qt 6 WebEngine, without a desktop session. Off by default, arm64 and x86-64 only: Raspberry Pi OS armhf ships no QtWebEngine.
 
-The UI can also be shown on a screen wired to the node itself. An optional component, [**odio-kiosk**](https://github.com/b0bbywan/odio-framebuffer-ui), opens it full screen on `/dev/fb0` through a Qt 6 WebEngine build, so a node can display its own interface without a desktop session. It is off by default, and needs arm64 or x86-64: Raspberry Pi OS armhf ships no QtWebEngine.
-
-A node can also be driven with no screen at all. go-odio-api reads remote controls: a TV remote over HDMI-CEC, an infrared receiver, push buttons on the GPIO header, a Bluetooth or USB remote. Media keys become play/pause, next, previous, volume and mute on the active player, through the same MPRIS layer as everything else. Those devices are grabbed, so their keys reach odio only.
-
-Not everything should need a shell. The gear in the UI header opens the node's settings page, right inside the web UI: [**odioctl**](https://github.com/b0bbywan/odioctl) serves it behind go-odio-api's reverse proxy, so there is no second port to remember. Apply an upgrade, choose which components the node runs, pick your Audio HAT and reboot into it, sign in to Qobuz or Tidal by opening a link. Turning a component off stops it and undoes what it changed; its config stays, so turning it back on brings it back as it was. No SSH, no config file to edit, and the page follows the node live as things happen. Every one of those is also an `odioctl` command, so neither way is the fallback of the other. What belongs on the page and what stays on the command line is still being decided, in the [discussions](https://github.com/b0bbywan/odios/discussions).
-
-go-odio-api is fully configurable and exposes only what you enable. It needs nothing more than a Linux user session, which means it runs anywhere the session model does. Beyond the Pi: an HTPC on Debian, a NAS on OpenMediaVault, a workstation on Fedora. Same binary, different configuration, same control surface. Desktop compatibility wasn't a design goal. It's a consequence of building on the right abstraction.
+**Remote controls**: a TV remote over HDMI-CEC, an infrared receiver, GPIO buttons, a Bluetooth or USB remote. Their keys go to the active player through MPRIS, and only to odio.
 
 </div>
 </section>
@@ -111,23 +102,19 @@ go-odio-api is fully configurable and exposes only what you enable. It needs not
   />
 </a>
 
-It speaks directly to go-odio-api and receives real-time updates over SSE. Every odio node is auto-discovered via Zeroconf and appears as a single HA device, grouping everything the API exposes.
+Nodes are discovered via Zeroconf and each appears as one HA device, updated in real time over SSE.
 
-**Playback**: a main media player entity for the audio backend (PulseAudio or pipewire-pulse) with global volume, mute, and output selection. Each MPRIS player and remote audio client appears as a child media player with full transport controls, metadata, and live position.
+**Playback**: a main media player for the audio backend (PulseAudio or pipewire-pulse) with volume, mute and output selection. Each MPRIS player and remote audio client becomes a child media player with transport controls, metadata and live position.
 
-**MPRIS**: auto-discovered in real time. Spotify, VLC, Firefox, anything that speaks MPRIS appears as its own entity. Add a player, it shows up instantly, zero config.
+**Bluetooth**: power, pairing mode and connected device as native entities. Try finding a Bluetooth speaker you can turn on from a Home Assistant automation.
 
-**Bluetooth**: the node becomes an API-controllable BT speaker, exposed as a media player in HA. Power, pairing mode, connected device, all as native entities. Try finding a Bluetooth speaker you can turn on from a Home Assistant automation.
+**System**: systemd user services as switches, reboot and power-off buttons, all whitelist-based. System units are read-only.
 
-**System**: systemd user services as start/stop switches. Remote reboot and power-off buttons. All whitelist-based, nothing exposed unless explicitly listed. System units are strictly read-only.
+**Updates**: the odio stack upgrade as a native HA update entity.
 
-**Updates**: the whole odio stack upgrades over the air, exposed as a native HA update entity. One tap pulls the latest release across every node. No SSH, no reflash.
+odio-ha doesn't replace the existing MPD, [spotifyd](https://github.com/Spotifyd/spotifyd), upmpdcli or Snapcast integrations: any entity it manages can be mapped to an existing HA media player, so HA treats them as one.
 
-odio-ha doesn't replace existing HA integrations. MPD, [spotifyd](https://github.com/Spotifyd/spotifyd), upmpdcli, Snapcast all have their own dedicated HA integrations for rich playback and control. In the configuration, any managed entity (service, MPRIS player, or remote audio client) can be mapped to an existing HA media player so HA treats them as one.
-
-Not just a media player card. The full stack, exposed as native HA entities. This depth is only possible because the user session gives go-odio-api legitimate access to the entire multimedia layer, and the API turns it into a surface HA can consume.
-
-What's still missing is a dashboard that does the integration justice. If you build HA dashboards, odio's waiting for you.
+What's still missing is a dashboard that does it justice. If you build HA dashboards, odio's waiting for you.
 
 </div>
 </section>
@@ -149,19 +136,17 @@ What's still missing is a dashboard that does the integration justice. If you bu
 
 The foundation is six years old.
 
-In 2020, during the first confinement, the whole stack was documented in a [Medium series](https://medium.com/@mathieu-requillart/my-ultimate-guide-to-the-raspberry-pi-audio-server-i-wanted-introduction-650020d135e1): apt install, systemd services, bash scripts, udev rules, one feature at a time. It worked. It went into production. Four major Debian upgrades later, the same Pi B+ in the same wooden case has never been reinstalled. Total cost of the hardware: €164.
+In 2020, during the first lockdown, I documented the whole stack in a [Medium series](https://medium.com/@mathieu-requillart/my-ultimate-guide-to-the-raspberry-pi-audio-server-i-wanted-introduction-650020d135e1): apt install, systemd services, bash scripts, udev rules, one feature at a time. It went into production. Four major Debian upgrades later, the same Pi B+ in the same wooden case had never been reinstalled. Total hardware cost: €164.
 
-That track record is not incidental. It comes from building on the right abstractions from the start: PulseAudio in the user session, MPD, BlueZ, systemd. Components the Linux community had already validated over years. The setup survived because the foundations were solid.
+[go-mpd-discplayer](https://github.com/b0bbywan/go-mpd-discplayer) came from a gap in that setup: CDs played, but MPD clients showed no track metadata. The [2020 article](https://mathieu-requillart.medium.com/my-ultimate-guide-to-the-raspberry-pi-audio-server-i-wanted-audio-cd-f985e8bd832c) said so: "What annoys me more is that I don't have tracks tags." go-disc-cuer fixes it with [GnuDB](https://gnudb.org/), [MusicBrainz](https://musicbrainz.org/) and a CUE sheet fed to MPD.
 
-[go-mpd-discplayer](https://github.com/b0bbywan/go-mpd-discplayer) came from a real gap in that original setup. CDs played, but tracks had no metadata in MPD clients. The [2020 article](https://mathieu-requillart.medium.com/my-ultimate-guide-to-the-raspberry-pi-audio-server-i-wanted-audio-cd-f985e8bd832c) acknowledged it: "What annoys me more is that I don't have tracks tags." go-disc-cuer closes that gap. [GnuDB](https://gnudb.org/), [MusicBrainz](https://musicbrainz.org/), CUE sheet output fed directly to MPD. The problem was unsolved and it bothered me. Now it's solved.
+go-odio-api started in January 2026, as a way to test [Claude Code](https://claude.ai/code). The POC worked well enough to keep going. Home Assistant integration came next, since it was the goal from the start, then the [PWA](https://github.com/b0bbywan/odio-pwa) because the UI was inconvenient to reach, then the installer, to wrap up what I started in 2020 as a first complete use case of the API.
 
-go-odio-api came in January 2026, built to test [Claude Code](https://claude.ai/code). A REST API over a systemd user session in Go. The POC worked well enough to become a commitment. An API alone is useless. Home Assistant integration came right after, as it was the initial objective, then the [PWA](https://github.com/b0bbywan/odio-pwa) followed, because the UI was inconvenient to reach, then the installer as a way to conclude my experience started in 2020 and offer a first complete use case of the api. To establish new bases for the multimedia world.
+The CI grew with it: unit tests, builds for every target (binaries, Docker images, apt and rpm packages), and an apt repository managed entirely by CI. A tagged release builds the package, the package lands in the repo, apt sees it.
 
-As the vision for go-odio-api was getting clearer, the CI got serious. Unit tests. Build pipelines for every target: binaries, Docker images, apt packages, rpm packages. Then the apt repository, fully CI-managed, no manual step anywhere. A tagged release triggers the build. The package lands in the repo. apt sees it.
+The installer is a vendored [Ansible](https://www.ansible.com/) archive run with a curl one-liner. Ansible because it is idempotent, vendored because resolving dependencies at install time is a failure waiting to happen. The flash image comes from the same playbook, frozen at release time, so a fresh install and an upgrade end up in the same state.
 
-The installer is a vendored [Ansible](https://www.ansible.com/) archive, delivered as a curl bash. Ansible because idempotent. Vendored because runtime dependency resolution is a failure waiting to happen. Curl bash because it is one command and it works. The flash image comes from that same playbook, frozen at release time. Fresh install or upgrade, same source of truth, same result.
-
-Bash scripts become binaries. Binaries become packages. Packages get a repo. A repo gets an installer. An installer gets an image. Solid foundations make fast iterations possible. This is the kind of software chain I believe in: one where a POC can become production without being rebuilt from scratch, and where new features add on top of that base without breaking "historical" features.
+That's the chain I believe in: bash scripts became binaries, then packages, a repo, an installer, an image, without rebuilding anything from scratch, and new features still land without breaking old ones.
 
 </div>
 </section>
