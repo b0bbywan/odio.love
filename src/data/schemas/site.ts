@@ -5,7 +5,7 @@ import { repos } from '../repos.js';
 export const SITE_URL = 'https://odio.love';
 
 export const DEFAULT_TITLE =
-  'odio streamer: turn any Raspberry Pi into an open-source audio streamer';
+  'odio streamer: turn any Raspberry Pi into a free audio streamer';
 
 export const DEFAULT_DESCRIPTION =
   'Turn any Raspberry Pi into a self-hosted audio streamer. AirPlay 2, Spotify, Snapcast multiroom, Home Assistant. One curl install. Free Volumio alternative.';
